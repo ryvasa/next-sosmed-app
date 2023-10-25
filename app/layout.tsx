@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="night">
       <body className={inter.className}>
         <Topbar />
         <div className="w-full">
-          <div className="px-5 py-10">{children}</div>
+          <div className="px-5 pt-10 pb-20">{children}</div>
         </div>
         <Bottombar />
       </body>

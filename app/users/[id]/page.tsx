@@ -1,8 +1,10 @@
+import PostCard from "@/components/cards/PostCard";
 import UserCard from "@/components/cards/UserCard";
 const Page = () => {
   return (
-    <div>
-      Users Id <UserCard />
+    <div className="">
+      <UserCard />
+      <PostCard />
     </div>
   );
 };

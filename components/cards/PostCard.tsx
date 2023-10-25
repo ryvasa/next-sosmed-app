@@ -16,7 +16,7 @@ dignissimos ut ab aperiam aspernatur.`;
 
 const PostCard = () => {
   return (
-    <div className="border-b-[3px] border-gray-600 py-10 ">
+    <div className="border-b-[2px] border-gray-600 py-10 ">
       <div className="flex gap-4 flex-col">
         <div className="flex gap-4 items-center ">
           <div className="avatar-profile">
@@ -24,11 +24,11 @@ const PostCard = () => {
           </div>
           <div className="user-info">
             <p className="text-md">Username</p>
-            <p className="text-sm">10:18</p>
+            <p className="text-sm text-primary">10:18</p>
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <p>{desc.split(" ").slice(0, 30).join(" ")}...</p>
+          <p className="text-sm">{desc.split(" ").slice(0, 30).join(" ")}...</p>
           <div className="h-96">
             <Image
               src={image}
@@ -40,7 +40,7 @@ const PostCard = () => {
         <div className="flex">
           <div className="flex-1 flex items-center justify-center gap-2">
             <svg
-              className="h-6 w-6"
+              className="h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
@@ -55,7 +55,7 @@ const PostCard = () => {
           </div>
           <div className="flex-1 flex items-center justify-center gap-2">
             <svg
-              className="h-6 w-6"
+              className="h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
