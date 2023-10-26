@@ -32,7 +32,7 @@ const PostCard = ({ detail }: any) => {
         <PostContent detail={detail} data={data} />
       </div>
       <div className="flex pt-5">
-        <LikeButton />
+        <LikeButton w={6} h={6} isComment={false} />
         <div className="flex-1 flex items-center justify-center gap-2">
           <Comment />
           <p>123</p>
