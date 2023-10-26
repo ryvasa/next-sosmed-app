@@ -1,22 +1,25 @@
 "use client";
+import { themeStore } from "@/store";
 import { Dark, Light } from "./icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const localTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(themeStore((state: any) => state.theme));
 
-  const [theme, setTheme] = useState(localTheme);
-  const htmlElment = document.querySelector("html");
   const update = (newTheme: string) => {
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
     if (newTheme === "light") {
-      htmlElment?.classList.remove("dark");
+      document.querySelector("html")?.classList.remove("dark");
     } else {
-      htmlElment?.classList.remove("light");
+      document.querySelector("html")?.classList.remove("light");
     }
-    htmlElment?.classList.add(newTheme);
+    document.querySelector("html")?.classList.add(newTheme);
   };
+
+  useEffect(() => {
+    document.querySelector("html")?.classList.add(theme);
+  }, [theme]);
 
   return (
     <>
@@ -27,8 +30,8 @@ const ThemeToggle = () => {
             update("dark");
           }}
         >
-          <Light w={4} h={4} />
-          <p className="text-md text-dark-xl dark:text-dark-xs">Light mode</p>
+          <Light />
+          <p className=" text-dark-xl dark:text-dark-xs">Light mode</p>
         </button>
       ) : (
         <button
@@ -37,8 +40,8 @@ const ThemeToggle = () => {
             update("light");
           }}
         >
-          <Dark w={4} h={4} />
-          <p className="text-md text-dark-xl dark:text-dark-xs">Dark mode</p>
+          <Dark />
+          <p className=" text-dark-xl dark:text-dark-xs">Dark mode</p>
         </button>
       )}
     </>

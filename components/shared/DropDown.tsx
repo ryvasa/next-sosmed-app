@@ -15,7 +15,7 @@ const DropDown = () => {
         </li>
         <li>
           <div className="flex justify-start items-center">
-            <User w={4} h={4} />
+            <User />
             <p className="text-md text-dark-xl dark:text-dark-xs">Log out</p>
           </div>
         </li>

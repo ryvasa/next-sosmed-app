@@ -204,7 +204,7 @@ const Light = ({ w, h }: any) => {
 const Dark = ({ w, h }: any) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -218,7 +218,7 @@ const Dark = ({ w, h }: any) => {
 const User = ({ w, h }: any) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
