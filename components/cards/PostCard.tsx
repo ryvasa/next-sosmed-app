@@ -1,5 +1,7 @@
 import Image from "next/image";
 import image from "../../public/pf.jpg";
+import { Comment } from "../ui/icons";
+import LikeButton from "../ui/LikeButton";
 
 const desc = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
 id recusandae natus aliquid alias dolore totam nam in ad ex,
@@ -16,19 +18,21 @@ dignissimos ut ab aperiam aspernatur.`;
 
 const PostCard = () => {
   return (
-    <div className="border-b-[2px] border-gray-600 py-10 ">
+    <div className="border-b-[2px] border-gray-200 dark:border-gray-600 py-10 ">
       <div className="flex gap-4 flex-col">
         <div className="flex gap-4 items-center ">
           <div className="avatar-profile">
             <Image src={image} alt="photo frofile" />
           </div>
           <div className="user-info">
-            <p className="text-md">Username</p>
+            <p className="text-md text-dark-xl dark:text-dark-xs">Username</p>
             <p className="text-sm text-primary">10:18</p>
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="text-sm">{desc.split(" ").slice(0, 30).join(" ")}...</p>
+          <p className="text-sm text-dark-xl dark:text-dark-xs">
+            {desc.split(" ").slice(0, 30).join(" ")}...
+          </p>
           <div className="h-96">
             <Image
               src={image}
@@ -38,34 +42,9 @@ const PostCard = () => {
           </div>
         </div>
         <div className="flex">
-          <div className="flex-1 flex items-center justify-center gap-2">
-            <svg
-              className="h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57l.03-.32c0-.41-.17-.79-.44-1.06L14.17 1L7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
-              ></path>
-            </svg>
-            <p>123</p>
-          </div>
-          <div className="flex-1 flex items-center justify-center gap-2">
-            <svg
-              className="h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1em"
-              height="1em"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4l-.01-18z"
-              ></path>
-            </svg>
+          <LikeButton />
+          <div className="flex-1 flex items-center justify-center gap-2 text-dark-xl dark:text-dark-xs">
+            <Comment />
             <p>123</p>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import image from "../../public/pf.jpg";
 import Link from "next/link";
-import { Hamburger, Notification } from "../ui/icons";
+import { Notification } from "../ui/icons";
+import DropDown from "./DropDown";
 
 const Topbar = () => {
   return (
-    <div className="navbar fixed top-0 left-0 shadow-2xl bg-gray-800 z-[99]">
-      <div className="flex-1">
+    <nav className="navbar fixed z-[99]  top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md ">
+      <div className="flex-1 ">
         <Link href="/users/123" className="avatar-profile">
           <Image alt="profile" src={image} quality={1} />
         </Link>
@@ -16,11 +17,9 @@ const Topbar = () => {
         <Link href={"/"}>
           <Notification />
         </Link>
-        <button className="btn btn-square btn-ghost">
-          <Hamburger />
-        </button>
+        <DropDown />
       </div>
-    </div>
+    </nav>
   );
 };
 

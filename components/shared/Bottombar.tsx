@@ -7,14 +7,15 @@ const Bottombar = () => {
   const pathname = usePathname();
   return (
     <div className="fixed bottom-0 w-full flex items-center justify-center">
-      <div className="bg-gray-800 w-full px-5 py-3 rounded-t-2xl">
+      <div className="bg-gradient-to-t from-dark-xs to-dark-xs/0 dark:from-dark-xl dark:to-dark-xl/0 h-28 w-full  "></div>
+      <div className="bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md  w-full px-5 py-3 rounded-t-2xl bottom-0 ">
         <ul className="flex justify-between w-full">
           <li>
             <Link
               className={`btn btn-square btn-sm ${
                 pathname === "/"
-                  ? " text-gray-800 btn-primary"
-                  : "bg-transparent text-gray-400 border-none"
+                  ? " text-white dark:text-dark-xl btn-primary"
+                  : "bg-transparent text-dark-lg dark:text-gray-400 border-none"
               }`}
               href={"/"}
             >
@@ -25,8 +26,8 @@ const Bottombar = () => {
             <Link
               className={`btn btn-square btn-sm ${
                 pathname === "/users"
-                  ? " text-gray-800 btn-primary"
-                  : "bg-transparent text-gray-400 border-none"
+                  ? " text-white dark:text-dark-xl btn-primary"
+                  : "bg-transparent text-dark-lg dark:text-gray-400 border-none"
               }`}
               href={"/users"}
             >
@@ -37,8 +38,8 @@ const Bottombar = () => {
             <Link
               className={`btn btn-square btn-sm ${
                 pathname === "/create-post"
-                  ? " text-gray-800 btn-primary"
-                  : "bg-transparent text-gray-400 border-none"
+                  ? " text-white dark:text-dark-xl btn-primary"
+                  : "bg-transparent text-dark-lg dark:text-gray-400 border-none"
               }`}
               href={"/create-post"}
             >
@@ -49,8 +50,8 @@ const Bottombar = () => {
             <Link
               className={`btn btn-square btn-sm ${
                 pathname === "/chats"
-                  ? " text-gray-800 btn-primary"
-                  : "bg-transparent text-gray-400 border-none"
+                  ? " text-white dark:text-dark-xl btn-primary"
+                  : "bg-transparent text-dark-lg dark:text-gray-400 border-none"
               }`}
               href={"/chats"}
             >
@@ -61,8 +62,8 @@ const Bottombar = () => {
             <Link
               className={`btn btn-square btn-sm ${
                 pathname === "/search"
-                  ? " text-gray-800 btn-primary"
-                  : "bg-transparent text-gray-400 border-none"
+                  ? " text-white dark:text-dark-xl btn-primary"
+                  : "bg-transparent text-dark-lg dark:text-gray-400 border-none"
               }`}
               href={"/search"}
             >
