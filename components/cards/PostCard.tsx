@@ -1,7 +1,7 @@
 import Image from "next/image";
 import image from "../../public/pf.jpg";
 import { Comment } from "../ui/icons";
-import LikeButton from "../ui/LikeButton";
+import LikeButton from "../shared/LikeButton";
 
 const desc = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
 id recusandae natus aliquid alias dolore totam nam in ad ex,
@@ -22,19 +22,20 @@ const PostCard = () => {
       <div className="flex gap-4 flex-col">
         <div className="flex gap-4 items-center ">
           <div className="avatar-profile">
-            <Image src={image} alt="photo frofile" />
+            <Image placeholder="blur" src={image} alt="photo frofile" />
           </div>
           <div className="user-info">
-            <p className="text-md text-dark-xl dark:text-dark-xs">Username</p>
+            <p className="text-md text-color font-semibold">Username</p>
             <p className="text-sm text-primary">10:18</p>
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="text-sm text-dark-xl dark:text-dark-xs">
+          <p className="text-sm text-color">
             {desc.split(" ").slice(0, 30).join(" ")}...
           </p>
           <div className="h-96">
             <Image
+              placeholder="blur"
               src={image}
               alt="photo postingan"
               className="w-full h-full object-cover  rounded-xl"
@@ -43,7 +44,7 @@ const PostCard = () => {
         </div>
         <div className="flex">
           <LikeButton />
-          <div className="flex-1 flex items-center justify-center gap-2 text-dark-xl dark:text-dark-xs">
+          <div className="flex-1 flex items-center justify-center gap-2 text-color">
             <Comment />
             <p>123</p>
           </div>

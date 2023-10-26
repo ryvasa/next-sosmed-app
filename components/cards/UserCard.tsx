@@ -14,7 +14,7 @@ const UserCard = () => {
               className="object-cover h-28 w-28 "
             />
           </div>
-          <div className="flex flex-col text-dark-xl dark:text-dark-xs">
+          <div className="flex flex-col text-color">
             <p className="text-2xl font-semibold">Username</p>
             <p className="text-sm">Join on 23 April 2023</p>
           </div>
@@ -22,17 +22,17 @@ const UserCard = () => {
 
         <Edit />
       </div>
-      <div className="py-5 flex gap-4 ">
-        <div className="btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm">
-          <Check />
-          <p>Confirm</p>
+      <div className="py-5 flex gap-10">
+        <div className="user-profile-action">
+          <Check w={5} h={5} />
+          <p className="normal-case">Confirm</p>
         </div>
-        <div className="btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm">
-          <Close />
-          <p>Cancel</p>
+        <div className="user-profile-action">
+          <Close w={5} h={5} />
+          <p className="normal-case">Cancel</p>
         </div>
       </div>
-      <div className="flex items-center py-5 gap-3 text-dark-xl dark:text-dark-xs">
+      <div className="flex items-center py-5 gap-3 text-color">
         <FriendList />
         <p>
           <b>123</b> friends

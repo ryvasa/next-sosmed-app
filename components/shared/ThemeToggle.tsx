@@ -1,24 +1,20 @@
 "use client";
 import { themeStore } from "@/store";
-import { Dark, Light } from "./icons";
+import { Dark, Light } from "../ui/icons";
 import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(themeStore((state: any) => state.theme));
 
-  const update = (newTheme: string) => {
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
-    if (newTheme === "light") {
-      document.querySelector("html")?.classList.remove("dark");
-    } else {
-      document.querySelector("html")?.classList.remove("light");
-    }
-    document.querySelector("html")?.classList.add(newTheme);
   };
 
   useEffect(() => {
-    document.querySelector("html")?.classList.add(theme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
   }, [theme]);
 
   return (
@@ -27,21 +23,21 @@ const ThemeToggle = () => {
         <button
           className="flex justify-start items-center"
           onClick={() => {
-            update("dark");
+            toggleTheme();
           }}
         >
           <Light />
-          <p className=" text-dark-xl dark:text-dark-xs">Light mode</p>
+          <p className=" text-color">Light mode</p>
         </button>
       ) : (
         <button
           className="flex justify-start items-center"
           onClick={() => {
-            update("light");
+            toggleTheme();
           }}
         >
           <Dark />
-          <p className=" text-dark-xl dark:text-dark-xs">Dark mode</p>
+          <p className=" text-color">Dark mode</p>
         </button>
       )}
     </>

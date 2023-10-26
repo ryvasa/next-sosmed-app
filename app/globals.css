@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+nav {
+  @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
+}
 .avatar-profile {
   @apply rounded-full overflow-hidden btn btn-ghost btn-circle avatar;
+}
+.dropdown-list {
+  @apply relative dropdown-content z-[1] menu p-2 rounded-box w-40 drop-shadow-xl bg-white/95 dark:bg-dark-sm;
+}
+.bottombar-container {
+  @apply bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md  w-full px-5 py-3 rounded-t-2xl bottom-0;
+}
+.bottombar-gradient {
+  @apply bg-gradient-to-t from-dark-xs to-dark-xs/0 dark:from-dark-xl dark:to-dark-xl/0 h-28 w-full;
+}
+.bottombar {
+  @apply fixed bottom-0 w-full flex items-center justify-center;
+}
+.bottombar-item {
+  @apply bg-transparent text-dark-lg dark:text-gray-400 border-none;
+}
+.bottombar-item-active {
+  @apply text-white dark:text-dark-xl btn-primary;
+}
+
+.user-profile-action {
+  @apply btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm;
+}
+
+.text-color {
+  @apply text-dark-xl dark:text-dark-xs;
 }

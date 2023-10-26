@@ -4,7 +4,7 @@ export const themeStore = create((set) => ({
   theme:
     typeof window !== "undefined"
       ? window.localStorage.getItem("theme")
-      : "light",
+      : "dark",
   updateTheme: (newTheme: string) =>
     set((state: any) => ({
       theme: newTheme,

@@ -6,7 +6,7 @@ import DropDown from "./DropDown";
 
 const Topbar = () => {
   return (
-    <nav className="navbar fixed z-[99]  top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md ">
+    <nav className="navbar">
       <div className="flex-1 ">
         <Link href="/users/123" className="avatar-profile">
           <Image alt="profile" src={image} quality={1} />
