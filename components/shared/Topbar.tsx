@@ -14,7 +14,7 @@ const Topbar = () => {
       </div>
 
       <div className="flex-none flex gap-2">
-        <Link href={"/"}>
+        <Link href={"/notifications"}>
           <Notification />
         </Link>
         <DropDown />

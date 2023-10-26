@@ -27,7 +27,7 @@ const ThemeToggle = () => {
           }}
         >
           <Light />
-          <p className=" text-color">Light mode</p>
+          <p>Light mode</p>
         </button>
       ) : (
         <button
@@ -37,7 +37,7 @@ const ThemeToggle = () => {
           }}
         >
           <Dark />
-          <p className=" text-color">Dark mode</p>
+          <p>Dark mode</p>
         </button>
       )}
     </>

@@ -1,7 +1,8 @@
-import Image from "next/image";
 import image from "../../public/pf.jpg";
 import { Comment } from "../ui/icons";
 import LikeButton from "../shared/LikeButton";
+import UserInfo from "../shared/UserInfo";
+import PostContent from "../shared/PostContent";
 
 const desc = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
 id recusandae natus aliquid alias dolore totam nam in ad ex,
@@ -16,38 +17,25 @@ explicabo adipisci sint. Ducimus eligendi reprehenderit maiores
 iste et. Quam dolorum doloremque molestias expedita qui
 dignissimos ut ab aperiam aspernatur.`;
 
-const PostCard = () => {
+const images = [image, image, image];
+
+const data = {
+  desc,
+  images,
+};
+
+const PostCard = ({ detail }: any) => {
   return (
-    <div className="border-b-[2px] border-gray-200 dark:border-gray-600 py-10 ">
+    <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
       <div className="flex gap-4 flex-col">
-        <div className="flex gap-4 items-center ">
-          <div className="avatar-profile">
-            <Image placeholder="blur" src={image} alt="photo frofile" />
-          </div>
-          <div className="user-info">
-            <p className="text-md text-color font-semibold">Username</p>
-            <p className="text-sm text-primary">10:18</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-4">
-          <p className="text-sm text-color">
-            {desc.split(" ").slice(0, 30).join(" ")}...
-          </p>
-          <div className="h-96">
-            <Image
-              placeholder="blur"
-              src={image}
-              alt="photo postingan"
-              className="w-full h-full object-cover  rounded-xl"
-            />
-          </div>
-        </div>
-        <div className="flex">
-          <LikeButton />
-          <div className="flex-1 flex items-center justify-center gap-2 text-color">
-            <Comment />
-            <p>123</p>
-          </div>
+        <UserInfo />
+        <PostContent detail={detail} data={data} />
+      </div>
+      <div className="flex pt-5">
+        <LikeButton />
+        <div className="flex-1 flex items-center justify-center gap-2">
+          <Comment />
+          <p>123</p>
         </div>
       </div>
     </div>

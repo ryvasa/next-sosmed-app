@@ -14,7 +14,7 @@ const UserCard = () => {
               className="object-cover h-28 w-28 "
             />
           </div>
-          <div className="flex flex-col text-color">
+          <div className="flex flex-col ">
             <p className="text-2xl font-semibold">Username</p>
             <p className="text-sm">Join on 23 April 2023</p>
           </div>
@@ -32,7 +32,7 @@ const UserCard = () => {
           <p className="normal-case">Cancel</p>
         </div>
       </div>
-      <div className="flex items-center py-5 gap-3 text-color">
+      <div className="flex items-center py-5 gap-3 ">
         <FriendList />
         <p>
           <b>123</b> friends

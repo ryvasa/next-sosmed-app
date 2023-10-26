@@ -11,10 +11,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#6c8ce2",
-        "dark-xs": "#cbd5e1",
+        "dark-xs": "#d1d5db",
         "dark-sm": "#1f2937",
-        "dark-lg": "#0f172a",
-        "dark-xl": "#020617",
+        "dark-lg": "#111827",
+        "dark-xl": "#030712",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -30,10 +30,10 @@ const config: Config = {
         dark: {
           ...require("daisyui/src/theming/themes")["[class=dark]"],
           primary: "#6c8ce2",
-          "dark-xs": "#cbd5e1",
+          "dark-xs": "#d1d5db",
           "dark-sm": "#1f2937",
-          "dark-lg": "#0f172a",
-          "dark-xl": "#020617",
+          "dark-lg": "#111827",
+          "dark-xl": "#030712",
         },
       },
       {

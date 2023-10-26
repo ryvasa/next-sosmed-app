@@ -2,7 +2,13 @@
 import { useState } from "react";
 import { Like } from "../ui/icons";
 
-const LikeButton = () => {
+interface props {
+  w: number;
+  h: number;
+  isComment: boolean;
+}
+
+const LikeButton = ({ w, h, isComment }: props) => {
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(123);
 
@@ -16,12 +22,12 @@ const LikeButton = () => {
       onClick={() => {
         likePost();
       }}
-      className={`flex-1 flex items-center justify-center gap-2  ${
-        like ? "text-primary" : "text-color"
+      className={`flex items-center gap-2 ${isComment ? "  justify-start " : "flex-1  justify-center "}  ${
+        like && "text-primary "
       }`}
     >
-      <Like />
-      <p className="text-color">{likeCount}</p>
+      <Like w={w} h={h} />
+      <p className={`${isComment && "text-sm"}`}>{likeCount}</p>
     </button>
   );
 };
