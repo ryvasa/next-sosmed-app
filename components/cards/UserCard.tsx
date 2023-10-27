@@ -1,42 +1,40 @@
 import Image from "next/image";
+import { Unfriend, Chat, Check, Close } from "../ui/icons";
 import image from "../../public/pf.jpg";
-import { Check, Close, Edit, FriendList } from "../ui/icons";
+import Link from "next/link";
 
-const UserCard = () => {
+const UserCard = ({ friend }: any) => {
   return (
-    <div className="border-b-2 border-gray-700">
-      <div className="pt-10 flex items-center justify-between">
-        <div className="flex gap-5 items-center ">
-          <div className="rounded-full overflow-hidden">
-            <Image
-              alt="profile"
-              src={image}
-              className="object-cover h-28 w-28 "
-            />
-          </div>
-          <div className="flex flex-col ">
-            <p className="text-2xl font-semibold">Username</p>
-            <p className="text-sm">Join on 23 April 2023</p>
-          </div>
+    <div className="rounded-lg px-4 py-2 bg-gray-100 dark:bg-dark-lg/30 flex justify-between">
+      <Link
+        href={"/users/123"}
+        className="flex gap-3 items-center justify-center"
+      >
+        <div className="avatar-profile">
+          <Image placeholder="blur" src={image} alt="photo frofile" />
         </div>
-
-        <Edit />
-      </div>
-      <div className="py-5 flex gap-10">
-        <div className="user-profile-action">
-          <Check w={5} h={5} />
-          <p className="normal-case">Confirm</p>
-        </div>
-        <div className="user-profile-action">
-          <Close w={5} h={5} />
-          <p className="normal-case">Cancel</p>
-        </div>
-      </div>
-      <div className="flex items-center py-5 gap-3 ">
-        <FriendList />
-        <p>
-          <b>123</b> friends
-        </p>
+        <p className="">Username</p>
+      </Link>
+      <div className="flex justify-center items-center gap-4">
+        {friend ? (
+          <>
+            <div className="text-primary">
+              <Chat />
+            </div>
+            <div className="text-error">
+              <Unfriend />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-primary">
+              <Check />
+            </div>
+            <div className="text-error">
+              <Close />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

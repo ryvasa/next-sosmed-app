@@ -1,9 +1,9 @@
 import PostCard from "@/components/cards/PostCard";
-import UserCard from "@/components/cards/UserCard";
+import ProfileCard from "@/components/cards/ProfileCard";
 const Page = () => {
   return (
     <div className="">
-      <UserCard />
+      <ProfileCard />
       <PostCard />
     </div>
   );

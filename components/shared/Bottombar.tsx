@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { Add, Chat, FriendList, Home, Search } from "@/components/ui/icons";
+import { Add, Chat, Friend, Home, Search } from "@/components/ui/icons";
 import { usePathname } from "next/navigation";
 
 const Bottombar = () => {
   const pathname = usePathname();
   return (
-    <div className="bottombar">
+    <div className="bottombar ">
       <div className="bottombar-gradient"></div>
       <div className="bottombar-container">
         <ul className="flex justify-between w-full">
@@ -29,7 +29,7 @@ const Bottombar = () => {
               }`}
               href={"/users"}
             >
-              <FriendList />
+              <Friend />
             </Link>
           </li>
           <li>

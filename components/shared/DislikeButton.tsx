@@ -22,7 +22,7 @@ const DislikeButton = () => {
         dislike && "text-primary"
       }`}
     >
-      <Dislike w={4} h={4} />
+      <Dislike w={5} h={5} />
       <p className="text-sm">{dislikeCount}</p>
     </button>
   );

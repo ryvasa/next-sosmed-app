@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth scroll-pt-96">
       <body className={inter.className}>
         <Topbar />
         <div className="w-full bg-white dark:bg-dark-sm">

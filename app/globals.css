@@ -33,3 +33,7 @@ nav {
 .user-profile-action {
   @apply btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm;
 }
+
+.user-profile-cancle {
+  @apply btn btn-sm btn-error flex-1 text-white dark:text-dark-sm;
+}

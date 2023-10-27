@@ -16,7 +16,7 @@ const PostContent = ({ detail, data }: any) => {
               placeholder="blur"
               src={image}
               alt="photo postingan"
-              className="w-full h-full object-cover  rounded-xl"
+              className="w-full h-full object-cover rounded-xl"
             />
           </div>
         ))
@@ -26,7 +26,7 @@ const PostContent = ({ detail, data }: any) => {
             placeholder="blur"
             src={data.images[0]}
             alt="photo postingan"
-            className="w-full h-full object-cover  rounded-xl"
+            className="w-full h-full object-cover rounded-xl"
           />
         </div>
       )}

@@ -3,6 +3,7 @@ import { Comment } from "../ui/icons";
 import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";
 import PostContent from "../shared/PostContent";
+import Link from "next/link";
 
 const desc = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
 id recusandae natus aliquid alias dolore totam nam in ad ex,
@@ -33,10 +34,13 @@ const PostCard = ({ detail }: any) => {
       </div>
       <div className="flex pt-5">
         <LikeButton w={6} h={6} isComment={false} />
-        <div className="flex-1 flex items-center justify-center gap-2">
+        <Link
+          href={"/posts/123"}
+          className="flex-1 flex items-center justify-center gap-2"
+        >
           <Comment />
           <p>123</p>
-        </div>
+        </Link>
       </div>
     </div>
   );

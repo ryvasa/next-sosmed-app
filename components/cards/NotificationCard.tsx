@@ -1,9 +1,13 @@
 import Image from "next/image";
 import image from "../../public/pf.jpg";
+import Link from "next/link";
 
 const NotificationCard = () => {
   return (
-    <div className="bg-gray-100 dark:bg-dark-lg/30 flex gap-5 p-5 rounded-lg">
+    <Link
+      href={"/posts/123"}
+      className="bg-gray-100 dark:bg-dark-lg/30 flex gap-5 p-5 rounded-lg"
+    >
       <div className="avatar-profile">
         <Image placeholder="blur" src={image} alt="photo frofile" />
       </div>
@@ -14,7 +18,7 @@ const NotificationCard = () => {
         </div>
         <p className="text-sm font-semibold text-primary">10:20</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -49,7 +49,7 @@ const Home = ({ w, h }: any) => {
   );
 };
 
-const FriendList = ({ w, h }: any) => {
+const Friend = ({ w, h }: any) => {
   return (
     <svg
       className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
@@ -206,11 +206,13 @@ const Dark = ({ w, h }: any) => {
     <svg
       className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
       viewBox="0 0 24 24"
     >
       <path
         fill="currentColor"
-        d="M11.57 2.3c2.38-.59 4.68-.27 6.63.64c.35.16.41.64.1.86C15.7 5.6 14 8.6 14 12s1.7 6.4 4.3 8.2c.32.22.26.7-.09.86c-1.28.6-2.71.94-4.21.94c-6.05 0-10.85-5.38-9.87-11.6c.61-3.92 3.59-7.16 7.44-8.1z"
+        d="M9.5 2c-1.82 0-3.53.5-5 1.35c2.99 1.73 5 4.95 5 8.65s-2.01 6.92-5 8.65c1.47.85 3.18 1.35 5 1.35c5.52 0 10-4.48 10-10S15.02 2 9.5 2z"
       ></path>
     </svg>
   );
@@ -249,7 +251,7 @@ const Like = ({ w, h }: any) => {
 const Dislike = ({ w, h }: any) => {
   return (
     <svg
-      className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h}`}`}
+      className={` ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -278,14 +280,48 @@ const Comment = ({ w, h }: any) => {
     </svg>
   );
 };
+const Send = ({ w, h }: any) => {
+  return (
+    <svg
+      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"
+      ></path>
+    </svg>
+  );
+};
+const Unfriend = ({ w, h }: any) => {
+  return (
+    <svg
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M8.65 5.82a3.999 3.999 0 1 1 5.53 5.53L8.65 5.82zM20 17.17c-.02-1.1-.63-2.11-1.61-2.62c-.54-.28-1.13-.54-1.77-.76L20 17.17zm.49 3.32L3.51 3.51A.996.996 0 1 0 2.1 4.92l8.18 8.18c-1.82.23-3.41.8-4.7 1.46C4.6 15.08 4 16.11 4 17.22V20h13.17l1.9 1.9c.39.39 1.02.39 1.41 0c.4-.39.4-1.02.01-1.41z"
+      ></path>
+    </svg>
+  );
+};
 export {
+  Unfriend,
+  Send,
   Like,
   Dislike,
   Comment,
   Check,
   Close,
   Home,
-  FriendList,
+  Friend,
   Add,
   Chat,
   Search,
