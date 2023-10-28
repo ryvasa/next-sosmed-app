@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Topbar />
         <div className="w-full bg-white dark:bg-dark-sm">
-          <div className="px-5 pt-10 pb-20 min-h-screen">{children}</div>
+          <div className="px-5 pt-10 pb-20 min-h-screen">
+            {children}
+          </div>
         </div>
         <Bottombar />
       </body>

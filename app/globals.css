@@ -9,7 +9,10 @@ nav {
   @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
 }
 .avatar-profile {
-  @apply rounded-full overflow-hidden btn btn-ghost btn-circle avatar;
+  @apply rounded-full overflow-hidden w-9 h-9 avatar;
+}
+.avatar-profile-online {
+  @apply outline outline-primary outline-offset-2;
 }
 .dropdown-list {
   @apply relative dropdown-content z-[1] menu p-2 rounded-box w-40 drop-shadow-xl bg-white/95 dark:bg-dark-sm;

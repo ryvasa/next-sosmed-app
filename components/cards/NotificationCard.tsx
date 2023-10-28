@@ -1,6 +1,5 @@
-import Image from "next/image";
-import image from "../../public/pf.jpg";
 import Link from "next/link";
+import ProfilePicture from "../shared/ProfilePicture";
 
 const NotificationCard = () => {
   return (
@@ -8,9 +7,7 @@ const NotificationCard = () => {
       href={"/posts/123"}
       className="bg-gray-100 dark:bg-dark-lg/30 flex gap-5 p-5 rounded-lg"
     >
-      <div className="avatar-profile">
-        <Image placeholder="blur" src={image} alt="photo frofile" />
-      </div>
+      <ProfilePicture />
       <div className="flex flex-col gap-1">
         <div className="flex gap-1">
           <p className="text-primary font-semibold text-sm">Username</p>

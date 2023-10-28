@@ -6,10 +6,16 @@ import DropDown from "./DropDown";
 
 const Topbar = () => {
   return (
-    <nav className="navbar">
+    <nav className="navbar ">
       <div className="flex-1 ">
-        <Link href="/users/123" className="avatar-profile">
-          <Image alt="profile" src={image} quality={1} />
+        <Link
+          className="flex gap-4 justify-center items-center"
+          href="/users/123"
+        >
+          <div className="avatar-profile avatar-profile-online outline-offset-2">
+            <Image alt="profile" src={image} quality={1} />
+          </div>
+          <p className="font-semibold text-lg">Username</p>
         </Link>
       </div>
 

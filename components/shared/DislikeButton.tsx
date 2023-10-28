@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Dislike } from "../ui/icons";
 
-const DislikeButton = () => {
+const DislikeButton = ({ w, h }: any) => {
   const [dislike, setDislike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(123);
 
@@ -22,7 +22,7 @@ const DislikeButton = () => {
         dislike && "text-primary"
       }`}
     >
-      <Dislike w={5} h={5} />
+      <Dislike w={w} h={h} />
       <p className="text-sm">{dislikeCount}</p>
     </button>
   );

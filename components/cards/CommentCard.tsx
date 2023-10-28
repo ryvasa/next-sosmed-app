@@ -29,7 +29,7 @@ const CommentCard = ({ data }: any) => {
       </p>
       <div className="flex gap-4 pt-2 justify-start items-start px-1">
         <LikeButton w={5} h={5} isComment={true} />
-        <DislikeButton />
+        <DislikeButton w={5} h={5}/>
       </div>
     </div>
   );

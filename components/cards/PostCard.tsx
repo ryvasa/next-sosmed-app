@@ -4,6 +4,7 @@ import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";
 import PostContent from "../shared/PostContent";
 import Link from "next/link";
+import DislikeButton from "../shared/DislikeButton";
 
 const desc = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi
 id recusandae natus aliquid alias dolore totam nam in ad ex,
@@ -32,13 +33,16 @@ const PostCard = ({ detail }: any) => {
         <UserInfo />
         <PostContent detail={detail} data={data} />
       </div>
-      <div className="flex pt-5">
-        <LikeButton w={6} h={6} isComment={false} />
+      <div className="flex pt-5 gap-4">
+        <LikeButton w={5} h={5} isComment={false} />
+        <div className="pt-1">
+          <DislikeButton w={5} h={5} />
+        </div>
         <Link
           href={"/posts/123"}
           className="flex-1 flex items-center justify-center gap-2"
         >
-          <Comment />
+          <Comment w={4} h={4} />
           <p>123</p>
         </Link>
       </div>

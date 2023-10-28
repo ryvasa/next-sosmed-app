@@ -5,7 +5,7 @@ const Page = () => {
   return (
     <div className="pt-10">
       <SearchForm />
-      <div className="flex flex-col pt-3 gap-2">
+      <div className="flex flex-col pt-3 gap-1">
         <ChatCard />
         <ChatCard />
         <ChatCard />
