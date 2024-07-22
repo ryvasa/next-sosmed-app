@@ -1,8 +1,8 @@
-"use client";
-import { useState } from "react";
-import UserInfo from "../shared/UserInfo";
-import LikeButton from "../shared/LikeButton";
-import DislikeButton from "../shared/DislikeButton";
+'use client';
+import { useState } from 'react';
+import UserInfo from '../shared/UserInfo';
+import LikeButton from '../shared/LikeButton';
+import DislikeButton from '../shared/DislikeButton';
 
 const CommentCard = ({ data }: any) => {
   const [detail, setDetail] = useState(false);
@@ -13,10 +13,10 @@ const CommentCard = ({ data }: any) => {
   return (
     <div className="rounded-lg bg-gray-100 dark:bg-dark-lg/30 p-4">
       <UserInfo />
-      <p className="py-2 text-sm">
+      <p className="py-2 text-sm lg:text-lg">
         {detail
           ? data.comment
-          : data.comment.split(" ").slice(0, 15).join(" ") + "..."}{" "}
+          : data.comment.split(' ').slice(0, 15).join(' ') + '...'}{' '}
         {detail ? (
           <button onClick={() => detailToggle()} className="text-primary">
             show less
@@ -29,7 +29,7 @@ const CommentCard = ({ data }: any) => {
       </p>
       <div className="flex gap-4 pt-2 justify-start items-start px-1">
         <LikeButton w={5} h={5} isComment={true} />
-        <DislikeButton w={5} h={5}/>
+        <DislikeButton w={5} h={5} />
       </div>
     </div>
   );

@@ -49,10 +49,10 @@ const Home = ({ w, h }: any) => {
   );
 };
 
-const Friend = ({ w, h }: any) => {
+const Friend = ({ w, h, textColor }: any) => {
   return (
     <svg
-      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      className={`${textColor} ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -133,7 +133,7 @@ const Search = ({ w, h }: any) => {
 const Notification = ({ w, h }: any) => {
   return (
     <svg
-      className={`text-dark-lg ${
+      className={`text-dark-sm ${
         !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
       } dark:text-gray-400`}
       xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@ const Hamburger = ({ w, h }: any) => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={`inline-block stroke-current text-dark-lg dark:text-gray-400 ${
+      className={`inline-block stroke-current text-dark-sm dark:text-gray-400 ${
         !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
       }`}
     >
@@ -191,12 +191,14 @@ const Light = ({ w, h }: any) => {
     <svg
       className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
     >
       <path
         fill="currentColor"
-        d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"
-      ></path>
+        d="m6.76 4.84l-1.8-1.79l-1.41 1.41l1.79 1.79zM4 10.5H1v2h3zm9-9.95h-2V3.5h2zm7.45 3.91l-1.41-1.41l-1.79 1.79l1.41 1.41zm-3.21 13.7l1.79 1.8l1.41-1.41l-1.8-1.79zM20 10.5v2h3v-2zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6m-1 16.95h2V19.5h-2zm-7.45-3.91l1.41 1.41l1.79-1.8l-1.41-1.41z"
+      />
     </svg>
   );
 };
@@ -206,21 +208,23 @@ const Dark = ({ w, h }: any) => {
     <svg
       className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
-      width="1em"
-      height="1em"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
     >
       <path
         fill="currentColor"
-        d="M9.5 2c-1.82 0-3.53.5-5 1.35c2.99 1.73 5 4.95 5 8.65s-2.01 6.92-5 8.65c1.47.85 3.18 1.35 5 1.35c5.52 0 10-4.48 10-10S15.02 2 9.5 2z"
-      ></path>
+        d="M14 2c1.82 0 3.53.5 5 1.35c-2.99 1.73-5 4.95-5 8.65s2.01 6.92 5 8.65A9.973 9.973 0 0 1 14 22C8.48 22 4 17.52 4 12S8.48 2 14 2"
+      />
     </svg>
   );
 };
-const User = ({ w, h }: any) => {
+const User = ({ w, h, c }: any) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={` ${
+        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -344,7 +348,58 @@ const AddImage = ({ w, h }: any) => {
     </svg>
   );
 };
+const AddFriend = ({ w, h }: any) => {
+  return (
+    <svg
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M13 8c0-2.21-1.79-4-4-4S5 5.79 5 8s1.79 4 4 4s4-1.79 4-4zm2 2v2h3v3h2v-3h3v-2h-3V7h-2v3h-3zM1 18v2h16v-2c0-2.66-5.33-4-8-4s-8 1.34-8 4z"
+      ></path>
+    </svg>
+  );
+};
+const Group = ({ w, h }: any) => {
+  return (
+    <svg
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12 12.75c1.63 0 3.07.39 4.24.9c1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73c1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1c-.99 0-1.93.21-2.78.58A2.01 2.01 0 0 0 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85A6.95 6.95 0 0 0 20 14c-.39 0-.76.04-1.13.1c.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3z"
+      ></path>
+    </svg>
+  );
+};
+const Eye = ({ w, h }: any) => {
+  return (
+    <svg
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"
+      ></path>
+    </svg>
+  );
+};
 export {
+  Eye,
+  Group,
+  AddFriend,
   CloudUpload,
   AddImage,
   Unfriend,

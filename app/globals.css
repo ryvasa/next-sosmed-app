@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply text-dark-xl dark:text-dark-xs;
+  @apply text-dark-sm dark:text-dark-xs;
 }
 nav {
   @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
@@ -18,13 +18,13 @@ nav {
   @apply relative dropdown-content z-[1] menu p-2 rounded-box w-40 drop-shadow-xl bg-white/95 dark:bg-dark-sm;
 }
 .bottombar-container {
-  @apply bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md  w-full px-5 py-3 rounded-t-2xl bottom-0;
+  @apply bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md w-full px-5 py-3 rounded-t-2xl bottom-0;
 }
 .bottombar-gradient {
-  @apply bg-gradient-to-t from-dark-xs to-dark-xs/0 dark:from-dark-xl dark:to-dark-xl/0 h-28 w-full;
+  @apply fixed bottom-0 bg-gradient-to-t from-white/30 to-white/0 dark:from-dark-xl dark:to-dark-xl/0 h-20 w-full;
 }
 .bottombar {
-  @apply fixed bottom-0 w-full flex items-center justify-center;
+  @apply fixed bottom-0 w-full flex items-center justify-center lg:hidden;
 }
 .bottombar-item {
   @apply bg-transparent text-dark-lg dark:text-gray-400 border-none;
@@ -33,10 +33,33 @@ nav {
   @apply text-white dark:text-dark-xl btn-primary;
 }
 
+.sidebar {
+  @apply hidden lg:flex p-4 fixed left-0 top-0 h-full bg-primary dark:bg-dark-lg;
+}
+
+.sidebar-item {
+  @apply bg-transparent text-white dark:text-gray-400 border-none;
+}
+.sidebar-item-active {
+  @apply text-primary bg-white dark:bg-primary dark:text-dark-xl btn-primary;
+}
+
 .user-profile-action {
   @apply btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm;
 }
 
 .user-profile-cancle {
   @apply btn btn-sm btn-error flex-1 text-white dark:text-dark-sm;
+}
+
+.tooltip {
+  --tooltip-color: #6c8ce2;
+  --tooltip-text-color: #fff;
+}
+
+.tooltip-sidebar {
+  --tooltip-color: #475569;
+  --tooltip-text-color: #fff;
+}
+.quill {
 }

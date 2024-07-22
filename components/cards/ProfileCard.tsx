@@ -1,11 +1,11 @@
-import Image from "next/image";
-import image from "../../public/pf.jpg";
-import { Check, Close, Edit, Friend } from "../ui/icons";
+import Image from 'next/image';
+import image from '../../public/pf.jpg';
+import { Check, Close, Edit, Friend } from '../ui/icons';
 
 const ProfileCard = () => {
   return (
-    <div className="border-b-2 border-gray-700">
-      <div className="pt-10 flex items-center justify-between">
+    <div className="border-b-2 border-gray-300 dark:border-gray-700">
+      <div className="pt-10 flex items-center lg:justify-start justify-between lg:gap-4 ">
         <div className="flex gap-5 items-center ">
           <div className="rounded-full overflow-hidden">
             <Image
@@ -16,13 +16,13 @@ const ProfileCard = () => {
           </div>
           <div className="flex flex-col ">
             <p className="text-2xl font-semibold">Username</p>
-            <p className="text-sm">Join on 23 April 2023</p>
+            <p className="lg:text-md text-sm">Join on 23 April 2023</p>
           </div>
         </div>
 
         <Edit />
       </div>
-      <div className="py-5 flex gap-10">
+      <div className="py-5 flex gap-10 lg:gap-5 lg:w-80">
         <div className="user-profile-action">
           <Check w={5} h={5} />
           <p className="normal-case">Confirm</p>
@@ -33,7 +33,7 @@ const ProfileCard = () => {
         </div>
       </div>
       <div className="flex items-center py-5 gap-3 ">
-        <Friend />
+        <Friend textColor={'text-primary'} />
         <p>
           <b>123</b> friends
         </p>

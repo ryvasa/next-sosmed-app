@@ -1,11 +1,11 @@
-"use client";
-import image1 from "../../public/missfortune.jpg";
-import image2 from "../../public/twistedfate.jpg";
-import image3 from "../../public/nautilus.jpg";
+'use client';
+import image1 from '../../public/missfortune.jpg';
+import image2 from '../../public/twistedfate.jpg';
+import image3 from '../../public/nautilus.jpg';
 
-import Image from "next/image";
-import { useState } from "react";
-import { AddImage, Close } from "../ui/icons";
+import Image from 'next/image';
+import { useState } from 'react';
+import { AddImage, Close } from '../ui/icons';
 const ImageUploadPreview = () => {
   const [images, setImages] = useState([
     { id: 1, image: image1 },
@@ -17,12 +17,21 @@ const ImageUploadPreview = () => {
     setImages(data);
   };
 
+  // const handleChange = (e:any) => {
+  //   console.log(e.target.files[0]);
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const image = URL.createObjectURL(file);
+  //     console.log(image);
+  //   }
+  // };
+
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 lg:gap-5 gap-2 h-fit">
       {images.map((image) => (
         <div key={image.id} className="relative">
           <button
-            className="text-error absolute right-2 top-5"
+            className="text-error absolute right-2 top-5 z-10"
             onClick={() => {
               deleteImage(image.id);
             }}
@@ -32,13 +41,19 @@ const ImageUploadPreview = () => {
           <Image
             src={image.image}
             alt="preview"
-            className="mt-4 object-cover h-[168px] w-[168px] rounded-lg"
+            className="mt-4 object-cover h-[168px] w-[168px] lg:h-full lg:w-full rounded-lg"
           />
         </div>
       ))}
 
-      <div className="h-[168px] w-[168px] py-4 mt-4 rounded-lg flex bg-gray-100 dark:bg-dark-lg/30 items-center justify-center relative">
-        <input type="file" id="image" className="hidden" />
+      <div className="lg:h-full lg:min-h-[260px] lg:w-full h-[168px] w-[168px] py-4 mt-4 rounded-lg flex bg-gray-100 dark:bg-dark-lg/30 items-center justify-center relative">
+        <input
+          // onChange={handleChange}
+          type="file"
+          id="image"
+          accept="image/*"
+          className="hidden"
+        />
         <label htmlFor="image">
           <AddImage />
         </label>

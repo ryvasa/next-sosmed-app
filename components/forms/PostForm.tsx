@@ -1,12 +1,11 @@
+'use client';
+import { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 const PostForm = () => {
-  return (
-    <div className="rounded-lg flex gap-4 bg-gray-100 dark:bg-dark-lg/30 items-center justify-center relative">
-      <textarea
-        placeholder="Comment here..."
-        className="text-sm bg-transparent textarea flex-1 border-none h-40 resize-none"
-      ></textarea>
-    </div>
-  );
+  const [value, setValue] = useState('');
+  console.log(value);
+  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
 };
 
 export default PostForm;

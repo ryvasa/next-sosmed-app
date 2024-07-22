@@ -1,13 +1,13 @@
-"use client";
-import { useState } from "react";
-import { Send } from "../ui/icons";
+'use client';
+import { useState } from 'react';
+import { Send } from '../ui/icons';
 
 const CommentForm = ({ comments, setComments }: any) => {
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState('');
   const submitComment = (e: any) => {
     setComments([{ comment: newComment }, ...comments]);
     e.preventDefault();
-    setNewComment("");
+    setNewComment('');
   };
   return (
     <form
@@ -20,7 +20,7 @@ const CommentForm = ({ comments, setComments }: any) => {
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
         placeholder="Comment here..."
-        className="text-sm bg-transparent textarea flex-1 border-none  resize-none pr-11"
+        className="lg:text-lg text-sm bg-transparent textarea flex-1 border-none  resize-none pr-11"
       ></textarea>
       <button type="submit" className="absolute right-4 bottom-4">
         <Send w={7} h={7} />

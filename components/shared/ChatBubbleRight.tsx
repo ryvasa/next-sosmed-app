@@ -9,7 +9,7 @@ const ChatBubbleRight = () => {
         </div>
       </div>
 
-      <div className="chat-bubble bg-primary text-dark-xl dark:text-dark-xs">
+      <div className="chat-bubble bg-primary text-white dark:text-dark-xs">
         I hate you!
       </div>
       <div className="chat-footer opacity-50 pt-1">12:46</div>

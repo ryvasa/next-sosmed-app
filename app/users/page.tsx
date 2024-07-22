@@ -1,12 +1,16 @@
-import SearchForm from "@/components/forms/SearchForm";
-import FriendList from "@/components/shared/FriendList";
+import SearchForm from '@/components/forms/SearchForm';
+import FriendList from '@/components/shared/FriendList';
+import TabMenu from '@/components/shared/TabMenu';
 
 const Page = () => {
   return (
     <div className="pt-10">
-      <SearchForm />
-      <FriendList section={"Invitation"} friend={false} />
-      <FriendList section={"Friend"} friend={true} />
+      <div className="flex flex-col gap-2">
+        <SearchForm />
+        <TabMenu />
+      </div>
+      <FriendList section={'Invitation'} friend={false} invitation={true} />
+      <FriendList section={'Friend'} friend={true} invitation={false} />
     </div>
   );
 };

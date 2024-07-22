@@ -1,12 +1,12 @@
-import { Unfriend, Chat, Check, Close } from "../ui/icons";
-import Link from "next/link";
-import ProfilePicture from "../shared/ProfilePicture";
+import { Unfriend, Chat, Check, Close, AddFriend } from '../ui/icons';
+import Link from 'next/link';
+import ProfilePicture from '../shared/ProfilePicture';
 
-const UserCard = ({ friend }: any) => {
+const UserCard = ({ friend, invitation }: any) => {
   return (
-    <div className="rounded-lg px-4 py-3 border-b-2 border-gray-100 dark:border-dark-lg/30 flex justify-between">
+    <div className="rounded-lg px-4 lg:px-10 py-3 border-b-2 border-gray-100 dark:border-dark-lg/30 flex justify-between">
       <Link
-        href={"/users/123"}
+        href={'/users/123'}
         className="flex gap-3 items-center justify-center"
       >
         <ProfilePicture />
@@ -22,13 +22,19 @@ const UserCard = ({ friend }: any) => {
               <Unfriend />
             </div>
           </>
-        ) : (
+        ) : invitation ? (
           <>
             <div className="text-primary">
               <Check />
             </div>
             <div className="text-error">
               <Close />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-primary">
+              <AddFriend />
             </div>
           </>
         )}
