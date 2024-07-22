@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Topbar from '@/components/shared/Topbar';
 import Bottombar from '@/components/shared/Bottombar';
 import Sidebar from '@/components/shared/Sidebar';
 import { Suspense } from 'react';
 import Loading from './loading';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'SosmedApp',
@@ -21,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
-      <body className={inter.className}>
+      <body>
         <Topbar />
         <div className="w-full bg-white dark:bg-dark-sm lg:flex lg:gap-2 ">
           <Sidebar />
