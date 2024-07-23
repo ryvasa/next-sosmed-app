@@ -1,5 +1,5 @@
-import PostCard from "@/components/cards/PostCard";
-import CommentsSection from "../../../components/shared/CommentsSection";
+import PostCard from '@/components/cards/PostCard';
+import CommentsSection from '@/components/shared/CommentsSection';
 
 const Page = () => {
   return (

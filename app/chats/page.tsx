@@ -1,5 +1,5 @@
-import SearchForm from "@/components/forms/SearchForm";
-import ChatCard from "../../components/cards/ChatCard";
+import SearchForm from '@/components/forms/SearchForm';
+import ChatCard from '@/components/cards/ChatCard';
 
 const Page = () => {
   return (

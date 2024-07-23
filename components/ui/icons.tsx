@@ -1,4 +1,4 @@
-const Check = ({ w, h }: any) => {
+const Check = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ const Check = ({ w, h }: any) => {
   );
 };
 
-const Close = ({ w, h }: any) => {
+const Close = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
@@ -32,7 +32,7 @@ const Close = ({ w, h }: any) => {
   );
 };
 
-const Home = ({ w, h }: any) => {
+const Home = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={!w && !h ? `w-7 h-7` : `w-${w} h-${h}`}
@@ -49,7 +49,15 @@ const Home = ({ w, h }: any) => {
   );
 };
 
-const Friend = ({ w, h, textColor }: any) => {
+const Friend = ({
+  w,
+  h,
+  textColor,
+}: {
+  w?: number;
+  h?: number;
+  textColor?: string;
+}) => {
   return (
     <svg
       className={`${textColor} ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -79,7 +87,7 @@ const Friend = ({ w, h, textColor }: any) => {
   );
 };
 
-const Add = ({ w, h }: any) => {
+const Add = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
@@ -96,7 +104,7 @@ const Add = ({ w, h }: any) => {
   );
 };
 
-const Chat = ({ w, h }: any) => {
+const Chat = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +121,7 @@ const Chat = ({ w, h }: any) => {
   );
 };
 
-const Search = ({ w, h }: any) => {
+const Search = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
@@ -130,7 +138,7 @@ const Search = ({ w, h }: any) => {
   );
 };
 
-const Notification = ({ w, h }: any) => {
+const Notification = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`text-dark-sm ${
@@ -149,7 +157,7 @@ const Notification = ({ w, h }: any) => {
   );
 };
 
-const Hamburger = ({ w, h }: any) => {
+const Hamburger = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -169,10 +177,12 @@ const Hamburger = ({ w, h }: any) => {
   );
 };
 
-const Edit = ({ w, h }: any) => {
+const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      className={`dark:text-dark-xs ${c ? `text-white` : `text-primary`} ${
+        !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -186,7 +196,7 @@ const Edit = ({ w, h }: any) => {
   );
 };
 
-const Light = ({ w, h }: any) => {
+const Light = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
@@ -203,7 +213,7 @@ const Light = ({ w, h }: any) => {
   );
 };
 
-const Dark = ({ w, h }: any) => {
+const Dark = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
@@ -219,7 +229,7 @@ const Dark = ({ w, h }: any) => {
     </svg>
   );
 };
-const User = ({ w, h, c }: any) => {
+const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
       className={` ${
@@ -236,7 +246,7 @@ const User = ({ w, h, c }: any) => {
   );
 };
 
-const Like = ({ w, h }: any) => {
+const Like = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h}`}`}
@@ -252,7 +262,7 @@ const Like = ({ w, h }: any) => {
     </svg>
   );
 };
-const Dislike = ({ w, h }: any) => {
+const Dislike = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={` ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -268,7 +278,7 @@ const Dislike = ({ w, h }: any) => {
     </svg>
   );
 };
-const Comment = ({ w, h }: any) => {
+const Comment = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h}`}`}
@@ -284,7 +294,7 @@ const Comment = ({ w, h }: any) => {
     </svg>
   );
 };
-const Send = ({ w, h }: any) => {
+const Send = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -300,7 +310,7 @@ const Send = ({ w, h }: any) => {
     </svg>
   );
 };
-const Unfriend = ({ w, h }: any) => {
+const Unfriend = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -316,7 +326,7 @@ const Unfriend = ({ w, h }: any) => {
     </svg>
   );
 };
-const CloudUpload = ({ w, h }: any) => {
+const CloudUpload = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -332,7 +342,7 @@ const CloudUpload = ({ w, h }: any) => {
     </svg>
   );
 };
-const AddImage = ({ w, h }: any) => {
+const AddImage = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-10 h-10` : `w-${w} h-${h}`}`}
@@ -348,7 +358,7 @@ const AddImage = ({ w, h }: any) => {
     </svg>
   );
 };
-const AddFriend = ({ w, h }: any) => {
+const AddFriend = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -364,7 +374,7 @@ const AddFriend = ({ w, h }: any) => {
     </svg>
   );
 };
-const Group = ({ w, h }: any) => {
+const Group = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -380,7 +390,7 @@ const Group = ({ w, h }: any) => {
     </svg>
   );
 };
-const Eye = ({ w, h }: any) => {
+const Eye = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
       className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
@@ -396,7 +406,47 @@ const Eye = ({ w, h }: any) => {
     </svg>
   );
 };
+const Mail = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"
+      />
+    </svg>
+  );
+};
+
+const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M21 10h-8.35A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H13l2 2l2-2l2 2l4-4.04zM7 15c-1.65 0-3-1.35-3-3s1.35-3 3-3s3 1.35 3 3s-1.35 3-3 3"
+      />
+    </svg>
+  );
+};
+
 export {
+  Key,
+  Mail,
   Eye,
   Group,
   AddFriend,

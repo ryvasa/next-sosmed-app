@@ -1,6 +1,6 @@
 import { CloudUpload } from '@/components/ui/icons';
-import ImageUploadPreview from '../../components/shared/ImageUploadPreview';
-import PostForm from '../../components/forms/PostForm';
+import ImageUploadPreview from '@/components/shared/ImageUploadPreview';
+import PostForm from '@/components/forms/PostForm';
 
 const Page = () => {
   return (
