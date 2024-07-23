@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import image from '../../../../public/pf.jpg';
+import image from '../../../../../public/pf.jpg';
 import { CloudUpload, Edit } from '@/components/ui/icons';
 import EditUserForm from '@/components/forms/EditUserForm';
 

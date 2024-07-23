@@ -1,5 +1,5 @@
 import ThemeToggle from './ThemeToggle';
-import { Dark, Hamburger, Light, User, Notification } from '../ui/icons';
+import { Hamburger, User } from '../ui/icons';
 import Link from 'next/link';
 
 const DropDown = () => {
