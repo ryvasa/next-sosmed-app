@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import Topbar from '@/components/shared/Topbar';
 import Bottombar from '@/components/shared/Bottombar';
 import Sidebar from '@/components/shared/Sidebar';

@@ -1,13 +1,15 @@
-import { Key, Mail } from '../ui/icons';
+import { Key, Mail, User } from '../ui/icons';
 
 const LoginForm = () => {
   const labels = [
     { icon: Mail, type: 'email', placeholder: 'Email' },
+    { icon: User, type: 'text', placeholder: 'Username' },
     { icon: Key, type: 'password', placeholder: 'Password' },
+    { icon: Key, type: 'password', placeholder: 'Confirm Password' },
   ];
 
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-3 ">
       {labels.map((label, index) => (
         <label
           key={index}

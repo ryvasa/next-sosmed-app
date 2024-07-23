@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import Loading from '../loading';
 import '../globals.css';
+import Topbar from '../../components/shared/Topbar';
+import Loading from './loading';
 
 export const metadata: Metadata = {
   title: 'Auth Page',
@@ -16,9 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
-        <div className="w-full bg-white dark:bg-dark-sm lg:flex lg:gap-2 ">
+        <Topbar />
+        <div className="w-full bg-gray-100 dark:bg-dark-lg lg:flex lg:gap-2 ">
           <Suspense fallback={<Loading />}>
-            <div className="lg:pr-8 lg:pl-24 pl-5 pr-5 pt-10 pb-20 min-h-screen w-full">
+            <div className="flex justify-center items-center lg:pr-8 lg:pl-24 pl-5 pr-5 pt-10 pb-20 min-h-screen w-full">
               {children}
             </div>
           </Suspense>
