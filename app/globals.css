@@ -24,6 +24,7 @@ nav {
 .bottombar-gradient {
   @apply fixed bottom-0 bg-gradient-to-t from-white/30 to-white/0 dark:from-dark-xl dark:to-dark-xl/0 h-20 w-full;
 }
+
 .bottombar {
   @apply fixed bottom-0 w-full flex items-center justify-center lg:hidden;
 }

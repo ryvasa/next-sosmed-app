@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import image from '../../public/pf.jpg';
 import { Check, Close, Edit, Friend } from '../ui/icons';
+import Link from 'next/link';
 
 const ProfileCard = () => {
   return (
@@ -20,7 +21,9 @@ const ProfileCard = () => {
           </div>
         </div>
 
-        <Edit />
+        <Link href={'/users/123/edit'}>
+          <Edit />
+        </Link>
       </div>
       <div className="py-5 flex gap-10 lg:gap-5 lg:w-80">
         <div className="user-profile-action">

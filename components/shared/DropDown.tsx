@@ -1,5 +1,6 @@
-import ThemeToggle from "./ThemeToggle";
-import { Dark, Hamburger, Light, User, Notification } from "../ui/icons";
+import ThemeToggle from './ThemeToggle';
+import { Hamburger, User } from '../ui/icons';
+import Link from 'next/link';
 
 const DropDown = () => {
   return (
@@ -14,10 +15,10 @@ const DropDown = () => {
           <ThemeToggle />
         </li>
         <li>
-          <div className="flex justify-start items-center">
+          <Link href={'/login'} className="flex justify-start items-center">
             <User c={'primary'} />
             <p className="text-sm lg:text-md">Log out</p>
-          </div>
+          </Link>
         </li>
       </ul>
     </div>

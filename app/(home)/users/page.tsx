@@ -1,6 +1,6 @@
 import SearchForm from '@/components/forms/SearchForm';
-import FriendList from '@/components/shared/FriendList';
 import TabMenu from '@/components/shared/TabMenu';
+import FriendList from '@/components/shared/FriendList';
 
 const Page = () => {
   return (
