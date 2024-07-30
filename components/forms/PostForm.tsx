@@ -5,7 +5,6 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 const PostForm = () => {
   const [value, setValue] = useState('');
-  console.log(value);
   return <ReactQuill theme="snow" value={value} onChange={setValue} />;
 };
 

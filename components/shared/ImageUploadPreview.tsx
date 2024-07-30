@@ -17,15 +17,6 @@ const ImageUploadPreview = () => {
     setImages(data);
   };
 
-  // const handleChange = (e:any) => {
-  //   console.log(e.target.files[0]);
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const image = URL.createObjectURL(file);
-  //     console.log(image);
-  //   }
-  // };
-
   return (
     <div className="grid grid-cols-2 lg:gap-5 gap-2 h-fit">
       {images.map((image) => (
