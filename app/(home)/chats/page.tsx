@@ -2,14 +2,15 @@
 import SearchForm from '@/components/forms/SearchForm';
 import ChatCard from '@/components/cards/ChatCard';
 import { useEffect, useState } from 'react';
-import { fetchGetThreads } from '../../../service/api';
+import { fetchGetChats } from '../../../service/api';
 
 const Page = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetchGetThreads();
+      const res = await fetchGetChats();
+      console.log(res.data);
       setData(res.data);
     }
 
@@ -20,10 +21,11 @@ const Page = () => {
       <SearchForm />
       <p>{data.length}</p>
       <div className="flex flex-col pt-3 gap-1">
-        <ChatCard />
-        <ChatCard />
-        <ChatCard />
-        <ChatCard />
+        {data.map((item: any) => (
+          <div key={item.id}>
+            <ChatCard data={item} />
+          </div>
+        ))}
       </div>
     </div>
   );

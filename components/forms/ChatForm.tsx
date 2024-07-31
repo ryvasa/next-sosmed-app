@@ -13,8 +13,8 @@ const ChatForm = ({ submit }: any) => {
   const handleSubmit = (e: any) => {
     const data = {
       message,
-      receiverId: receiver_id,
-      chatId: chat_id,
+      receiver_id,
+      chat_id,
     };
     e.preventDefault();
     submit(data);

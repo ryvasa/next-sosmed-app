@@ -45,3 +45,7 @@ export async function fetchGetThreads(): Promise<any> {
 export async function fetchGetOneChat(id: string): Promise<any> {
   return fetchData({ url: `chats/${id}`, method: 'GET' });
 }
+
+export async function fetchGetChats(): Promise<any> {
+  return fetchData({ url: 'chats', method: 'GET' });
+}
