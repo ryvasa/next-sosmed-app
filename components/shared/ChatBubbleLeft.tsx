@@ -1,5 +1,6 @@
 import image from '../../public/pf.jpg';
 import Image from 'next/image';
+import { formaterTime } from '../../helper/formaterTime';
 
 const ChatBubbleLeft = ({ data }: any) => {
   return (
@@ -13,9 +14,11 @@ const ChatBubbleLeft = ({ data }: any) => {
           </div>
 
           <div className="chat-bubble bg-gray-200 dark:bg-dark-lg text-dark-sm dark:text-dark-xs">
-            {data.message}
+            <p>{data.message}</p>
           </div>
-          <div className="chat-footer opacity-50 pt-1">12:46</div>
+          <div className="chat-footer opacity-50 pt-1 flex gap-2">
+            <p>{formaterTime(data.created_at).formattedTime}</p>
+          </div>
         </div>
       )}
     </>

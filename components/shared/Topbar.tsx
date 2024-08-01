@@ -4,8 +4,12 @@ import image from '../../public/pf.jpg';
 import Link from 'next/link';
 import { Notification } from '../ui/icons';
 import DropDown from './DropDown';
+import { useSocket } from '../../libs/hooks/useSocket';
+import { useUserActivity } from '../../libs/hooks/useUserActivity';
 
 const Topbar = () => {
+  useUserActivity();
+  useSocket();
   return (
     <nav className="navbar ">
       <div className="flex-1 px-10 ">

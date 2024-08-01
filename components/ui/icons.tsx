@@ -103,7 +103,22 @@ const Add = ({ w, h }: { w?: number; h?: number }) => {
     </svg>
   );
 };
-
+const Readed = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+      />
+    </svg>
+  );
+};
 const Chat = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
@@ -445,6 +460,7 @@ const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 };
 
 export {
+  Readed,
   Key,
   Mail,
   Eye,

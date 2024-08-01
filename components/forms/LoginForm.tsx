@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Key, Mail } from '../ui/icons';
 import { useState } from 'react';
 import axios from 'axios';
-import { fetchLogin } from '../../service/api';
+import { fetchLogin } from '../../libs/api/api';
 
 interface LoginFormState {
   email: string;
