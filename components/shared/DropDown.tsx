@@ -1,6 +1,7 @@
-import ThemeToggle from './ThemeToggle';
-import { Hamburger, User } from '../ui/icons';
-import Link from 'next/link';
+"use client";
+import ThemeToggle from "./ThemeToggle";
+import { Hamburger, User } from "../ui/icons";
+import { fetchLogout } from "@/libs/api/api";
 
 const DropDown = () => {
   return (
@@ -15,10 +16,13 @@ const DropDown = () => {
           <ThemeToggle />
         </li>
         <li>
-          <Link href={'/login'} className="flex justify-start items-center">
-            <User c={'primary'} />
+          <button
+            onClick={fetchLogout}
+            className="flex justify-start items-center"
+          >
+            <User c={"primary"} />
             <p className="text-sm lg:text-md">Log out</p>
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

@@ -1,8 +1,8 @@
-"use client";
-import { useState } from "react";
-import { Dislike } from "../ui/icons";
+'use client';
+import { useState } from 'react';
+import { Dislike } from '../ui/icons';
 
-const DislikeButton = ({ w, h }: any) => {
+const DislikeButton = ({ w, h, dataCount }: any) => {
   const [dislike, setDislike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(123);
 
@@ -19,11 +19,11 @@ const DislikeButton = ({ w, h }: any) => {
         likePost();
       }}
       className={` flex items-center justify-start gap-2  ${
-        dislike && "text-primary"
+        dislike && 'text-primary'
       }`}
     >
       <Dislike w={w} h={h} />
-      <p className="text-sm">{dislikeCount}</p>
+      <p className="text-sm">{dataCount ? dataCount : '0'}</p>
     </button>
   );
 };

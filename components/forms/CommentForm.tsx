@@ -16,7 +16,7 @@ const CommentForm = ({ comments, setComments }: any) => {
       className="rounded-lg flex gap-4 bg-gray-100 dark:bg-dark-lg/30 min-h-6 items-center justify-center relative"
     >
       <textarea
-        name="comment"
+        name="body"
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
         placeholder="Comment here..."

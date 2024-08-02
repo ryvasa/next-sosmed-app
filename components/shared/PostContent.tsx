@@ -1,35 +1,55 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Loading from './Loading';
+import { threadStore } from '../../store';
+import { truncateText } from '../../helper/truncateText';
 
-const PostContent = ({ detail, data }: any) => {
+const PostContent = ({ detail, id }: any) => {
+  const [thread, setThread] = useState({
+    body: '',
+    images: [{ image: '' }],
+    id: '',
+  });
+  const { threads } = threadStore((state: any) => state);
+  useEffect(() => {
+    const filteredThread = threads.find((thread: any) => thread.id === id);
+    setThread(filteredThread);
+  }, [id]);
   return (
-    <Link href={"/threads/123"} className="flex flex-col gap-4">
+    <Link href={`/threads/${thread?.id}`} className="flex flex-col gap-4">
       <p className="text-sm lg:text-lg">
-        {detail
-          ? data.desc
-          : data.desc.split(" ").slice(0, 30).join(" ") + "..."}
+        {detail ? thread?.body : truncateText(thread.body, 30)}
       </p>
-      {detail ? (
-        data.images.map((image: string, index: number) => (
-          <div className="h-96" key={index}>
+      {thread?.images?.length > 0 &&
+        (detail ? (
+          thread.images.map((image: any, index: number) => (
+            <div className="h-full" key={index}>
+              <Image
+                placeholder="blur"
+                blurDataURL={`http://localhost:3000/${image.image}`}
+                width={12000}
+                height={12000}
+                src={`http://localhost:3000/${image.image}`}
+                alt="photo postingan"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+          ))
+        ) : (
+          <div className="h-full">
             <Image
               placeholder="blur"
-              src={image}
+              width={12000}
+              height={12000}
+              src={`http://localhost:3000/${thread.images[0].image}`}
+              blurDataURL={`http://localhost:3000/${thread.images[0].image}`}
               alt="photo postingan"
               className="w-full h-full object-cover rounded-xl"
             />
           </div>
-        ))
-      ) : (
-        <div className="h-96">
-          <Image
-            placeholder="blur"
-            src={data.images[0]}
-            alt="photo postingan"
-            className="w-full h-full object-cover rounded-xl"
-          />
-        </div>
-      )}
+        ))}
     </Link>
   );
 };
