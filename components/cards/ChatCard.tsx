@@ -3,7 +3,6 @@ import Link from 'next/link';
 import ProfilePicture from '../shared/ProfilePicture';
 import { useEffect, useState } from 'react';
 import { formaterTime } from '../../helper/formaterTime';
-
 const ChatCard = ({ data }: any) => {
   const [filteredUsers, setFilteredUsers] = useState({
     user: { username: '', avatar: '', id: '' },
@@ -15,7 +14,6 @@ const ChatCard = ({ data }: any) => {
   });
 
   useEffect(() => {
-    console.log(data);
     const users = data.users;
     const currentUser = localStorage.getItem('user');
     if (currentUser) {

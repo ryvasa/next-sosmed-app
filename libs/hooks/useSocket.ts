@@ -1,20 +1,20 @@
-'use client';
-import { useEffect, useRef, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = 'http://localhost:3000';
+const SOCKET_URL = "http://localhost:3000/users";
 
 export const useSocket = () => {
   const [user, setUser] = useState({
-    username: '',
-    avatar: '',
-    id: '',
+    username: "",
+    avatar: "",
+    id: "",
   });
 
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    const currentUser = localStorage?.getItem('user') || '{}';
+    const currentUser = localStorage?.getItem("user") || "{}";
     if (currentUser) {
       const { data } = JSON.parse(currentUser);
       setUser(data);
@@ -25,22 +25,25 @@ export const useSocket = () => {
 
     const socketIo = socketRef.current;
     // Menangani event 'setactive' dari server
-    socketIo?.on('setactive', (data) => {
-      console.log('User activity status:', data);
+    socketIo?.on("setactive", (data) => {
+      console.log("User activity status:", data);
     });
 
     // Mengirim sinyal aktif saat terhubung
-    socketIo?.emit('setActive', user.id);
+    socketIo?.emit("setActive", user.id);
 
     // Mengatur event listener untuk menangani saat pengguna terputus
-    socketIo?.on('disconnect', () => {
-      console.log('Disconnected from server');
+    socketIo?.on("disconnect", () => {
+      console.log("Disconnected from server");
     });
 
     // Mengirimkan sinyal aktivitas secara berkala
-    const activityInterval = setInterval(() => {
-      socketRef.current?.emit('activity');
-    }, 5 * 60 * 1000); // Setiap 5 menit
+    const activityInterval = setInterval(
+      () => {
+        socketRef.current?.emit("activity");
+      },
+      5 * 60 * 1000,
+    ); // Setiap 5 menit
 
     // Cleanup saat komponen di-unmount
     return () => {
@@ -52,14 +55,14 @@ export const useSocket = () => {
   // hooks/useSocket.ts (lanjutan)
   useEffect(() => {
     const handleBeforeUnload = () => {
-      socketRef.current?.emit('activity');
+      socketRef.current?.emit("activity");
       socketRef.current?.disconnect();
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 

@@ -4,7 +4,7 @@ import ProfilePicture from "../shared/ProfilePicture";
 const NotificationCard = () => {
   return (
     <Link
-      href={"/posts/123"}
+      href={"/threads/123"}
       className="bg-gray-100 dark:bg-dark-lg/30 flex gap-5 p-5 rounded-lg"
     >
       <ProfilePicture />

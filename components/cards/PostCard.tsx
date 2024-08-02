@@ -39,7 +39,7 @@ const PostCard = ({ detail }: any) => {
           <DislikeButton w={5} h={5} />
         </div>
         <Link
-          href={"/posts/123"}
+          href={"/threads/123"}
           className="flex-1 flex items-center justify-center gap-2"
         >
           <Comment w={4} h={4} />

@@ -106,7 +106,7 @@ const Add = ({ w, h }: { w?: number; h?: number }) => {
 const Readed = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}
+      className={!w && !h ? `w-4 h-4 md:w-5 md:h-5` : `w-${w} h-${h} `}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"

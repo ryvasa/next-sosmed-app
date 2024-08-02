@@ -1,11 +1,11 @@
-'use client';
-import Image from 'next/image';
-import image from '../../public/pf.jpg';
-import Link from 'next/link';
-import { Notification } from '../ui/icons';
-import DropDown from './DropDown';
-import { useSocket } from '../../libs/hooks/useSocket';
-import { useUserActivity } from '../../libs/hooks/useUserActivity';
+"use client";
+import Image from "next/image";
+import image from "../../public/pf.jpg";
+import Link from "next/link";
+import { Notification } from "../ui/icons";
+import DropDown from "./DropDown";
+import { useSocket } from "../../libs/hooks/useSocket";
+import { useUserActivity } from "../../libs/hooks/useUserActivity";
 
 const Topbar = () => {
   useUserActivity();
@@ -28,7 +28,7 @@ const Topbar = () => {
         <Link
           className="flex items-center justify-center btn btn-ghost btn-circle"
           data-tip="Notifications"
-          href={'/notifications'}
+          href={"/notifications"}
         >
           <Notification />
         </Link>

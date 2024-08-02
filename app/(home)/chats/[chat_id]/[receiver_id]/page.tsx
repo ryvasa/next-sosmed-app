@@ -1,44 +1,46 @@
-'use client';
-import ChatForm from '@/components/forms/ChatForm';
-import ChatBubbleRight from '@/components/shared/ChatBubbleRight';
-import ChatBubbleLeft from '@/components/shared/ChatBubbleLeft';
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { fetchGetOneChat } from '../../../../../libs/api/api';
-import { socket } from '../../../../../libs/socket/socket';
-import useChatSocket from '../../../../../libs/hooks/useChatSocket';
-import useRoom from '../../../../../libs/hooks/useRoom';
+"use client";
+import ChatForm from "@/components/forms/ChatForm";
+import ChatBubbleRight from "@/components/shared/ChatBubbleRight";
+import ChatBubbleLeft from "@/components/shared/ChatBubbleLeft";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { fetchGetOneChat } from "../../../../../libs/api/api";
+import { socket } from "../../../../../libs/socket/socket";
+import useChatSocket from "../../../../../libs/hooks/useChatSocket";
+import useReadMessage from "@/libs/hooks/useReadMessage";
+import useRoom from "@/libs/hooks/useRoom";
 
 const Page = () => {
   const { chat_id } = useParams();
   const [messages, setMessages] = useState<any[]>([]);
-  const [user, setUser] = useState({ username: '', avatar: '', id: '' });
+  const [user, setUser] = useState({ username: "", avatar: "", id: "" });
 
   useEffect(() => {
-    const data = localStorage.getItem('user');
+    const data = localStorage.getItem("user");
     if (data) {
       const response = JSON.parse(data);
       setUser(response.data);
     }
   }, []);
 
-  useRoom(chat_id as string); // Menggunakan custom hook untuk bergabung dan meninggalkan room
-  useChatSocket(chat_id as string, setMessages);
-
+  // user id undefined
+  useRoom(chat_id as string);
+  useChatSocket(chat_id as string, user.id, setMessages);
+  const getMessages = async () => {
+    if (chat_id) {
+      const response = await fetchGetOneChat(chat_id as string);
+      setMessages(response.data.messages);
+    }
+  };
   useEffect(() => {
-    // Fetch messages for the new chat
-    const getMessages = async () => {
-      if (chat_id) {
-        const response = await fetchGetOneChat(chat_id as string);
-        setMessages(response.data.messages);
-      }
-    };
-
+    socket.emit("readMessage", chat_id);
+  }, []);
+  useEffect(() => {
     getMessages();
   }, [chat_id]);
-
+  useReadMessage(chat_id as string, setMessages);
   const handleSubmit = (data: string) => {
-    socket.emit('messages', data);
+    socket.emit("message", data);
   };
   return (
     <div className="py-10 relative w-full flex flex-col">

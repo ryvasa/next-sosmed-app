@@ -1,13 +1,13 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 const PostContent = ({ detail, data }: any) => {
   return (
-    <Link href={'/posts/123'} className="flex flex-col gap-4">
+    <Link href={"/threads/123"} className="flex flex-col gap-4">
       <p className="text-sm lg:text-lg">
         {detail
           ? data.desc
-          : data.desc.split(' ').slice(0, 30).join(' ') + '...'}
+          : data.desc.split(" ").slice(0, 30).join(" ") + "..."}
       </p>
       {detail ? (
         data.images.map((image: string, index: number) => (

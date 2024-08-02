@@ -16,8 +16,16 @@ export const userStore = create((set) => ({
     typeof window !== 'undefined'
       ? window.localStorage.getItem('user')
       : undefined,
-  updateUser: (newUser: string) =>
+  updateUser: (newUser: any) =>
     set((state: any) => ({
       user: newUser,
+    })),
+}));
+
+export const chatsStore = create((set) => ({
+  chats: [],
+  updateChats: (newChat: any) =>
+    set((state: any) => ({
+      chat: newChat,
     })),
 }));

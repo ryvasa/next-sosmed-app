@@ -1,6 +1,6 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const ItemBar = ({
   icon: Icon,
@@ -19,8 +19,9 @@ const ItemBar = ({
 
   return (
     <li
-      className={`tooltip ${tooltip} tooltip-primary ${
-        position === 'side' && 'tooltip-sidebar'
+      className={`${
+        position === "side" &&
+        ` ${tooltip} tooltip-sidebar tooltip tooltip-primary`
       }`}
       data-tip={text}
     >

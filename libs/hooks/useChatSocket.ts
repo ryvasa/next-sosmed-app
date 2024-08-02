@@ -1,36 +1,29 @@
 // hooks/useChatSocket.ts
-import { useEffect } from 'react';
-import { socket } from '../socket/socket';
+import { useEffect } from "react";
+import { socket } from "../socket/socket";
 
 const useChatSocket = (
   chat_id: string,
-  setMessages: React.Dispatch<React.SetStateAction<any[]>>
+  user_id: string,
+  setMessages: React.Dispatch<React.SetStateAction<any[]>>,
 ) => {
   useEffect(() => {
-    const onConnect = () => {
-      socket.io.engine.on('upgrade', (transport) => {
-        console.log(`Connected, transport: ${transport}`);
-      });
-    };
-
-    const onDisconnect = () => {
-      console.log('Disconnected');
-    };
-
     const onMessage = (data: any) => {
       setMessages((prevMessages) => [...prevMessages, data]);
+      console.log({ receiver: data.receiver_id, user_id });
+      if (data.receiver_id === user_id) {
+        console.log({ hi: "sama" });
+        socket.emit("readMessage", chat_id);
+      }
+      console.log({ hi: "gak sama" });
     };
 
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    socket.on('messages', onMessage);
+    socket.on("message", onMessage);
 
     return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-      socket.off('messages', onMessage);
+      socket.off("message", onMessage);
     };
-  }, [chat_id]);
+  }, [chat_id, user_id]);
 };
 
 export default useChatSocket;

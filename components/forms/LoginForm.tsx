@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { Key, Mail } from '../ui/icons';
 import { useState } from 'react';
-import axios from 'axios';
 import { fetchLogin } from '../../libs/api/api';
+import { userStore } from '../../store';
 
 interface LoginFormState {
   email: string;
@@ -16,6 +16,8 @@ const LoginForm = () => {
     password: '',
   });
   const [error, setError] = useState<string | null>(null);
+
+  const { user, updateUser } = userStore((state: any) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,6 +38,9 @@ const LoginForm = () => {
 
     try {
       const response = await fetchLogin(formData);
+      updateUser(response.data);
+
+      console.log(user);
       localStorage.setItem('user', JSON.stringify(response));
       // Redirect user or save token, etc.
     } catch (err: any) {

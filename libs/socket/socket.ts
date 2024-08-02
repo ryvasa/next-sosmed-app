@@ -1,4 +1,6 @@
-'use client';
-import io from 'socket.io-client';
+"use client";
+import io from "socket.io-client";
 
-export const socket = io('http://localhost:3000', { withCredentials: true });
+export const socket = io("http://localhost:3000/messages", {
+  withCredentials: true,
+});
