@@ -9,7 +9,6 @@ const useReadMessage = (
 ) => {
   useEffect(() => {
     const handleReadMessage = (data: any) => {
-      console.log("from message");
       setMessages((prevMessages) =>
         prevMessages.map((message) =>
           message.chat_id === room && message.readed === false

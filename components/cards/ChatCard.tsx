@@ -1,26 +1,20 @@
-'use client';
-import Link from 'next/link';
-import ProfilePicture from '../shared/ProfilePicture';
-import { useEffect, useState } from 'react';
-import { formaterTime } from '../../helper/formaterTime';
+"use client";
+import Link from "next/link";
+import ProfilePicture from "../shared/ProfilePicture";
+import { useEffect, useState } from "react";
+import { formaterTime } from "../../helper/formaterTime";
+import { userStore } from "@/store";
 const ChatCard = ({ data }: any) => {
+  const { user } = userStore((state: any) => state);
   const [filteredUsers, setFilteredUsers] = useState({
-    user: { username: '', avatar: '', id: '' },
-  });
-  const [currentUser, setCurrentUser] = useState({
-    username: '',
-    avatar: '',
-    id: '',
+    user: { username: "", avatar: "", id: "" },
   });
 
   useEffect(() => {
     const users = data.users;
-    const currentUser = localStorage.getItem('user');
-    if (currentUser) {
-      const response = JSON.parse(currentUser);
-      setCurrentUser(response.data);
-      const otherUser = users?.filter((user: any) => {
-        return user.user.id !== response.data.id;
+    if (user) {
+      const otherUser = users?.filter((item: any) => {
+        return item.user.id !== user.id;
       });
       setFilteredUsers(otherUser[0]);
     }
@@ -35,12 +29,12 @@ const ChatCard = ({ data }: any) => {
           className="flex flex-col"
         >
           <p className="font-semibold lg:text-lg">
-            {filteredUsers?.user?.username || 'Unknown'}
+            {filteredUsers?.user?.username || "Unknown"}
           </p>
           <p className="text-sm lg:text-md">
             {data?.messages[0]?.message.length > 20
-              ? data?.messages[0]?.message?.split('').slice(0, 20).join('') +
-                '...'
+              ? data?.messages[0]?.message?.split("").slice(0, 20).join("") +
+                "..."
               : data?.messages[0]?.message}
           </p>
         </Link>

@@ -7,6 +7,7 @@ const useRoom = (data: any) => {
       if (Array.isArray(data)) {
         data.forEach((item: any) => {
           socket.emit("joinRoom", item.id);
+          socket.emit("checkRoom", item.id);
         });
 
         return () => {

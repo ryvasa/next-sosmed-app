@@ -1,24 +1,16 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { userStore } from "@/store";
+import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 
 const SOCKET_URL = "http://localhost:3000/users";
 
 export const useSocket = () => {
-  const [user, setUser] = useState({
-    username: "",
-    avatar: "",
-    id: "",
-  });
+  const { user } = userStore((state: any) => state);
 
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    const currentUser = localStorage?.getItem("user") || "{}";
-    if (currentUser) {
-      const { data } = JSON.parse(currentUser);
-      setUser(data);
-    }
     socketRef.current = io(SOCKET_URL, {
       withCredentials: true,
     });

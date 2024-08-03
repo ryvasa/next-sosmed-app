@@ -1,25 +1,25 @@
-'use client';
-import { themeStore } from '@/store';
-import { Dark, Light } from '../ui/icons';
-import { useEffect, useState } from 'react';
+"use client";
+import { themeStore } from "@/store";
+import { Dark, Light } from "../ui/icons";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(themeStore((state: any) => state.theme));
-
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const { theme, updateTheme } = themeStore((state: any) => state);
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', newTheme);
-    setTheme(newTheme);
+    const newTheme = theme === "light" ? "dark" : "light";
+    setCurrentTheme(newTheme);
+    updateTheme(newTheme);
   };
 
   useEffect(() => {
-    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
   }, [theme]);
 
   return (
     <>
-      {theme === 'light' ? (
+      {currentTheme === "light" ? (
         <button
           className="flex justify-start items-center"
           onClick={() => {

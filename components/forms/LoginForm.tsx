@@ -1,9 +1,10 @@
-'use client';
-import Link from 'next/link';
-import { Key, Mail } from '../ui/icons';
-import { useState } from 'react';
-import { fetchLogin } from '../../libs/api/api';
-import { userStore } from '../../store';
+"use client";
+import Link from "next/link";
+import { Key, Mail } from "../ui/icons";
+import { useState } from "react";
+import { fetchLogin } from "../../libs/api/api";
+import { userStore } from "../../store";
+import { useRouter } from "next/navigation";
 
 interface LoginFormState {
   email: string;
@@ -11,13 +12,13 @@ interface LoginFormState {
 }
 
 const LoginForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<LoginFormState>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [error, setError] = useState<string | null>(null);
-
-  const { user, updateUser } = userStore((state: any) => state);
+  const { updateUser } = userStore((state: any) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,17 +33,16 @@ const LoginForm = () => {
 
     // Frontend validation
     if (!formData.email || !formData.password) {
-      setError('Email and password are required');
+      setError("Email and password are required");
       return;
     }
 
     try {
       const response = await fetchLogin(formData);
-      updateUser(response.data);
-
-      console.log(user);
-      localStorage.setItem('user', JSON.stringify(response));
-      // Redirect user or save token, etc.
+      if (response.data) {
+        updateUser(response.data);
+        router.push("/");
+      }
     } catch (err: any) {
       setError(err.message);
     }
@@ -50,17 +50,17 @@ const LoginForm = () => {
   const labels = [
     {
       value: formData.email,
-      name: 'email',
+      name: "email",
       icon: Mail,
-      type: 'email',
-      placeholder: 'Email',
+      type: "email",
+      placeholder: "Email",
     },
     {
       value: formData.password,
-      name: 'password',
+      name: "password",
       icon: Key,
-      type: 'password',
-      placeholder: 'Password',
+      type: "password",
+      placeholder: "Password",
     },
   ];
 
@@ -92,8 +92,8 @@ const LoginForm = () => {
       </div>
       <div className="text-sm gap-2 flex justify-center items-center">
         <p>Do not have an account yet?</p>
-        <Link className="text-primary font-semibold" href={'/register'}>
-          {' '}
+        <Link className="text-primary font-semibold" href={"/register"}>
+          {" "}
           Sign Up
         </Link>
       </div>

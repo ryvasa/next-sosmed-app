@@ -1,6 +1,6 @@
-'use client';
-import { useState } from 'react';
-import { Like } from '../ui/icons';
+"use client";
+import { useState } from "react";
+import { Like } from "../ui/icons";
 
 interface props {
   w: number;
@@ -10,7 +10,6 @@ interface props {
 }
 
 const LikeButton = ({ w, h, isComment, dataCount }: props) => {
-  console.log(dataCount);
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(123);
 
@@ -25,11 +24,11 @@ const LikeButton = ({ w, h, isComment, dataCount }: props) => {
         likePost();
       }}
       className={`flex items-center gap-2 ${
-        isComment ? '  justify-start ' : 'flex-1  justify-center '
-      }  ${like && 'text-primary '}`}
+        isComment ? "  justify-start " : "flex-1  justify-center "
+      }  ${like && "text-primary "}`}
     >
       <Like w={w} h={h} />
-      <p className={`${isComment && 'text-sm'}`}>{dataCount && dataCount}</p>
+      <p className={`${isComment && "text-sm"}`}>{dataCount && dataCount}</p>
     </button>
   );
 };

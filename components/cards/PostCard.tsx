@@ -1,17 +1,14 @@
-'use client';
-import image from '../../public/pf.jpg';
-import { Comment } from '../ui/icons';
-import LikeButton from '../shared/LikeButton';
-import UserInfo from '../shared/UserInfo';
-import PostContent from '../shared/PostContent';
-import Link from 'next/link';
-import DislikeButton from '../shared/DislikeButton';
-import { useEffect } from 'react';
+"use client";
+import image from "../../public/pf.jpg";
+import { Comment } from "../ui/icons";
+import LikeButton from "../shared/LikeButton";
+import UserInfo from "../shared/UserInfo";
+import PostContent from "../shared/PostContent";
+import Link from "next/link";
+import DislikeButton from "../shared/DislikeButton";
+import { useEffect } from "react";
 
 const PostCard = ({ data }: any) => {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
       <div className="flex gap-4 flex-col">

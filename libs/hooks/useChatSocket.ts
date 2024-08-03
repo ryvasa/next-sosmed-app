@@ -10,12 +10,9 @@ const useChatSocket = (
   useEffect(() => {
     const onMessage = (data: any) => {
       setMessages((prevMessages) => [...prevMessages, data]);
-      console.log({ receiver: data.receiver_id, user_id });
       if (data.receiver_id === user_id) {
-        console.log({ hi: "sama" });
         socket.emit("readMessage", chat_id);
       }
-      console.log({ hi: "gak sama" });
     };
 
     socket.on("message", onMessage);

@@ -6,10 +6,35 @@ import { Notification } from "../ui/icons";
 import DropDown from "./DropDown";
 import { useSocket } from "../../libs/hooks/useSocket";
 import { useUserActivity } from "../../libs/hooks/useUserActivity";
+import { chatsStore, messagesStore, userStore } from "@/store";
+import useRoom from "@/libs/hooks/useRoom";
+import { fetchGetChats, fetchGetUnreadedMessages } from "@/libs/api/api";
+import { useEffect } from "react";
+import { socket } from "@/libs/socket/socket";
+import useChatNotify from "@/libs/hooks/useChatNotify";
 
 const Topbar = () => {
+  const { chats, updateChats } = chatsStore((state: any) => state);
+  const { user } = userStore((state: any) => state);
+  const { updateUnreadedMessages } = messagesStore((state: any) => state);
+  async function fetchChats() {
+    const res = await fetchGetChats();
+    updateChats(res.data);
+  }
+  const fetchUnreadedMessage = async () => {
+    const response = await fetchGetUnreadedMessages();
+    updateUnreadedMessages(response.data);
+  };
+  useEffect(() => {
+    if (user?.id) {
+      fetchChats();
+      fetchUnreadedMessage();
+    }
+  }, [user]);
   useUserActivity();
   useSocket();
+  useRoom(chats);
+  useChatNotify(fetchUnreadedMessage);
   return (
     <nav className="navbar ">
       <div className="flex-1 px-10 ">

@@ -5,7 +5,6 @@ import { socket } from "../socket/socket";
 const useChatNotify = (fetchData: any) => {
   useEffect(() => {
     socket.on("notify", (data: any) => {
-      console.log(data);
       fetchData();
     });
 

@@ -40,7 +40,7 @@ export async function fetchLogin(body: any): Promise<any> {
   return fetchData({ url: "auth/login", method: "POST", body });
 }
 export async function fetchLogout(): Promise<any> {
-  return fetchData({ url: "/auth/logout", method: "DELETE" });
+  return fetchData({ url: "auth/logout", method: "DELETE" });
 }
 
 // THREADS
@@ -59,4 +59,9 @@ export async function fetchGetOneChat(id: string): Promise<any> {
 
 export async function fetchGetChats(): Promise<any> {
   return fetchData({ url: "chats", method: "GET" });
+}
+
+// MESSAGES
+export async function fetchGetUnreadedMessages(): Promise<any> {
+  return fetchData({ url: "messages/unreaded", method: "GET" });
 }

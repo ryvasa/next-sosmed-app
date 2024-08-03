@@ -1,49 +1,49 @@
-'use client';
-import { Add, Chat, Friend, Home, Search } from '@/components/ui/icons';
-import ItemBar from './ItemBar';
+"use client";
+import { Add, Chat, Friend, Home, Search } from "@/components/ui/icons";
+import ItemBar from "./ItemBar";
 
 const Bottombar = () => {
   const items = [
     {
-      tooltip: 'tooltip-top',
+      tooltip: "tooltip-top",
       icon: Home,
-      text: 'Home',
-      href: '/',
-      position: 'bottom',
+      text: "Home",
+      href: "/",
+      position: "bottom",
     },
     {
-      tooltip: 'tooltip-top',
+      tooltip: "tooltip-top",
       icon: Friend,
-      text: 'Users',
-      href: '/users',
-      position: 'bottom',
+      text: "Users",
+      href: "/users",
+      position: "bottom",
     },
     {
-      tooltip: 'tooltip-top',
+      tooltip: "tooltip-top",
       icon: Add,
-      text: 'New Post',
-      href: '/create-post',
-      position: 'bottom',
+      text: "New Post",
+      href: "/create-post",
+      position: "bottom",
     },
     {
-      tooltip: 'tooltip-top',
+      tooltip: "tooltip-top",
       icon: Chat,
-      text: 'Chats',
-      href: '/chats',
-      position: 'bottom',
+      text: "Chats",
+      href: "/chats",
+      position: "bottom",
     },
     {
-      tooltip: 'tooltip-top',
+      tooltip: "tooltip-top",
       icon: Search,
-      text: 'Search',
-      href: '/search',
-      position: 'bottom',
+      text: "Search",
+      href: "/search",
+      position: "bottom",
     },
   ];
   return (
     <div className="bottombar ">
       <div className="bottombar-container">
-        <ul className="flex justify-between w-full">
+        <ul className="flex justify-between w-full relative">
           {items.map((item) => (
             <ItemBar key={item.text} {...item} />
           ))}

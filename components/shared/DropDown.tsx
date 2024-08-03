@@ -2,8 +2,17 @@
 import ThemeToggle from "./ThemeToggle";
 import { Hamburger, User } from "../ui/icons";
 import { fetchLogout } from "@/libs/api/api";
+import { useRouter } from "next/navigation";
 
 const DropDown = () => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    const response = await fetchLogout();
+    if (response.data.message) {
+      router.push("/login");
+      localStorage.clear();
+    }
+  };
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="m-1">
@@ -17,7 +26,7 @@ const DropDown = () => {
         </li>
         <li>
           <button
-            onClick={fetchLogout}
+            onClick={handleLogout}
             className="flex justify-start items-center"
           >
             <User c={"primary"} />
