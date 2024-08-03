@@ -1,12 +1,10 @@
 "use client";
-import image from "../../public/pf.jpg";
 import { Comment } from "../ui/icons";
 import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";
 import PostContent from "../shared/PostContent";
 import Link from "next/link";
 import DislikeButton from "../shared/DislikeButton";
-import { useEffect } from "react";
 
 const PostCard = ({ data }: any) => {
   return (
@@ -30,7 +28,7 @@ const PostCard = ({ data }: any) => {
           className="flex-1 flex items-center justify-center gap-2"
         >
           <Comment w={4} h={4} />
-          <p>{data?.count?.comments}</p>
+          {data?.count?.comments > 0 && <p>{data?.count?.comments}</p>}
         </Link>
       </div>
     </div>

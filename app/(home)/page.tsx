@@ -2,7 +2,8 @@
 import PostCard from "@/components/cards/PostCard";
 import { fetchGetThreads } from "@/libs/api/api";
 import { useEffect, useState } from "react";
-import { chatsStore, threadStore } from "../../store";
+import { threadStore } from "../../store";
+import useActiveStatus from "@/libs/hooks/useActiveStatus";
 
 export default function Home() {
   const { updateThreads } = threadStore((state: any) => state);
@@ -15,11 +16,10 @@ export default function Home() {
   useEffect(() => {
     getThreads();
   }, []);
-  // const { chats, updateChats } = chatsStore((state: any) => state);
-  // useRoom(chats);
+  useActiveStatus(getThreads);
   return (
     <>
-      {threads.map((thread) => (
+      {threads.map((thread: any) => (
         <div key={thread.id}>
           <PostCard data={thread} />
         </div>

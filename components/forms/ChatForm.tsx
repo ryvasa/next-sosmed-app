@@ -18,6 +18,7 @@ const ChatForm = ({ submit }: any) => {
     };
     e.preventDefault();
     submit(data);
+    setMessage('');
   };
   return (
     <>
@@ -29,10 +30,14 @@ const ChatForm = ({ submit }: any) => {
           <textarea
             onChange={handleChange}
             value={message}
-            placeholder="Comment here..."
+            placeholder="Type here..."
             className="text-sm lg:text-lg bg-transparent textarea flex-1 border-none  resize-none pr-11"
           ></textarea>
-          <button type="submit" className="absolute right-6 bottom-4">
+          <button
+            disabled={!message}
+            type="submit"
+            className="absolute disabled:cursor-not-allowed disabled:text-gray-500 text-primary right-6 bottom-4"
+          >
             <Send w={7} h={7} />
           </button>
         </form>

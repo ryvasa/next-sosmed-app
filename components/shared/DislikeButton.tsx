@@ -23,7 +23,7 @@ const DislikeButton = ({ w, h, dataCount }: any) => {
       }`}
     >
       <Dislike w={w} h={h} />
-      <p className="text-sm">{dataCount ? dataCount : '0'}</p>
+      <p className="text-sm">{dataCount > 0 && dataCount}</p>
     </button>
   );
 };

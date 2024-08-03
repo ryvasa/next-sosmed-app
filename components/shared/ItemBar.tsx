@@ -1,7 +1,7 @@
-"use client";
-import { messagesStore } from "@/store";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+'use client';
+import { messagesStore } from '@/store';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const ItemBar = ({
   icon: Icon,
@@ -22,7 +22,7 @@ const ItemBar = ({
   return (
     <li
       className={`relative ${
-        position === "side" &&
+        position === 'side' &&
         ` ${tooltip} tooltip-sidebar tooltip tooltip-primary`
       }`}
       data-tip={text}
@@ -35,8 +35,8 @@ const ItemBar = ({
         }`}
         href={href}
       >
-        {unreadedMessages > 0 && text === "Chats" && (
-          <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 badge badge-error badge-sm lg:badge-md text-white dark:text-dark-sm">
+        {unreadedMessages > 0 && text === 'Chats' && (
+          <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 badge badge-error badge-sm text-white dark:text-dark-sm">
             {unreadedMessages}
           </span>
         )}

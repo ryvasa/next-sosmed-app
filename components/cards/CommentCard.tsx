@@ -1,15 +1,13 @@
-'use client';
-import { useEffect, useState } from 'react';
-import UserInfo from '../shared/UserInfo';
-import LikeButton from '../shared/LikeButton';
-import DislikeButton from '../shared/DislikeButton';
-import { truncateText } from '../../helper/truncateText';
+"use client";
+import { useEffect, useState } from "react";
+import UserInfo from "../shared/UserInfo";
+import LikeButton from "../shared/LikeButton";
+import DislikeButton from "../shared/DislikeButton";
+import { truncateText } from "../../helper/truncateText";
 
 const CommentCard = ({ data }: any) => {
   const [detail, setDetail] = useState(false);
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  useEffect(() => {}, [data]);
 
   const detailToggle = () => {
     setDetail(!detail);
@@ -22,7 +20,7 @@ const CommentCard = ({ data }: any) => {
         {detail ? data.body : truncateText(data.body, 30)}
         {data.body.length > 30 && (
           <button onClick={detailToggle} className="text-primary">
-            {detail ? 'show less' : 'show detail'}
+            {detail ? "show less" : "show detail"}
           </button>
         )}
       </div>
@@ -33,7 +31,7 @@ const CommentCard = ({ data }: any) => {
           isComment={true}
           dataCount={data?._count?.comment_likes}
         />
-        <DislikeButton w={5} h={5} dataCount={data?._count?.comment_likes} />
+        <DislikeButton w={5} h={5} dataCount={data?._count?.comment_dislikes} />
       </div>
     </div>
   );

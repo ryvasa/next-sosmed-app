@@ -1,25 +1,25 @@
-import { useEffect } from "react";
-import { socket } from "../socket/socket";
+import { useEffect } from 'react';
+import { messageSocket } from '../socket/socket';
 
 const useRoom = (data: any) => {
   useEffect(() => {
     if (data) {
       if (Array.isArray(data)) {
         data.forEach((item: any) => {
-          socket.emit("joinRoom", item.id);
-          socket.emit("checkRoom", item.id);
+          messageSocket.emit('joinRoom', item.id);
+          messageSocket.emit('checkRoom', item.id);
         });
 
         return () => {
           data.forEach((item: any) => {
-            socket.emit("leaveRoom", item.id);
+            messageSocket.emit('leaveRoom', item.id);
           });
         };
       } else {
-        socket.emit("joinRoom", data);
+        messageSocket.emit('joinRoom', data);
 
         return () => {
-          socket.emit("leaveRoom", data);
+          messageSocket.emit('leaveRoom', data);
         };
       }
     }

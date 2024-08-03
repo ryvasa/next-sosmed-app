@@ -156,7 +156,7 @@ const Search = ({ w, h }: { w?: number; h?: number }) => {
 const Notification = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={`text-dark-sm ${
+      className={`text-primary ${
         !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
       } dark:text-gray-400`}
       xmlns="http://www.w3.org/2000/svg"
@@ -312,7 +312,7 @@ const Comment = ({ w, h }: { w?: number; h?: number }) => {
 const Send = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
