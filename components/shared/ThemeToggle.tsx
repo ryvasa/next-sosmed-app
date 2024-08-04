@@ -3,7 +3,7 @@ import { themeStore } from "@/store";
 import { Dark, Light } from "../ui/icons";
 import { useEffect, useState } from "react";
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ showText }: any) => {
   const [currentTheme, setCurrentTheme] = useState("light");
   const { theme, updateTheme } = themeStore((state: any) => state);
   const toggleTheme = () => {
@@ -26,8 +26,8 @@ const ThemeToggle = () => {
             toggleTheme();
           }}
         >
-          <Light />
-          <p>Light mode</p>
+          {showText ? <Light /> : <Light w={6} h={6} />}
+          {showText && <p>Light mode</p>}
         </button>
       ) : (
         <button
@@ -36,8 +36,8 @@ const ThemeToggle = () => {
             toggleTheme();
           }}
         >
-          <Dark />
-          <p className="text-sm lg:text-md">Dark mode</p>
+          {showText ? <Dark /> : <Dark w={6} h={6} />}
+          {showText && <p className="text-sm lg:text-md">Dark mode</p>}
         </button>
       )}
     </>

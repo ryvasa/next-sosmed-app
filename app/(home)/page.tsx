@@ -18,12 +18,12 @@ export default function Home() {
   }, []);
   useActiveStatus(getThreads);
   return (
-    <>
+    <div className="pt-8 flex gap-5 flex-col lg:gap-6">
       {threads.map((thread: any) => (
         <div key={thread.id}>
           <PostCard data={thread} />
         </div>
       ))}
-    </>
+    </div>
   );
 }

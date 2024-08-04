@@ -1,21 +1,18 @@
-'use client';
-import ChatForm from '@/components/forms/ChatForm';
-import ChatBubbleRight from '@/components/shared/ChatBubbleRight';
-import ChatBubbleLeft from '@/components/shared/ChatBubbleLeft';
-import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'next/navigation';
+"use client";
+import ChatForm from "@/components/forms/ChatForm";
+import ChatBubbleRight from "@/components/shared/ChatBubbleRight";
+import ChatBubbleLeft from "@/components/shared/ChatBubbleLeft";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import {
   fetchGetMessages,
-  fetchGetOneChat,
   fetchGetUnreadedMessages,
-} from '../../../../../libs/api/api';
-import { messageSocket } from '../../../../../libs/socket/socket';
-import useChatSocket from '../../../../../libs/hooks/useChatSocket';
-import useReadMessage from '@/libs/hooks/useReadMessage';
-import useRoom from '@/libs/hooks/useRoom';
-import { messagesStore, userStore } from '@/store';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import ChatList from '../../../../../components/shared/ChatList';
+} from "../../../../../libs/api/api";
+import { messageSocket } from "../../../../../libs/socket/socket";
+import useChatSocket from "../../../../../libs/hooks/useChatSocket";
+import useReadMessage from "@/libs/hooks/useReadMessage";
+import useRoom from "@/libs/hooks/useRoom";
+import { messagesStore, userStore } from "@/store";
 
 const Page = () => {
   const { chat_id } = useParams();
@@ -30,7 +27,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchUnreadedMessage();
-    messageSocket.emit('readMessage', chat_id);
+    messageSocket.emit("readMessage", chat_id);
   }, []);
 
   useRoom(chat_id as string);
@@ -49,22 +46,19 @@ const Page = () => {
   }, [chat_id]);
   useReadMessage(chat_id as string, setMessages);
   const handleSubmit = (data: string) => {
-    messageSocket.emit('message', data);
+    messageSocket.emit("message", data);
     scrollToBottom();
   };
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <div className="flex gap-5 ">
-      {/* <div className="flex-1 pt-10">
-        <ChatList />
-      </div> */}
+    <div className="flex gap-5 w-full dark:lg:bg-dark-md lg:p-6 ">
       <div className="lg:flex-1 py-10 relative w-full flex flex-col">
         <div className="flex flex-col pb-10">
           {messages.map((message: any, index: number) => (

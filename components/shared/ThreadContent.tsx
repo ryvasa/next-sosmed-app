@@ -7,7 +7,7 @@ import Loading from "./Loading";
 import { threadStore } from "../../store";
 import { truncateText } from "../../helper/truncateText";
 
-const PostContent = ({ detail, id }: any) => {
+const ThreadContent = ({ detail, id }: any) => {
   const [thread, setThread] = useState({
     body: "",
     images: [{ image: "" }],
@@ -23,7 +23,7 @@ const PostContent = ({ detail, id }: any) => {
       {!thread?.body ? (
         <Loading />
       ) : (
-        <Link href={`/threads/${thread?.id}`} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <div className="text-sm lg:text-lg">
             {detail ? (
               <div
@@ -67,10 +67,10 @@ const PostContent = ({ detail, id }: any) => {
                 />
               </div>
             ))}
-        </Link>
+        </div>
       )}
     </>
   );
 };
 
-export default PostContent;
+export default ThreadContent;

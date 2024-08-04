@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import image from '../../../../../public/pf.jpg';
-import { CloudUpload, Edit } from '@/components/ui/icons';
-import EditUserForm from '@/components/forms/EditUserForm';
+import Image from "next/image";
+import image from "../../../../../public/pf.jpg";
+import { CloudUpload, Edit } from "@/components/ui/icons";
+import EditUserForm from "@/components/forms/EditUserForm";
 
 const page = () => {
   return (
@@ -22,7 +22,7 @@ const page = () => {
             htmlFor="image"
             className="lg:hidden group-hover:flex lg:absolute z-20 justify-center items-center text-white dark:text-dark-xs btn btn-primary btn-sm normal-case"
           >
-            <Edit w={4} h={4} c={'text-white'} />
+            <Edit w={4} h={4} c={"text-white"} />
             Change
           </label>
         </div>

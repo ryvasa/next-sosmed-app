@@ -22,7 +22,7 @@ const DropDown = () => {
       </label>
       <ul className="dropdown-list">
         <li>
-          <ThemeToggle />
+          <ThemeToggle showText={true} />
         </li>
         <li>
           <button

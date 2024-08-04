@@ -1,10 +1,10 @@
-'use client';
-import { useState } from 'react';
-import { Send } from '../ui/icons';
-import { useParams } from 'next/navigation';
+"use client";
+import { useState } from "react";
+import { Send } from "../ui/icons";
+import { useParams } from "next/navigation";
 
 const ChatForm = ({ submit }: any) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const { receiver_id, chat_id } = useParams();
   const handleChange = (e: any) => {
@@ -18,14 +18,14 @@ const ChatForm = ({ submit }: any) => {
     };
     e.preventDefault();
     submit(data);
-    setMessage('');
+    setMessage("");
   };
   return (
     <>
       <div className="fixed lg:pl-20 bottom-20 lg:bottom-10 z-10 left-0 w-full px-4">
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg flex gap-4 bg-gray-100 dark:bg-dark-lg min-h-6 items-center justify-center"
+          className="rounded-lg flex gap-4 bg-gray-100 dark:bg-dark-sm min-h-6 items-center justify-center"
         >
           <textarea
             onChange={handleChange}

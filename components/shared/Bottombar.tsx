@@ -21,8 +21,8 @@ const Bottombar = () => {
     {
       tooltip: "tooltip-top",
       icon: Add,
-      text: "New Post",
-      href: "/create-post",
+      text: "New Thread",
+      href: "/create-thread",
       position: "bottom",
     },
     {

@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
-import '../globals.css';
-import Topbar from '@/components/shared/Topbar';
-import Bottombar from '@/components/shared/Bottombar';
-import Sidebar from '@/components/shared/Sidebar';
-import { Suspense } from 'react';
-import Loading from './loading';
+import type { Metadata } from "next";
+import "../globals.css";
+import Topbar from "@/components/shared/Topbar";
+import Bottombar from "@/components/shared/Bottombar";
+import { Suspense } from "react";
+import Loading from "./loading";
+import Leftbar from "@/components/shared/LeftBar";
+import RightBar from "../../components/shared/RightBar";
 
 export const metadata: Metadata = {
-  title: 'SosmedApp',
-  description: 'This is description of SosmedApp',
+  title: "SosmedApp",
+  description: "This is description of SosmedApp",
 };
 
 export default function RootLayout({
@@ -19,14 +20,23 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
-        <Topbar />
-        <div className="w-full bg-white dark:bg-dark-sm lg:flex lg:gap-2 ">
-          <Sidebar />
-          <Suspense fallback={<Loading />}>
-            <div className="lg:pr-8 lg:pl-24 pl-5 pr-5 pt-10 pb-20 min-h-screen w-full">
-              {children}
-            </div>
-          </Suspense>
+        <div className="lg:hidden">
+          <Topbar />
+        </div>
+        <div className="w-scree flex bg-gray-50 justify-center items-center dark:bg-dark-lg lg:gap-10  relative">
+          <div className="lg:flex-1 lg:block hidden">
+            <Leftbar />
+          </div>
+          <div className="lg:flex-[14] lg:relative w-11/12">
+            <Suspense fallback={<Loading />}>
+              <div className=" lg:px-0 lg:pt-0 pt-10 pb-20 min-h-screen">
+                {children}
+              </div>
+            </Suspense>
+          </div>
+          <div className=" lg:flex-[4] hidden lg:block lg:relative ">
+            <RightBar />
+          </div>
         </div>
         {/* <div className="bottombar-gradient"></div> */}
         <Bottombar />

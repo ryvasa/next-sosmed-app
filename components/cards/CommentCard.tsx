@@ -14,11 +14,11 @@ const CommentCard = ({ data }: any) => {
   };
 
   return (
-    <div className="rounded-lg bg-gray-100 dark:bg-dark-lg/30 p-4">
+    <div className="rounded-lg lg:px-10 bg-gray-100 dark:bg-dark-sm p-4">
       <UserInfo user={data?.user} createdAt={data?.created_at} />
-      <div className="py-2 text-sm lg:text-lg">
-        {detail ? data.body : truncateText(data.body, 30)}
-        {data.body.length > 30 && (
+      <div className="py-2 text-sm lg:text-lg ">
+        {detail ? data.body : truncateText(data.body, 400)}{" "}
+        {data.body.length > 400 && (
           <button onClick={detailToggle} className="text-primary">
             {detail ? "show less" : "show detail"}
           </button>

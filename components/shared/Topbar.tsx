@@ -58,13 +58,13 @@ const Topbar = () => {
       setLoading(true);
     }
   }, [user]);
-  useUserActivity();
+  // useUserActivity();
   useUserActive();
   useRoom(chats);
   useChatNotify(fetchUnreadedMessage);
   useActiveStatus(fetchReceiverUser);
   return (
-    <nav className="navbar ">
+    <nav className="navbar">
       <div className="flex-1 px-10 ">
         {!loading ? (
           <LoadingCircle />

@@ -8,7 +8,7 @@ export const useUserActive = () => {
 
   useEffect(() => {
     userSocket.on("activeStatus", (data) => {
-      // console.log("User activity status:", data);
+      console.log("User activity status:", data);
     });
 
     userSocket.emit("active", user.id);
@@ -33,6 +33,13 @@ export const useUserActive = () => {
 
   // hooks/useSocket.ts (lanjutan)
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        userSocket.emit("active");
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     const handleBeforeUnload = () => {
       userSocket.emit("activity");
       // userSocket.disconnect();
@@ -42,6 +49,8 @@ export const useUserActive = () => {
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);

@@ -2,7 +2,7 @@
 import image from "../../public/pf.jpg";
 import Image from "next/image";
 import { Readed } from "../ui/icons";
-import { formaterTime } from "../../helper/formaterTime";
+import { formaterTimeChat } from "../../helper/formaterTime";
 const ChatBubbleRight = ({ data }: any) => {
   return (
     <>
@@ -18,7 +18,7 @@ const ChatBubbleRight = ({ data }: any) => {
             <p>{data.message}</p>
           </div>
           <div className="chat-footer opacity-50 pt-1 flex gap-2">
-            <p>{formaterTime(data.created_at).formattedTime}</p>
+            <p>{formaterTimeChat(data.created_at)}</p>
             <p className={`font-bold ${data.readed && "text-primary"}`}>
               {data.readed && <Readed />}
             </p>

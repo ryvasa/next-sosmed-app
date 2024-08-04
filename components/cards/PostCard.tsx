@@ -8,12 +8,12 @@ import DislikeButton from "../shared/DislikeButton";
 
 const PostCard = ({ data }: any) => {
   return (
-    <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
+    <div className="dark:bg-dark-md bg-white rounded-xl px-5 py-3 ">
       <div className="flex gap-4 flex-col">
         <UserInfo user={data?.user} createdAt={data?.created_at} />
         <PostContent detail={false} id={data?.id} />
       </div>
-      <div className="flex pt-5 gap-4">
+      <div className="border-t-[2px] dark:border-gray-700 border-gray-200 flex mt-2 pt-2 gap-4">
         <LikeButton
           w={5}
           h={5}
