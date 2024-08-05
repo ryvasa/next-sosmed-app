@@ -156,9 +156,7 @@ const Search = ({ w, h }: { w?: number; h?: number }) => {
 const Notification = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={`text-primary ${
-        !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
-      } dark:text-gray-400`}
+      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`} `}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -211,10 +209,10 @@ const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   );
 };
 
-const Light = ({ w, h }: { w?: number; h?: number }) => {
+const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={`${!w && !h && !c ? `w-4 h-4 text-primary ` : `w-${w} h-${h} text-${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -228,10 +226,10 @@ const Light = ({ w, h }: { w?: number; h?: number }) => {
   );
 };
 
-const Dark = ({ w, h }: { w?: number; h?: number }) => {
+const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={` ${!w && !h && c! ? `w-4 h-4 c-4 text-primary` : `w-${w} h-${h} text-dark-md`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -257,6 +255,27 @@ const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
         fill="currentColor"
         d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
       ></path>
+    </svg>
+  );
+};
+
+const Logout = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${!w && !h ? `w-4 h-4  text-primary` : `w-${w} h-${h} text-${c}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2"
+      />
+      <path
+        fill="currentColor"
+        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z"
+      />
     </svg>
   );
 };
@@ -486,4 +505,5 @@ export {
   Dark,
   Light,
   User,
+  Logout,
 };

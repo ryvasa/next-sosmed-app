@@ -20,6 +20,9 @@ body {
 nav {
     @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
 }
+.avatar-sidebar-chats {
+    @apply rounded-full overflow-hidden w-8 h-8 avatar;
+}
 .avatar-profile {
     @apply rounded-full overflow-hidden w-9 h-9 avatar;
 }

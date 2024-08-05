@@ -21,22 +21,22 @@ const ThemeToggle = ({ showText }: any) => {
     <>
       {currentTheme === "light" ? (
         <button
-          className="flex justify-start items-center"
+          className={`flex justify-start items-center ${!showText && "shadow-sm hover:bg-primary/75 btn btn-circle btn-sm flex justify-center items-center bg-primary border-none"} `}
           onClick={() => {
             toggleTheme();
           }}
         >
-          {showText ? <Light /> : <Light w={6} h={6} />}
+          {showText ? <Light /> : <Light w={5} h={5} c={"white"} />}
           {showText && <p>Light mode</p>}
         </button>
       ) : (
         <button
-          className="flex justify-start items-center"
+          className={`flex justify-start items-center ${!showText && "shadow-sm hover:bg-primary/75 btn btn-circle btn-sm flex justify-center items-center bg-primary border-none"} `}
           onClick={() => {
             toggleTheme();
           }}
         >
-          {showText ? <Dark /> : <Dark w={6} h={6} />}
+          {showText ? <Dark /> : <Dark w={5} h={5} />}
           {showText && <p className="text-sm lg:text-md">Dark mode</p>}
         </button>
       )}

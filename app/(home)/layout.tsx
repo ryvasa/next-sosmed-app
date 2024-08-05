@@ -27,14 +27,14 @@ export default function RootLayout({
           <div className="lg:flex-1 lg:block hidden">
             <Leftbar />
           </div>
-          <div className="lg:flex-[14] lg:relative w-11/12">
+          <div className="lg:flex-[15] lg:relative w-11/12">
             <Suspense fallback={<Loading />}>
               <div className=" lg:px-0 lg:pt-0 pt-10 pb-20 min-h-screen">
                 {children}
               </div>
             </Suspense>
           </div>
-          <div className=" lg:flex-[4] hidden lg:block lg:relative ">
+          <div className=" lg:flex-[5] hidden lg:block lg:relative ">
             <RightBar />
           </div>
         </div>

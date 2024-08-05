@@ -15,6 +15,7 @@ const ChatList = () => {
     const res = await fetchGetChats();
     updateChats(res.data);
     setData(res.data);
+    console.log(res.data);
   }
   useEffect(() => {
     fetchData();
@@ -23,7 +24,7 @@ const ChatList = () => {
   useChatNotify(fetchData);
   useActiveStatus(fetchData);
   return (
-    <div className=" bg-white dark:bg-dark-md rounded-lg px-2 py-6">
+    <div className=" px-4 bg-white dark:bg-dark-md rounded-lg py-6">
       <SearchForm />
       <div className="flex flex-col pt-3 gap-1">
         {data.map((item: any) => (

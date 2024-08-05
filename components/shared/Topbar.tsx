@@ -4,7 +4,7 @@ import image from "../../public/pf.jpg";
 import Link from "next/link";
 import { Notification } from "../ui/icons";
 import DropDown from "./DropDown";
-import { useUserActivity } from "../../libs/hooks/useUserActivity";
+// import { useUserActivity } from "../../libs/hooks/useUserActivity";
 import { chatsStore, messagesStore, userStore } from "@/store";
 import useRoom from "@/libs/hooks/useRoom";
 import {
@@ -18,6 +18,7 @@ import LoadingCircle from "./LoadingCircle";
 import { useParams } from "next/navigation";
 import { useUserActive } from "@/libs/hooks/useUserActive";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
+import NotificationButton from "./NotificationButton";
 
 const Topbar = () => {
   const { receiver_id } = useParams();
@@ -91,13 +92,7 @@ const Topbar = () => {
       </div>
 
       <div className="flex-none flex gap-2 ">
-        <Link
-          className="flex items-center justify-center btn btn-ghost btn-circle"
-          data-tip="Notifications"
-          href={"/notifications"}
-        >
-          <Notification />
-        </Link>
+        <NotificationButton />
         <DropDown />
       </div>
     </nav>

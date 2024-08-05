@@ -21,7 +21,7 @@ const ChatCard = ({ data }: any) => {
   }, [data]);
 
   return (
-    <div className=" lg:px-4 py-3 flex justify-between bg-white dark:bg-dark-sm rounded-lg ">
+    <div className=" lg:px-4 py-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg ">
       <div className="flex gap-3 items-center justify-center">
         <ProfilePicture active={filteredUsers?.user?.active} />
         <Link

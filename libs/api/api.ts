@@ -36,6 +36,9 @@ const fetchData = async (data: fetchParam) => {
 };
 
 // AUTH
+export async function fetchRegister(body: any): Promise<any> {
+  return fetchData({ url: "auth/register", method: "POST", body });
+}
 export async function fetchLogin(body: any): Promise<any> {
   return fetchData({ url: "auth/login", method: "POST", body });
 }
@@ -46,6 +49,16 @@ export async function fetchLogout(): Promise<any> {
 // User
 export async function fetchGetOneUser(id: string): Promise<any> {
   return fetchData({ url: `users/${id}`, method: "get" });
+}
+export async function fetchGetUsers(
+  take?: number,
+  skip?: number,
+  username?: string,
+): Promise<any> {
+  return fetchData({
+    url: `users?${username && `username=${username}`}?take=${take || 15}&skip=${skip || 0}`,
+    method: "GET",
+  });
 }
 
 // THREADS
@@ -109,8 +122,14 @@ export async function fetchGetOneChat(id: string): Promise<any> {
   return fetchData({ url: `chats/${id}`, method: "GET" });
 }
 
-export async function fetchGetChats(): Promise<any> {
-  return fetchData({ url: "chats", method: "GET" });
+export async function fetchGetChats(
+  take?: number,
+  skip?: number,
+): Promise<any> {
+  return fetchData({
+    url: `chats?take=${take || 15}&skip=${skip || 0}`,
+    method: "GET",
+  });
 }
 
 // MESSAGES

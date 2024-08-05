@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { Suspense } from 'react';
-import '../globals.css';
-import Topbar from '../../components/shared/Topbar';
-import Loading from './loading';
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import "../globals.css";
+import Topbar from "../../components/shared/Topbar";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
-  title: 'Auth Page',
-  description: 'This is description of SosmedApp',
+  title: "Auth Page",
+  description: "This is description of SosmedApp",
 };
 
 export default function RootLayout({
@@ -17,8 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
-        <Topbar />
-        <div className="w-full bg-gray-100 dark:bg-dark-lg lg:flex lg:gap-2 ">
+        <div className="w-screen h-screen bg-gray-100 dark:bg-dark-lg lg:flex lg:gap-2 ">
           <Suspense fallback={<Loading />}>
             <div className="flex justify-center items-center lg:pr-8 lg:pl-24 pl-5 pr-5 pt-10 pb-20 min-h-screen w-full">
               {children}

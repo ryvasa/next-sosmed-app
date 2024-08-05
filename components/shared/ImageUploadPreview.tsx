@@ -19,7 +19,7 @@ const ImageUploadPreview = ({ setImages }: any) => {
               className="relative w-full items-center justify-center"
             >
               <button
-                className="text-error absolute right-1 top-5 lg:right-6 z-10"
+                className="text-error absolute right-1 top-5 z-10"
                 onClick={() => {
                   deleteImage(image);
                 }}

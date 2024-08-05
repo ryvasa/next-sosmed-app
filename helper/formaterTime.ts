@@ -1,13 +1,13 @@
-import moment from "moment-timezone";
+import moment from 'moment-timezone';
 
 // Fungsi format waktu untuk chat
 export function formaterTimeChat(isoDate: any) {
   const now = moment();
   const date = moment.utc(isoDate); // Menggunakan waktu UTC dari ISO date
-  if (now.diff(date, "days") < 1) {
-    return date.local().format("HH:mm"); // Mengonversi ke waktu lokal
+  if (now.diff(date, 'days') < 1) {
+    return date.local().format('HH:mm'); // Mengonversi ke waktu lokal
   } else {
-    return date.local().format("HH:mm, DD MMMM YYYY ");
+    return date.local().format('HH:mm, DD MMMM YYYY ');
   }
 }
 
@@ -15,10 +15,10 @@ export function formaterTimeChat(isoDate: any) {
 export function formaterTimeChatList(isoDate: any) {
   const now = moment();
   const date = moment.utc(isoDate); // Menggunakan waktu UTC dari ISO date
-  if (now.diff(date, "days") < 1) {
-    return date.local().format("HH:mm"); // Mengonversi ke waktu lokal
+  if (now.diff(date, 'days') < 1) {
+    return date.local().format('HH:mm'); // Mengonversi ke waktu lokal
   } else {
-    return date.local().format("DD MMMM YYYY ");
+    return date.local().format('DD MMM YYYY ');
   }
 }
 
@@ -42,6 +42,6 @@ export function formatRelativeTime(isoDate: any) {
   } else if (diffInMinutes < 1440) {
     return `${Math.floor(diffInMinutes / 60)} hours ago`;
   } else {
-    return date.local().format("DD MMMM YYYY");
+    return date.local().format('DD MMMM YYYY');
   }
 }

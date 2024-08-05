@@ -4,7 +4,7 @@ import ProfilePicture from "../shared/ProfilePicture";
 
 const UserCard = ({ friend, invitation }: any) => {
   return (
-    <div className="rounded-lg px-4 lg:px-10 py-3 border-b-2 border-gray-100 dark:border-dark-lg/30 flex justify-between">
+    <div className="dark:border-none dark:bg-dark-sm dark:rounded-lg  px-4 lg:px-10 py-3 border-b-2 border-gray-100 dark:border-gray-700 flex justify-between">
       <Link
         href={"/users/123"}
         className="flex gap-3 items-center justify-center"
