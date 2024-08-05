@@ -5,7 +5,7 @@ const NotificationCard = () => {
   return (
     <Link
       href={"/threads/123"}
-      className="bg-gray-100 dark:bg-dark-lg/30 flex gap-5 p-5 rounded-lg"
+      className="bg-gray-100 dark:bg-dark-sm/70 flex gap-5 p-5 rounded-lg"
     >
       <ProfilePicture active={false} />
       <div className="flex flex-col gap-1">

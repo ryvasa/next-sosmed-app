@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 const FriendList = ({ section, friend, invitation }: any) => {
   const [users, setUsers] = useState([]);
   const fetchUser = async () => {
-    const response = await fetchGetUsers();
+    const response = await fetchGetUsers({});
     setUsers(response.data);
-    console.log(response.data);
   };
   useEffect(() => {
     fetchUser();

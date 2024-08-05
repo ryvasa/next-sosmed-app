@@ -2,8 +2,8 @@ import NotificationCard from "@/components/cards/NotificationCard";
 
 const Page = () => {
   return (
-    <div className="pt-10 ">
-      <h1 className="pb-2 text-xl ">Notification</h1>
+    <div className="mt-10 bg-white p-6 dark:bg-dark-md rounded-lg">
+      <h1 className="pb-2 text-xl font-semibold text-primary">Notification</h1>
       <div className="flex flex-col gap-[6px]">
         <NotificationCard />
         <NotificationCard />

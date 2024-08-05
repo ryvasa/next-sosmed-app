@@ -1,13 +1,9 @@
-import SearchForm from "@/components/forms/SearchForm";
-import TabMenu from "@/components/shared/TabMenu";
+import SearchContainer from "@/components/shared/SearchContainer";
 
 const Page = () => {
   return (
-    <div className="pt-10">
-      <SearchForm />
-      <div className="pt-4 pb-2">
-        <TabMenu />
-      </div>
+    <div className="mt-10 min-h-screen lg:mt-0 lg:pt-10 bg-white dark:bg-dark-md/50 p-6 rounded-lg">
+      <SearchContainer />
     </div>
   );
 };

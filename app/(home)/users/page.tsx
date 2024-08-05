@@ -1,15 +1,9 @@
-import SearchForm from "@/components/forms/SearchForm";
-import FriendList from "@/components/shared/FriendList";
+import UserList from "@/components/shared/UserList";
 
 const Page = () => {
   return (
-    <div className="pt-10 bg-white dark:bg-dark-md p-6">
-      <div className="flex flex-col gap-2">
-        <SearchForm />
-      </div>
-      <FriendList section={"Add Friend"} friend={false} invitation={false} />
-      <FriendList section={"Invitation"} friend={false} invitation={true} />
-      <FriendList section={"Friend"} friend={true} invitation={false} />
+    <div className="mt-10 min-h-screen lg:pt-10 lg:mt-0 bg-white rounded-lg dark:bg-dark-md p-6">
+      <UserList />
     </div>
   );
 };

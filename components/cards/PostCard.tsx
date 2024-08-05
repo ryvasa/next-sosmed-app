@@ -1,4 +1,3 @@
-"use client";
 import { Comment } from "../ui/icons";
 import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";

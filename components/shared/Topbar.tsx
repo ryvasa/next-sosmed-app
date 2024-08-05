@@ -45,7 +45,7 @@ const Topbar = () => {
   }, [receiver_id]);
 
   async function fetchChats() {
-    const res = await fetchGetChats();
+    const res = await fetchGetChats({});
     updateChats(res.data);
   }
   const fetchUnreadedMessage = async () => {

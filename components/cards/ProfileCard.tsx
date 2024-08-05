@@ -32,7 +32,6 @@ const ProfileCard = () => {
   };
   const getUser = async () => {
     const response = await fetchGetOneUser(id as string);
-    console.log(response.data);
     setUser(response.data);
   };
   useEffect(() => {
@@ -41,14 +40,14 @@ const ProfileCard = () => {
   }, [id]);
   useActiveStatus(getUser);
   return (
-    <div className="border-b-2 border-gray-300 dark:border-gray-700">
+    <div className="bg-white dark:bg-dark-md rounded-lg py-3 px-6">
       {!user.id ? (
         <div className="flex justify-center items-center h-48 lg:h-38">
           <LoadingCircle />
         </div>
       ) : (
         <>
-          <div className="pt-10 flex items-center lg:justify-start justify-between h-48 lg:gap-4 lg:h-40">
+          <div className=" flex items-center lg:justify-start justify-between h-48 lg:gap-4 lg:h-40">
             <div className="flex gap-5 items-center ">
               <div
                 className={`rounded-full ${user.active && "avatar-profile-online"} overflow-hidden`}

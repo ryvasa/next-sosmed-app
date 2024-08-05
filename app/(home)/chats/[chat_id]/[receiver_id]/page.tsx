@@ -13,6 +13,8 @@ import useChatSocket from "../../../../../libs/hooks/useChatSocket";
 import useReadMessage from "@/libs/hooks/useReadMessage";
 import useRoom from "@/libs/hooks/useRoom";
 import { messagesStore, userStore } from "@/store";
+import { formaterDateChat } from "@/helper/formaterTime";
+import { useUserActive } from "@/libs/hooks/useUserActive";
 
 const Page = () => {
   const { chat_id } = useParams();
@@ -58,18 +60,31 @@ const Page = () => {
   };
 
   return (
-    <div className="flex gap-5 w-full dark:lg:bg-dark-md lg:p-6 ">
+    <div className="lg:bg-white flex gap-5 w-full dark:lg:bg-dark-md lg:p-6 ">
       <div className="lg:flex-1 py-10 relative w-full flex flex-col">
         <div className="flex flex-col pb-10">
-          {messages.map((message: any, index: number) => (
-            <div key={index}>
-              {message.sender_id === user?.id ? (
-                <ChatBubbleRight data={message} />
-              ) : (
-                <ChatBubbleLeft data={message} />
-              )}
-            </div>
-          ))}
+          {messages.map((message: any, index: number) => {
+            const currentDate = formaterDateChat(message.created_at);
+            const prevDate =
+              index > 0 ? formaterDateChat(messages[index - 1].created_at) : "";
+
+            return (
+              <div key={index}>
+                {currentDate !== prevDate && (
+                  <div className="text-center border-gray-200 dark:border-gray-700 p-2">
+                    <span className="text-gray-500 dark:text-gray-400 text-sm pt-10">
+                      {currentDate}
+                    </span>
+                  </div>
+                )}
+                {message.sender_id === user?.id ? (
+                  <ChatBubbleRight data={message} />
+                ) : (
+                  <ChatBubbleLeft data={message} />
+                )}
+              </div>
+            );
+          })}
           <div ref={messagesEndRef} />
         </div>
         <div className="relative">

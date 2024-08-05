@@ -29,7 +29,7 @@ export default function RootLayout({
           </div>
           <div className="lg:flex-[15] lg:relative w-11/12">
             <Suspense fallback={<Loading />}>
-              <div className=" lg:px-0 lg:pt-0 pt-10 pb-20 min-h-screen">
+              <div className=" lg:px-0 lg:pt-0 pt-10 lg:pb-0 pb-20 min-h-screen">
                 {children}
               </div>
             </Suspense>

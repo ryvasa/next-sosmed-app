@@ -11,11 +11,10 @@ const ChatList = () => {
   const { chats, updateChats } = chatsStore((state: any) => state);
   const [data, setData] = useState([]);
 
-  async function fetchData() {
-    const res = await fetchGetChats();
+  async function fetchData(username?: string) {
+    const res = await fetchGetChats({ username });
     updateChats(res.data);
     setData(res.data);
-    console.log(res.data);
   }
   useEffect(() => {
     fetchData();
@@ -24,8 +23,17 @@ const ChatList = () => {
   useChatNotify(fetchData);
   useActiveStatus(fetchData);
   return (
-    <div className=" px-4 bg-white dark:bg-dark-md rounded-lg py-6">
-      <SearchForm />
+    <div className="">
+      <SearchForm fetchData={fetchData} />
+      <div className="flex justify-end border-gray-200 dark:border-gray-700 border-b-[2px] pt-4 pb-2 items-end">
+        <button
+          type="submit"
+          onClick={() => fetchData()}
+          className="text-primary font-semibold text-sm"
+        >
+          Show All
+        </button>
+      </div>
       <div className="flex flex-col pt-3 gap-1">
         {data.map((item: any) => (
           <div key={item.id}>{<ChatCard data={item} />}</div>

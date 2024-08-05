@@ -14,20 +14,19 @@ interface fetchParam {
   method: string;
   body?: any;
 }
-
-const fetchData = async (data: fetchParam) => {
+import { cookies } from "next/headers";
+const fetchData = async (param: fetchParam) => {
   try {
-    const response = await fetch(`${BASE_URL}/${data.url}`, {
-      method: data.method,
+    const response = await fetch(`${BASE_URL}/${param.url}`, {
+      method: param.method,
       headers: {
+        Cookie: cookies().toString(),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data.body),
-      credentials: "include",
+      body: JSON.stringify(param.body),
     });
-    errorFetch(response);
-    const user = await response.json();
-    return user;
+    const result = await response.json();
+    return result;
   } catch (error) {
     console.error("Error in fetchLogin:", error);
     throw error;
@@ -49,17 +48,13 @@ export async function fetchLogout(): Promise<any> {
 export async function fetchGetOneUser(id: string): Promise<any> {
   return fetchData({ url: `users/${id}`, method: "get" });
 }
-export async function fetchGetUsers({
-  take,
-  skip,
-  username,
-}: {
-  take?: number;
-  skip?: number;
-  username?: string;
-}): Promise<any> {
+export async function fetchGetUsers(
+  take?: number,
+  skip?: number,
+  username?: string,
+): Promise<any> {
   return fetchData({
-    url: `users?${username && `username=${username}&`}take=${take || 15}&skip=${skip || 0}`,
+    url: `users?${username && `username=${username}`}?take=${take || 15}&skip=${skip || 0}`,
     method: "GET",
   });
 }
@@ -74,6 +69,7 @@ export async function fetchCreateThread(formData: FormData): Promise<any> {
       method: "POST",
       body: formData,
       credentials: "include",
+      cache: "force-cache",
     });
 
     if (!response.ok) {
@@ -125,17 +121,12 @@ export async function fetchGetOneChat(id: string): Promise<any> {
   return fetchData({ url: `chats/${id}`, method: "GET" });
 }
 
-export async function fetchGetChats({
-  take = 15,
-  skip = 0,
-  username,
-}: {
-  take?: number;
-  skip?: number;
-  username?: string;
-}): Promise<any> {
+export async function fetchGetChats(
+  take?: number,
+  skip?: number,
+): Promise<any> {
   return fetchData({
-    url: `chats?${username && `username=${username}&`}take=${take || 15}&skip=${skip || 0}`,
+    url: `chats?take=${take || 15}&skip=${skip || 0}`,
     method: "GET",
   });
 }
@@ -150,22 +141,6 @@ export async function fetchGetMessages(
 ): Promise<any> {
   return fetchData({
     url: `messages/chats/${id}?take=10&skip=${skip || 0}`,
-    method: "GET",
-  });
-}
-
-// SEARCH
-export async function fetchSearch({
-  take,
-  skip,
-  query,
-}: {
-  take?: number;
-  skip?: number;
-  query?: string;
-}): Promise<any> {
-  return fetchData({
-    url: `search?${query && `query=${query}&`}take=${take || 15}&skip=${skip || 0}`,
     method: "GET",
   });
 }

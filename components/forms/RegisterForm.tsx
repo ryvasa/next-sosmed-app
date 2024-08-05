@@ -31,7 +31,6 @@ const LoginForm = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(formData);
   };
 
   const handleSubmit = async (e: any) => {
