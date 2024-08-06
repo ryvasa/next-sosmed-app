@@ -11,7 +11,7 @@ import { formatRelativeTime } from "@/helper/formaterTime";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import LoadingCircle from "../shared/LoadingCircle";
 
-const ProfileCard = () => {
+const ProfileCard = ({ data }: any) => {
   const currentUser = userStore((state: any) => state.user);
   const [userMatch, setUserMatch] = useState(false);
   const [user, setUser] = useState({
@@ -99,7 +99,7 @@ const ProfileCard = () => {
       <div className="flex items-center py-5 gap-3 ">
         <Friend textColor={"text-primary"} />
         <p>
-          <b>123</b> friends
+          <b>{data}</b> threads
         </p>
       </div>
     </div>

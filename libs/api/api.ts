@@ -95,6 +95,10 @@ export async function fetchGetThreads(): Promise<any> {
   return fetchData({ url: "threads", method: "GET" });
 }
 
+export async function fetchGetUserThreads(): Promise<any> {
+  return fetchData({ url: "threads/user", method: "GET" });
+}
+
 export async function fetchGetOneThread(id: string): Promise<any> {
   return fetchData({ url: `threads/${id}`, method: "GET" });
 }
