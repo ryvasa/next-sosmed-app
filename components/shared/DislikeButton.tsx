@@ -1,29 +1,56 @@
-'use client';
-import { useState } from 'react';
-import { Dislike } from '../ui/icons';
+"use client";
+import { useEffect, useState } from "react";
+import { Dislike } from "../ui/icons";
+import { userStore } from "@/store";
+import { fetchCancelDislikeThread, fetchDislikeThread } from "@/libs/api/api";
 
-const DislikeButton = ({ w, h, dataCount }: any) => {
+interface props {
+  w: number;
+  h: number;
+  isComment: boolean;
+  dataCount: number;
+  data: any;
+  id: string;
+}
+const DislikeButton = ({ w, h, isComment, dataCount, data, id }: props) => {
   const [dislike, setDislike] = useState(false);
-  const [dislikeCount, setDislikeCount] = useState(123);
-
-  const likePost = () => {
-    dislike
-      ? setDislikeCount(dislikeCount - 1)
-      : setDislikeCount(dislikeCount + 1);
-    setDislike(dislike ? false : true);
+  const [dislikeCount, setDislikeCount] = useState(0);
+  const [users, setUsers] = useState([]);
+  const currentUser = userStore((state: any) => state.user);
+  const dislikePost = async (e: any) => {
+    e.preventDefault();
+    if (dislike) {
+      const response = await fetchCancelDislikeThread(id);
+      if (response) {
+        setDislikeCount(dislikeCount - 1);
+        setDislike(false);
+      }
+    }
+    const response = await fetchDislikeThread(id);
+    if (response) {
+      setDislikeCount(dislikeCount + 1);
+      setDislike(true);
+    }
   };
-
+  useEffect(() => {
+    setDislikeCount(dataCount);
+    setUsers(data);
+  }, [data]);
+  useEffect(() => {
+    if (users) {
+      const exists = users.some((user: any) => user.user.id === currentUser.id);
+      setDislike(exists);
+    }
+  }, [users]);
   return (
     <button
-      onClick={() => {
-        likePost();
-      }}
-      className={` flex items-center justify-start gap-2  ${
-        dislike && 'text-primary'
-      }`}
+      onClick={dislikePost}
+      className={`flex items-center gap-2 ${
+        isComment ? "  justify-start " : "flex-1  justify-center "
+      }  ${dislike && "text-primary "}`}
     >
       <Dislike w={w} h={h} />
-      <p className="text-sm">{dataCount > 0 && dataCount}</p>
+      <p className="text-sm">{dislikeCount > 0 && dislikeCount}</p>
     </button>
   );
 };

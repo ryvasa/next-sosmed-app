@@ -35,16 +35,17 @@ const ThreadCard = () => {
         <LikeButton
           w={5}
           h={5}
-          isComment={false}
+          data={thread?.thread_likes}
+          threadId={thread?.id}
           dataCount={thread.count?.thread_likes}
         />
-        <div className="pt-1">
+        {/* <div className="pt-1">
           <DislikeButton
             w={5}
             h={5}
             dataCount={thread.count?.thread_dislikes}
           />
-        </div>
+        </div> */}
         <Link
           href={`/threads/${thread.id}`}
           className="flex-1 flex items-center justify-center gap-2"

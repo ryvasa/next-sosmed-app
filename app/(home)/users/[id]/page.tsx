@@ -9,7 +9,6 @@ const Page = () => {
   const [count, setCount] = useState(0);
   const fetchData = async () => {
     const response = await fetchGetUserThreads();
-    console.log(response.data);
     setThreads(response.data.threads);
     setCount(response.data.count);
   };

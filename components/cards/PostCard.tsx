@@ -3,7 +3,7 @@ import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";
 import PostContent from "../shared/PostContent";
 import Link from "next/link";
-import DislikeButton from "../shared/DislikeButton";
+// import DislikeButton from "../shared/DislikeButton";
 
 const PostCard = ({ data }: any) => {
   return (
@@ -16,12 +16,20 @@ const PostCard = ({ data }: any) => {
         <LikeButton
           w={5}
           h={5}
-          isComment={false}
+          data={data?.thread_likes}
           dataCount={data?.count?.thread_likes}
+          threadId={data?.id}
         />
-        <div className="pt-1">
-          <DislikeButton w={5} h={5} dataCount={data?.count?.thread_dislikes} />
-        </div>
+        {/* <div className="pt-1">
+          <DislikeButton
+            w={5}
+            h={5}
+            isComment={false}
+            data={data?.thread_likes}
+            dataCount={data?.count?.thread_likes}
+            id={data?.id}
+          />
+        </div> */}
         <Link
           href={`/threads/${data?.id}`}
           className="flex-1 flex items-center justify-center gap-2"

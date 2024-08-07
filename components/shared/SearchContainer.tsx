@@ -17,7 +17,6 @@ const SearchContainer = () => {
   };
   async function fetchData(query?: string) {
     const response = await fetchSearch({ query });
-    console.log(response.data);
     setThreads(response.data.threads);
     setUsers(response.data.users);
   }

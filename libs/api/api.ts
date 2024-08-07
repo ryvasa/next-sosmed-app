@@ -103,6 +103,23 @@ export async function fetchGetOneThread(id: string): Promise<any> {
   return fetchData({ url: `threads/${id}`, method: "GET" });
 }
 
+//THREAD ACTIONS
+export async function fetchLikeThread(id: string): Promise<any> {
+  return fetchData({ url: `threads/${id}/like`, method: "POST" });
+}
+
+export async function fetchCancelLikeThread(id: string): Promise<any> {
+  return fetchData({ url: `threads/${id}/like`, method: "DELETE" });
+}
+
+export async function fetchDislikeThread(id: string): Promise<any> {
+  return fetchData({ url: `threads/${id}/dislike`, method: "POST" });
+}
+
+export async function fetchCancelDislikeThread(id: string): Promise<any> {
+  return fetchData({ url: `threads/${id}/dislike`, method: "DELETE" });
+}
+
 // COMMENTS
 export async function fetchGetComments(id: string, skip: number): Promise<any> {
   return fetchData({
@@ -121,6 +138,24 @@ export async function fetchCreateComment(id: string, body: any): Promise<any> {
     url: `threads/${id}/comments`,
     method: "POST",
     body,
+  });
+}
+export async function fetchLikeComment(
+  threadId: string,
+  commandId: string,
+): Promise<any> {
+  return fetchData({
+    url: `threads/${threadId}/comments/${commandId}/like`,
+    method: "POST",
+  });
+}
+export async function fetchCancelLikeComment(
+  threadId: string,
+  commandId: string,
+): Promise<any> {
+  return fetchData({
+    url: `threads/${threadId}/comments/${commandId}/like`,
+    method: "DELETE",
   });
 }
 
