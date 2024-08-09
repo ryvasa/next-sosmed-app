@@ -1,20 +1,21 @@
-"use client";
-import { useState } from "react";
-import { Send } from "../ui/icons";
-import { useParams } from "next/navigation";
-import { fetchCreateComment } from "../../libs/api/api";
-import { notificationSocket } from "../../libs/socket/socket";
+'use client';
+import { useState } from 'react';
+import { Send } from '../ui/icons';
+import { useParams } from 'next/navigation';
+import { fetchCreateComment } from '../../libs/api/api';
+import { notificationSocket } from '../../libs/socket/socket';
 
 const CommentForm = () => {
   const { id } = useParams();
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState('');
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await fetchCreateComment(id as string, {
       body: newComment,
     });
-    notificationSocket.emit("notify");
-    setNewComment("");
+    notificationSocket.emit('notify');
+    notificationSocket.emit('thread-notify');
+    setNewComment('');
   };
 
   return (

@@ -37,7 +37,10 @@ export function formatRelativeTime(isoDate: any) {
   const now = moment();
   const date = moment.utc(isoDate);
   const diffInMinutes = Math.floor((now - date) / (1000 * 60));
-  if (diffInMinutes < 60) {
+  const diffInSecond = Math.floor((now - date) / (1000 * 60 * 60));
+  if (diffInMinutes < 0.6) {
+    return `a few seconds ago`;
+  } else if (diffInMinutes < 60) {
     return `${diffInMinutes} minutes ago`;
   } else if (diffInMinutes < 1440) {
     return `${Math.floor(diffInMinutes / 60)} hours ago`;

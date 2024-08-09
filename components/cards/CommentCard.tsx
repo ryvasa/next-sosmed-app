@@ -16,7 +16,10 @@ const CommentCard = ({ data }: any) => {
   };
 
   return (
-    <div className="rounded-lg lg:px-10 bg-gray-100 dark:bg-dark-sm p-4">
+    <div
+      id={data.id}
+      className="rounded-lg lg:px-10 bg-gray-100 dark:bg-dark-sm p-4"
+    >
       <UserInfo user={data?.user} createdAt={data?.created_at} />
       <div className="py-2 text-sm lg:text-lg ">
         {detail ? data.body : truncateText(data.body, 400)}{" "}

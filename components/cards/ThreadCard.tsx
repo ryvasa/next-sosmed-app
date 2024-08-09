@@ -3,7 +3,7 @@ import { Comment } from "../ui/icons";
 import LikeButton from "../shared/LikeButton";
 import UserInfo from "../shared/UserInfo";
 import Link from "next/link";
-import DislikeButton from "../shared/DislikeButton";
+// import DislikeButton from "../shared/DislikeButton";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchGetOneThread } from "@/libs/api/api";

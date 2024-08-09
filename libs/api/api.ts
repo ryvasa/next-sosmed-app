@@ -59,7 +59,9 @@ export async function fetchGetUsers({
   username?: string;
 }): Promise<any> {
   return fetchData({
-    url: `users?${username && `username=${username}&`}take=${take || 15}&skip=${skip || 0}`,
+    url: `users?${username && `username=${username}&`}take=${take || 15}&skip=${
+      skip || 0
+    }`,
     method: "GET",
   });
 }
@@ -174,7 +176,9 @@ export async function fetchGetChats({
   username?: string;
 }): Promise<any> {
   return fetchData({
-    url: `chats?${username && `username=${username}&`}take=${take || 15}&skip=${skip || 0}`,
+    url: `chats?${username && `username=${username}&`}take=${take || 15}&skip=${
+      skip || 0
+    }`,
     method: "GET",
   });
 }
@@ -204,7 +208,26 @@ export async function fetchSearch({
   query?: string;
 }): Promise<any> {
   return fetchData({
-    url: `search?${query && `query=${query}&`}take=${take || 15}&skip=${skip || 0}`,
+    url: `search?${query && `query=${query}&`}take=${take || 15}&skip=${
+      skip || 0
+    }`,
     method: "GET",
   });
+}
+
+// NOTIFICATIONS
+export async function fetchGetNotifications(): Promise<any> {
+  return fetchData({ url: "notifications", method: "GET" });
+}
+
+export async function fetchGetCountNotifications(): Promise<any> {
+  return fetchData({ url: "notifications/count", method: "GET" });
+}
+
+export async function fetchUpdateNotification(id: string): Promise<any> {
+  return fetchData({ url: `notifications/${id}`, method: "PATCH" });
+}
+
+export async function fetchUpdateAllNotification(): Promise<any> {
+  return fetchData({ url: `notifications`, method: "PATCH" });
 }
