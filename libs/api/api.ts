@@ -97,8 +97,8 @@ export async function fetchGetThreads(): Promise<any> {
   return fetchData({ url: "threads", method: "GET" });
 }
 
-export async function fetchGetUserThreads(): Promise<any> {
-  return fetchData({ url: "threads/user", method: "GET" });
+export async function fetchGetUserThreads(id: string): Promise<any> {
+  return fetchData({ url: `threads/user/${id}`, method: "GET" });
 }
 
 export async function fetchGetOneThread(id: string): Promise<any> {
@@ -162,8 +162,19 @@ export async function fetchCancelLikeComment(
 }
 
 // CHATS
+export async function fetchCreateChat(receiverId: string): Promise<any> {
+  return fetchData({
+    url: `chats`,
+    method: "POST",
+    body: { receiverId },
+  });
+}
 export async function fetchGetOneChat(id: string): Promise<any> {
   return fetchData({ url: `chats/${id}`, method: "GET" });
+}
+
+export async function fetchDeleteChat(id: string): Promise<any> {
+  return fetchData({ url: `chats/${id}`, method: "DELETE" });
 }
 
 export async function fetchGetChats({

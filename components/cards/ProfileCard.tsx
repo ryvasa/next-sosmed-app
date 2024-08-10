@@ -10,6 +10,7 @@ import { userStore } from "@/store";
 import { formatRelativeTime } from "@/helper/formaterTime";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import LoadingCircle from "../shared/LoadingCircle";
+import ChatButton from "../shared/ChatButton";
 
 const ProfileCard = ({ data }: any) => {
   const currentUser = userStore((state: any) => state.user);
@@ -50,7 +51,9 @@ const ProfileCard = ({ data }: any) => {
           <div className=" flex items-center lg:justify-start justify-between h-48 lg:gap-4 lg:h-40">
             <div className="flex gap-5 items-center ">
               <div
-                className={`rounded-full ${user.active && "avatar-profile-online"} overflow-hidden`}
+                className={`rounded-full ${
+                  user.active && "avatar-profile-online"
+                } overflow-hidden`}
               >
                 <Image
                   alt="profile"
@@ -77,12 +80,17 @@ const ProfileCard = ({ data }: any) => {
                 )}
               </div>
             </div>
-
-            <Link href={`/users/${user.id}/edit`}>
-              <Edit />
-            </Link>
+            <div className="">
+              {userMatch ? (
+                <Link href={`/users/${user.id}/edit`}>
+                  <Edit />
+                </Link>
+              ) : (
+                <ChatButton userId={user.id} />
+              )}
+            </div>
           </div>
-          {!userMatch && (
+          {/* {!userMatch && (
             <div className="py-5 flex gap-10 lg:gap-5 lg:w-80">
               <div className="user-profile-action">
                 <Check w={5} h={5} />
@@ -93,7 +101,7 @@ const ProfileCard = ({ data }: any) => {
                 <p className="normal-case">Cancel</p>
               </div>
             </div>
-          )}
+          )} */}
         </>
       )}
       <div className="flex items-center py-5 gap-3 ">

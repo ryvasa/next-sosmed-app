@@ -21,13 +21,14 @@ const ChatCard = ({ data }: any) => {
   }, [data]);
 
   return (
-    <div className=" lg:px-4 py-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg ">
+    <Link
+      href={`/chats/${data?.id}/${filteredUsers?.user?.id}`}
+      className=" lg:px-4 py-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg "
+    >
       <div className="flex gap-3 items-center justify-center">
         <ProfilePicture active={filteredUsers?.user?.active} />
-        <Link
-          href={`/chats/${data?.id}/${filteredUsers?.user?.id}`}
-          className="flex flex-col"
-        >
+
+        <div className="flex flex-col">
           <p className="font-semibold lg:text-lg">
             {filteredUsers?.user?.username || "Unknown"}
           </p>
@@ -37,7 +38,7 @@ const ChatCard = ({ data }: any) => {
                 "..."
               : data?.messages[0]?.message}
           </p>
-        </Link>
+        </div>
       </div>
       <div className="flex flex-col gap 2 justify-between items-center">
         <p className="text-sm text-primary">
@@ -49,7 +50,7 @@ const ChatCard = ({ data }: any) => {
           </p>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 

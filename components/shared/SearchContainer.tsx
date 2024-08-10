@@ -12,7 +12,7 @@ const SearchContainer = () => {
   const [threads, setThreads] = useState([]);
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState("users");
-  const changeTab = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeTab = (e: any) => {
     setCurrentTab(e?.target?.value);
   };
   async function fetchData(query?: string) {

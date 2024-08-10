@@ -494,7 +494,45 @@ const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   );
 };
 
+const Delete = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-6 h-6 text-error` : `w-${w} h-${h} text-${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"
+      />
+    </svg>
+  );
+};
+
+const Alert = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-5 h-5 text-error` : `w-${w} h-${h} text-${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M12 5.99L19.53 19H4.47zM12 2L1 21h22z" />
+      <path fill="currentColor" d="M13 16h-2v2h2zm0-6h-2v5h2z" />
+    </svg>
+  );
+};
+
 export {
+  Alert,
+  Delete,
   Readed,
   Key,
   Mail,
