@@ -32,7 +32,6 @@ const Page = () => {
             <p className="text-xl text-primary font-bold">User has no thread</p>
           </div>
         )}
-        .
       </div>
     </>
   );

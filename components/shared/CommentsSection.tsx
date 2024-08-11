@@ -45,27 +45,28 @@ const CommentsSection = () => {
         <b className="text-primary">{countComments}</b> comments
       </h1>
       <CommentForm />
-      <InfiniteScroll
-        dataLength={comments.length}
-        next={getNewComment}
-        hasMore={hasMore}
-        loader={
-          <div className="py-3">
-            <LoadingCircle />
+      {comments.length > 0 ? (
+        <InfiniteScroll
+          dataLength={comments.length}
+          next={getNewComment}
+          hasMore={hasMore}
+          endMessage={
+            <p className="text-center py-3">
+              <b>Komentarnya cuman segitu!</b>
+            </p>
+          }
+        >
+          <div className="flex flex-col gap-2 pt-4">
+            {comments?.map((comment: any, index: number) => (
+              <CommentCard key={index} data={comment} />
+            ))}
           </div>
-        }
-        endMessage={
-          <p className="text-center py-3">
-            <b>Komentarnya cuman segitu!</b>
-          </p>
-        }
-      >
-        <div className="flex flex-col gap-2 pt-4">
-          {comments?.map((comment: any, index: number) => (
-            <CommentCard key={index} data={comment} />
-          ))}
+        </InfiniteScroll>
+      ) : (
+        <div className=" text-center py-10 text-primary text-lg font-semibold">
+          <p>This thread has no comments yet</p>
         </div>
-      </InfiniteScroll>
+      )}
     </div>
   );
 };

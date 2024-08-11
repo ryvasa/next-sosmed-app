@@ -193,7 +193,7 @@ const Hamburger = ({ w, h }: { w?: number; h?: number }) => {
 const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`dark:text-dark-xs ${c ? `text-white` : `text-primary`} ${
+      className={` ${c ? `text-white` : `text-primary`} ${
         !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
       }`}
       xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +245,7 @@ const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${!w && !h && c! ? `w-4 h-4 c-4 text-primary` : `w-${w} h-${h} text-dark-md`}`}
+      className={`text-dark-md ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -530,7 +530,28 @@ const Alert = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   );
 };
 
+const More = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h
+          ? `w-5 h-5 text-black dark:text-dark-xs`
+          : `w-${w} h-${h} text-${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2m0 2c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2m0 6c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2"
+      />
+    </svg>
+  );
+};
 export {
+  More,
   Alert,
   Delete,
   Readed,

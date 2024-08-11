@@ -1,6 +1,6 @@
-import { fetchCreateChat } from '@/libs/api/api';
-import { useRouter } from 'next/navigation';
-import { Chat } from '../ui/icons';
+import { fetchCreateChat } from "@/libs/api/api";
+import { useRouter } from "next/navigation";
+import { Chat } from "../ui/icons";
 
 interface Props {
   userId: string;
@@ -10,7 +10,6 @@ const ChatButton = ({ userId }: Props) => {
   const router = useRouter();
   const fetchData = async () => {
     const response = await fetchCreateChat(userId);
-    console.log(response);
     if (response.data) {
       router.push(`/chats/${response.data.id}/${userId}`);
     }

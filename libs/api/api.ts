@@ -41,6 +41,9 @@ export async function fetchRegister(body: any): Promise<any> {
 export async function fetchLogin(body: any): Promise<any> {
   return fetchData({ url: "auth/login", method: "POST", body });
 }
+export async function fetchCurrentUser(): Promise<any> {
+  return fetchData({ url: "auth/me", method: "GET" });
+}
 export async function fetchLogout(): Promise<any> {
   return fetchData({ url: "auth/logout", method: "DELETE" });
 }
@@ -64,6 +67,31 @@ export async function fetchGetUsers({
     }`,
     method: "GET",
   });
+}
+
+export async function fetchUpdateUser(
+  formData: FormData,
+  id: string,
+): Promise<any> {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${id}`, {
+      method: "PATCH",
+      body: formData,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        `HTTP error! status: ${response.status}, ${errorData.message}`,
+      );
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error in fetchCreateThread:", error);
+    throw error;
+  }
 }
 
 // THREADS
@@ -93,6 +121,32 @@ export async function fetchCreateThread(formData: FormData): Promise<any> {
   }
 }
 
+export async function fetchUpdateThread(
+  id: string,
+  formData: FormData,
+): Promise<any> {
+  try {
+    const response = await fetch(`${BASE_URL}/threads/${id}`, {
+      method: "PATCH",
+      body: formData,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        `HTTP error! status: ${response.status}, ${errorData.message}`,
+      );
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error in fetchCreateThread:", error);
+    throw error;
+  }
+}
+
 export async function fetchGetThreads(): Promise<any> {
   return fetchData({ url: "threads", method: "GET" });
 }
@@ -103,6 +157,9 @@ export async function fetchGetUserThreads(id: string): Promise<any> {
 
 export async function fetchGetOneThread(id: string): Promise<any> {
   return fetchData({ url: `threads/${id}`, method: "GET" });
+}
+export async function fetchDeleteThread(id: string): Promise<any> {
+  return fetchData({ url: `threads/${id}`, method: "DELETE" });
 }
 
 //THREAD ACTIONS

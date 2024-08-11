@@ -36,7 +36,7 @@ const ThemeToggle = ({ showText }: any) => {
             toggleTheme();
           }}
         >
-          {showText ? <Dark /> : <Dark w={5} h={5} />}
+          {!showText ? <Dark w={5} h={5} /> : <Dark w={4} h={4} />}
           {showText && <p className="text-sm lg:text-md">Dark mode</p>}
         </button>
       )}

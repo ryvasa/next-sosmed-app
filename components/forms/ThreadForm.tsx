@@ -1,37 +1,68 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageUploadPreview from "../shared/ImageUploadPreview";
 import { CloudUpload } from "../ui/icons";
 import ThreadBodyForm from "./ThreadBodyForm";
-import { fetchCreateThread } from "@/libs/api/api";
-import { useRouter } from "next/navigation";
+import {
+  fetchCreateThread,
+  fetchGetOneThread,
+  fetchUpdateThread,
+} from "@/libs/api/api";
+import { useParams, useRouter } from "next/navigation";
 
 const ThreadForm = () => {
   const [images, setImages] = useState([]);
   const [body, setBody] = useState("");
   const router = useRouter();
+  const [currentImages, setCurrentImages] = useState<any>([]);
 
+  const { id } = useParams();
+  const fetchData = async () => {
+    if (id) {
+      const response = await fetchGetOneThread(id as string);
+      setCurrentImages(response.data.images);
+      setBody(response.data.body);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("body", body);
+    const imagePathsToKeep = currentImages.map((item: any) => item.image);
+    formData.append("currentImages", imagePathsToKeep);
     images.forEach((image, index) => {
       formData.append("images", image);
     });
     try {
-      const response = await fetchCreateThread(formData);
-      if (response.id) {
-        router.push("/");
+      let response;
+      if (id) {
+        response = await fetchUpdateThread(id as string, formData);
+      } else {
+        response = await fetchCreateThread(formData);
+      }
+      console.log(formData);
+      if (response.data) {
+        // router.push("/");
       }
     } catch (error) {
       console.error("Error creating thread:", error);
     }
   };
+
   return (
     <form onSubmit={handleSubmit} className="py-4">
-      <ThreadBodyForm setBody={setBody} />
-      <ImageUploadPreview setImages={setImages} />
+      <ThreadBodyForm body={body} setBody={setBody} />
+      <ImageUploadPreview
+        currentImages={currentImages}
+        setCurrentImages={setCurrentImages}
+        images={images}
+        setImages={setImages}
+      />
       <div className="py-8 flex justify-center items-center">
         <button
           type="submit"

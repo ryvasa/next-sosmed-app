@@ -9,7 +9,19 @@ const ChatBubbleLeft = ({ data }: any) => {
         <div className="chat chat-start">
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
-              <Image src={image} alt="profile" />
+              <Image
+                width={data?.user?.avatar && 10000}
+                height={data?.user?.avatar && 10000}
+                style={
+                  data?.user?.avatar && { width: "112px", height: `112px` }
+                }
+                src={
+                  data?.user?.avatar
+                    ? `http://localhost:3000/${data?.user?.avatar}`
+                    : image
+                }
+                alt="profile"
+              />
             </div>
           </div>
 

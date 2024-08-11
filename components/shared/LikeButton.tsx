@@ -1,14 +1,14 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { Like } from '../ui/icons';
+"use client";
+import { useEffect, useState } from "react";
+import { Like } from "../ui/icons";
 import {
   fetchCancelLikeComment,
   fetchCancelLikeThread,
   fetchLikeComment,
   fetchLikeThread,
-} from '@/libs/api/api';
-import { userStore } from '@/store';
-import { notificationSocket } from '../../libs/socket/socket';
+} from "@/libs/api/api";
+import { userStore } from "@/store";
+import { notificationSocket } from "../../libs/socket/socket";
 
 interface Props {
   w: number;
@@ -35,8 +35,10 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
         // Unlike operation
         if (commentId) {
           response = await fetchCancelLikeComment(threadId, commentId);
+          notificationSocket.emit("comment-notify");
         } else {
           response = await fetchCancelLikeThread(threadId);
+          notificationSocket.emit("thread-notify");
         }
         if (response) {
           setLikeCount((prevCount) => prevCount - 1);
@@ -46,8 +48,10 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
         // Like operation
         if (commentId) {
           response = await fetchLikeComment(threadId, commentId);
+          notificationSocket.emit("comment-notify");
         } else {
           response = await fetchLikeThread(threadId);
+          notificationSocket.emit("thread-notify");
         }
         if (response) {
           setLikeCount((prevCount) => prevCount + 1);
@@ -55,10 +59,9 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
         }
       }
     } catch (error) {
-      console.error('Error liking/unliking post', error);
+      console.error("Error liking/unliking post", error);
     } finally {
       setDisabled(false);
-      notificationSocket.emit('thread-notify');
     }
   };
 
@@ -82,11 +85,11 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
       type="button"
       onClick={likePost}
       className={`disabled:cursor-not-allowed flex items-center gap-2 ${
-        commentId ? 'justify-start' : 'flex-1 justify-center'
-      } ${like && 'text-primary'}`}
+        commentId ? "justify-start" : "flex-1 justify-center"
+      } ${like && "text-primary"}`}
     >
       <Like w={w} h={h} />
-      <p className={`${commentId ? 'text-sm' : ''}`}>
+      <p className={`${commentId ? "text-sm" : ""}`}>
         {likeCount > 0 && likeCount}
       </p>
     </button>

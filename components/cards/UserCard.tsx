@@ -1,8 +1,8 @@
-'use client';
-import Link from 'next/link';
-import ProfilePicture from '../shared/ProfilePicture';
-import { formatRelativeTime } from '@/helper/formaterTime';
-import ChatButton from '../shared/ChatButton';
+"use client";
+import Link from "next/link";
+import ProfilePicture from "../shared/ProfilePicture";
+import { formatRelativeTime } from "@/helper/formaterTime";
+import ChatButton from "../shared/ChatButton";
 
 const UserCard = ({ user }: any) => {
   return (
@@ -12,7 +12,7 @@ const UserCard = ({ user }: any) => {
         className="flex-[19] flex justify-between"
       >
         <div className="flex gap-3 items-center justify-center">
-          <ProfilePicture active={user.active} />
+          <ProfilePicture active={user.active} avatar={user.avatar} />
           <div className="flex justify-center items-start flex-col gap-1">
             <p className="font-semibold text-lg">{user.username}</p>
             {user.active ? (

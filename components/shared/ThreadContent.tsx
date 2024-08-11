@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { threadStore } from "../../store";
 import { truncateText } from "../../helper/truncateText";
+import LoadingCircle from "./LoadingCircle";
 
-const ThreadContent = ({ detail, id }: any) => {
+const ThreadContent = ({ id }: any) => {
   const [thread, setThread] = useState({
     body: "",
     images: [{ image: "" }],
@@ -16,6 +17,7 @@ const ThreadContent = ({ detail, id }: any) => {
   const { threads } = threadStore((state: any) => state);
   useEffect(() => {
     const filteredThread = threads.find((thread: any) => thread.id === id);
+    console.log(filteredThread);
     setThread(filteredThread);
   }, [id]);
   return (
@@ -25,24 +27,16 @@ const ThreadContent = ({ detail, id }: any) => {
       ) : (
         <div className="flex flex-col gap-4">
           <div className="text-sm lg:text-lg">
-            {detail ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(thread?.body),
-                }}
-              />
-            ) : (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(truncateText(thread?.body, 30)),
-                }}
-              />
-            )}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(thread?.body),
+              }}
+            />
           </div>
           {thread?.images?.length > 0 &&
-            (detail ? (
-              thread.images.map((image: any, index: number) => (
-                <div className="h-full" key={index}>
+            thread.images.map((image: any, index: number) => (
+              <div className="h-full" key={index}>
+                {image.image ? (
                   <Image
                     placeholder="blur"
                     blurDataURL={`http://localhost:3000/${image.image}`}
@@ -52,19 +46,9 @@ const ThreadContent = ({ detail, id }: any) => {
                     alt="photo postingan"
                     className="w-full h-full object-cover rounded-xl"
                   />
-                </div>
-              ))
-            ) : (
-              <div className="h-full">
-                <Image
-                  placeholder="blur"
-                  width={12000}
-                  height={12000}
-                  src={`http://localhost:3000/${thread.images[0].image}`}
-                  blurDataURL={`http://localhost:3000/${thread.images[0].image}`}
-                  alt="photo postingan"
-                  className="w-full h-full object-cover rounded-xl"
-                />
+                ) : (
+                  <LoadingCircle />
+                )}
               </div>
             ))}
         </div>

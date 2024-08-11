@@ -3,36 +3,44 @@ import Image from "next/image";
 import Link from "next/link";
 import image from "../../public/pf.jpg";
 import { useEffect, useState } from "react";
-import { userStore } from "@/store";
-import { fetchGetOneUser } from "@/libs/api/api";
+import { fetchCurrentUser } from "@/libs/api/api";
 import ThemeToggle from "./ThemeToggle";
 import LogoutButton from "./LogoutButton";
-import { useUserActive } from "@/libs/hooks/useUserActive";
-import ChatList from "./ChatList";
 import RightBarChats from "./RightBarChats";
 import NotificationButton from "./NotificationButton";
 
 const RightBar = () => {
-  const currentUser = userStore((state: any) => state.user);
   const [user, setUser] = useState({
     id: "",
-    avatar: image,
+    avatar: "",
     username: "",
     active: false,
   });
-  const fetchCurrentUser = async () => {
-    const response = await fetchGetOneUser(currentUser.id);
-    setUser(response.data);
+
+  const fetchCurrent = async () => {
+    try {
+      const response = await fetchCurrentUser();
+      if (response.data) {
+        setUser(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+    }
   };
+
   useEffect(() => {
-    fetchCurrentUser();
-  }, [currentUser]);
+    fetchCurrent();
+  }, []);
+
+  // Ensure avatar is a string
+  const avatarSrc = typeof user.avatar === "string" ? user.avatar : "";
+
   return (
     <div className="fixed w-[305px] h-screen bg-white dark:bg-dark-md top-0 right-0 flex-col hidden lg:flex justify-start items-center">
       <div className="w-full px-4">
         <div className="flex w-full dark:border-gray-700 border-gray-200 border-b-[2px]  py-3 justify-center items-center gap-2 ">
           <Link
-            className="flex w-full  gap-4 justify-start items-center"
+            className="flex w-full gap-4 justify-start items-center"
             href={`/users/${user.id}`}
           >
             <div
@@ -40,7 +48,13 @@ const RightBar = () => {
                 user.active && "avatar-profile-online"
               } outline-offset-2`}
             >
-              <Image alt="profile" src={user.avatar || image} quality={1} />
+              <Image
+                width={avatarSrc && 112}
+                height={avatarSrc && 112}
+                style={avatarSrc && { width: "112px", height: "112px" }}
+                alt="profile"
+                src={avatarSrc ? `http://localhost:3000/${avatarSrc}` : image}
+              />
             </div>
             <div className="flex flex-col">
               <p className="font-semibold text-lg">{user.username}</p>

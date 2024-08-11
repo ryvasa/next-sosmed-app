@@ -6,6 +6,7 @@ import {
   fetchUpdateAllNotification,
 } from "../../libs/api/api";
 import useThreadNotification from "@/libs/hooks/useThreadNotification";
+import { notificationSocket } from "@/libs/socket/socket";
 
 const NotificationSection = () => {
   const [notifications, setNotifications] = useState<any>([]);
@@ -20,6 +21,7 @@ const NotificationSection = () => {
   const handleClick = async () => {
     await fetchUpdateAllNotification();
     fetchData();
+    notificationSocket.emit("thread-notify");
   };
   useThreadNotification(fetchData);
   return (

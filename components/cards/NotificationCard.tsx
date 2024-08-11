@@ -4,6 +4,7 @@ import ProfilePicture from "../shared/ProfilePicture";
 import { useEffect } from "react";
 import { formatRelativeTime } from "@/helper/formaterTime";
 import { fetchUpdateNotification } from "@/libs/api/api";
+import { notificationSocket } from "@/libs/socket/socket";
 
 const NotificationCard = ({ data }: any) => {
   useEffect(() => {
@@ -26,7 +27,7 @@ const NotificationCard = ({ data }: any) => {
   };
   const handleClick = () => {
     fetchUpdate();
-    console.log("hahah");
+    notificationSocket.emit("thread-notify");
   };
   return (
     <Link

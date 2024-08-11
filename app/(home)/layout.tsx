@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
-        <div className="lg:hidden">
+        <div className="lg:relative lg:-z-20">
           <Topbar />
         </div>
         <div className="w-scree flex bg-gray-50 justify-center items-center dark:bg-dark-lg lg:gap-10  relative">

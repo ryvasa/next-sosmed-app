@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import UserInfo from "../shared/UserInfo";
 import LikeButton from "../shared/LikeButton";
-import DislikeButton from "../shared/DislikeButton";
+// import DislikeButton from "../shared/DislikeButton";
 import { truncateText } from "../../helper/truncateText";
 import { useParams } from "next/navigation";
 

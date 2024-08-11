@@ -33,12 +33,14 @@ const ProfileCard = ({ data }: any) => {
   };
   const getUser = async () => {
     const response = await fetchGetOneUser(id as string);
+
     setUser(response.data);
   };
   useEffect(() => {
     getUser();
     validateUser();
   }, [id]);
+
   useActiveStatus(getUser);
   return (
     <div className="bg-white dark:bg-dark-md rounded-lg py-3 px-6">
@@ -57,7 +59,14 @@ const ProfileCard = ({ data }: any) => {
               >
                 <Image
                   alt="profile"
-                  src={image}
+                  width={10000}
+                  height={10000}
+                  style={{ width: "112px", height: `112px` }}
+                  src={
+                    user?.avatar
+                      ? `http://localhost:3000/${user?.avatar}`
+                      : image
+                  }
                   className="object-cover h-28 w-28 "
                 />
               </div>

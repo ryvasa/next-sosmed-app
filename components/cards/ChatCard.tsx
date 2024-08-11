@@ -23,10 +23,13 @@ const ChatCard = ({ data }: any) => {
   return (
     <Link
       href={`/chats/${data?.id}/${filteredUsers?.user?.id}`}
-      className=" lg:px-4 py-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg "
+      className=" lg:px-4 p-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg "
     >
       <div className="flex gap-3 items-center justify-center">
-        <ProfilePicture active={filteredUsers?.user?.active} />
+        <ProfilePicture
+          active={filteredUsers?.user?.active}
+          avatar={filteredUsers?.user?.avatar}
+        />
 
         <div className="flex flex-col">
           <p className="font-semibold lg:text-lg">

@@ -5,6 +5,8 @@ import useThreadNotification from "../../libs/hooks/useThreadNotification";
 import { notificationSocket } from "../../libs/socket/socket";
 import { useEffect, useState } from "react";
 import { fetchGetCountNotifications } from "@/libs/api/api";
+import useComentNotification from "@/libs/hooks/useComentNotification";
+// import useNotification from "@/libs/hooks/useNotification";
 
 const NotificationButton = () => {
   const [notification, setNotification] = useState(0);
@@ -15,10 +17,10 @@ const NotificationButton = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const setData = (data: number) => {
-    setNotification(data);
-  };
-  useThreadNotification(setData);
+
+  useThreadNotification(fetchData);
+  // useNotification(fetchData);
+  useComentNotification(fetchData);
   return (
     <>
       <Link

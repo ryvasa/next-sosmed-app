@@ -3,7 +3,7 @@ import { fetchDeleteChat } from "@/libs/api/api";
 import { Alert, Delete } from "../ui/icons";
 import { useParams, useRouter } from "next/navigation";
 
-const DeleteButton = () => {
+const DeleteChatButton = () => {
   const { chat_id } = useParams();
   const router = useRouter();
   const fetchDelete = async () => {
@@ -16,14 +16,14 @@ const DeleteButton = () => {
     <>
       <div>
         <button
-          onClick={() => document.getElementById("my_modal_1").showModal()}
+          onClick={() => document.getElementById("delete_chat").showModal()}
           type="button"
           className="flex items-center justify-center btn btn-ghost btn-sm btn-circle"
         >
           <Delete />
         </button>
       </div>
-      <dialog id="my_modal_1" className="modal">
+      <dialog id="delete_chat" className="modal backdrop-blur-sm z-50">
         <div className="modal-box bg-white dark:bg-dark-md">
           <h3 className="font-bold text-xl text-error">Warning</h3>
           <p className="py-4">Are you sure you want to delete this chat?</p>
@@ -53,4 +53,4 @@ const DeleteButton = () => {
   );
 };
 
-export default DeleteButton;
+export default DeleteChatButton;

@@ -29,7 +29,7 @@ const ThreadCard = () => {
     <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
       <div className="flex gap-4 flex-col">
         <UserInfo user={thread?.user} createdAt={thread.created_at} />
-        <ThreadContent detail={false} id={thread.id} />
+        <ThreadContent id={thread.id} />
       </div>
       <div className="flex pt-5 gap-4">
         <LikeButton

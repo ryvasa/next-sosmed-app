@@ -2,12 +2,12 @@
 import Image from "next/image";
 import image from "../../public/pf.jpg";
 import Link from "next/link";
-import { Delete, Notification } from "../ui/icons";
 import DropDown from "./DropDown";
 // import { useUserActivity } from "../../libs/hooks/useUserActivity";
 import { chatsStore, messagesStore, userStore } from "@/store";
 import useRoom from "@/libs/hooks/useRoom";
 import {
+  fetchCurrentUser,
   fetchGetChats,
   fetchGetOneUser,
   fetchGetUnreadedMessages,
@@ -19,7 +19,7 @@ import { useParams } from "next/navigation";
 import { useUserActive } from "@/libs/hooks/useUserActive";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import NotificationButton from "./NotificationButton";
-import DeleteButton from "./DeleteButton";
+import DeleteChatButton from "./DeleteChatButton";
 
 const Topbar = () => {
   const { receiver_id } = useParams();
@@ -31,20 +31,21 @@ const Topbar = () => {
     active: false,
   });
   const { chats, updateChats } = chatsStore((state: any) => state);
-  const currentUser = userStore((state: any) => state.user);
   const { updateUnreadedMessages } = messagesStore((state: any) => state);
 
   async function fetchReceiverUser() {
     if (receiver_id) {
       const response = await fetchGetOneUser(receiver_id as string);
       setUser(response.data);
+    } else {
+      const response = await fetchCurrentUser();
+      setUser(response.data);
     }
   }
+
   useEffect(() => {
     fetchReceiverUser();
-    setUser(currentUser);
   }, [receiver_id]);
-
   async function fetchChats() {
     const res = await fetchGetChats({});
     updateChats(res.data);
@@ -78,7 +79,16 @@ const Topbar = () => {
             <div
               className={`avatar-profile ${user.active && "avatar-profile-online"} outline-offset-2`}
             >
-              <Image alt="profile" src={user.avatar || image} quality={1} />
+              <Image
+                alt="profile"
+                width={user?.avatar && 10000}
+                height={user?.avatar && 10000}
+                style={user?.avatar && { width: "112px", height: `112px` }}
+                src={
+                  user?.avatar ? `http://localhost:3000/${user?.avatar}` : image
+                }
+                quality={1}
+              />
             </div>
             <div className="flex flex-col">
               <p className="font-semibold text-lg">{user.username}</p>
@@ -93,7 +103,7 @@ const Topbar = () => {
       </div>
 
       <div className="flex-none flex gap-2 ">
-        {receiver_id && <DeleteButton />}
+        {receiver_id && <DeleteChatButton />}
         <NotificationButton />
         <DropDown />
       </div>

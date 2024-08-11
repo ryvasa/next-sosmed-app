@@ -1,36 +1,73 @@
 "use client";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { AddImage, Close } from "../ui/icons";
-const ImageUploadPreview = ({ setImages }: any) => {
-  const [previewImage, setPreviewImage] = useState([]);
-  const deleteImage = (id: number) => {
+const ImageUploadPreview = ({
+  images,
+  setImages,
+  currentImages,
+  setCurrentImages,
+}: any) => {
+  const [previewImage, setPreviewImage] = useState<any>([]);
+  const deleteImage = (e: any, id: number) => {
+    e.preventDefault();
     const data = previewImage.filter((image: any) => image !== id);
     setPreviewImage(data);
   };
 
+  const deleteCurrentImage = (e: any, id: number) => {
+    e.preventDefault();
+    const data = currentImages.filter((image: any) => image !== id);
+    setCurrentImages(data);
+  };
   return (
     <div className="grid grid-cols-2 lg:gap-5 gap-2 h-fit">
+      {currentImages.length > 0 &&
+        currentImages.map((item: any, index: number) => (
+          <div
+            key={index}
+            className="relative w-full items-center justify-center"
+          >
+            <button
+              className="text-error absolute right-1 top-5 z-10"
+              onClick={(e) => {
+                deleteCurrentImage(e, item);
+              }}
+            >
+              <Close />
+            </button>
+            <Image
+              width={1000}
+              height={1000}
+              style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
+              src={item.image ? `http://localhost:3000/${item.image}` : item}
+              alt="preview"
+              className="mt-4 object-cover lg:h-full lg:w-full rounded-lg"
+            />
+          </div>
+        ))}
       {previewImage.length > 0 && (
         <>
-          {previewImage.map((image, index) => (
+          {previewImage.map((image: any, index: number) => (
             <div
               key={index}
               className="relative w-full items-center justify-center"
             >
               <button
                 className="text-error absolute right-1 top-5 z-10"
-                onClick={() => {
-                  deleteImage(image);
+                onClick={(e) => {
+                  deleteImage(e, image);
                 }}
               >
                 <Close />
               </button>
               <Image
-                width={0}
-                height={0}
+                width={1000}
+                height={1000}
                 style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
-                src={image}
+                src={
+                  image.image ? `http://localhost:3000/${image.image}` : image
+                }
                 alt="preview"
                 className="mt-4 object-cover lg:h-full lg:w-full rounded-lg"
               />

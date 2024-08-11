@@ -14,10 +14,16 @@ const PostContent = ({ detail, id }: any) => {
     id: "",
   });
   const { threads } = threadStore((state: any) => state);
+
   useEffect(() => {
     const filteredThread = threads.find((thread: any) => thread.id === id);
     setThread(filteredThread);
   }, [id]);
+
+  // Potong array images untuk hanya mengambil 4 gambar pertama
+  const imagesToShow = thread.images.slice(0, 4);
+  const extraImagesCount = thread.images.length - 4;
+
   return (
     <>
       {!thread?.body ? (
@@ -25,24 +31,21 @@ const PostContent = ({ detail, id }: any) => {
       ) : (
         <Link href={`/threads/${thread?.id}`} className="flex flex-col gap-4">
           <div className="text-sm lg:text-lg">
-            {detail ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(thread?.body),
-                }}
-              />
-            ) : (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(truncateText(thread?.body, 30)),
-                }}
-              />
-            )}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(truncateText(thread?.body, 1000)),
+              }}
+            />
           </div>
-          {thread?.images?.length > 0 &&
-            (detail ? (
-              thread.images.map((image: any, index: number) => (
-                <div className="h-full" key={index}>
+          <div
+            className={`${imagesToShow.length > 1 && "grid-cols-2"} grid gap-1`}
+          >
+            {imagesToShow.length > 0 &&
+              imagesToShow.map((image: any, index: number) => (
+                <div
+                  className={`${imagesToShow.length === 3 && index === 0 && " col-span-2"} relative h-full `}
+                  key={index}
+                >
                   <Image
                     placeholder="blur"
                     blurDataURL={`http://localhost:3000/${image.image}`}
@@ -50,23 +53,18 @@ const PostContent = ({ detail, id }: any) => {
                     height={12000}
                     src={`http://localhost:3000/${image.image}`}
                     alt="photo postingan"
-                    className="w-full h-full object-cover rounded-xl"
+                    className={`w-full h-full object-cover rounded-md`}
                   />
+                  {extraImagesCount > 0 && index === 3 && (
+                    <div className="absolute top-0 left-0 backdrop-blur-sm bg-gray-50/50 h-full w-full flex justify-center items-center">
+                      <p className="text-dark-xs text-2xl lg:text-4xl">
+                        +{extraImagesCount}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              ))
-            ) : (
-              <div className="h-full">
-                <Image
-                  placeholder="blur"
-                  width={12000}
-                  height={12000}
-                  src={`http://localhost:3000/${thread.images[0].image}`}
-                  blurDataURL={`http://localhost:3000/${thread.images[0].image}`}
-                  alt="photo postingan"
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-            ))}
+              ))}
+          </div>
         </Link>
       )}
     </>
