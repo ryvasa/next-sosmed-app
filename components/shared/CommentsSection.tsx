@@ -55,6 +55,7 @@ const CommentsSection = () => {
               <b>Komentarnya cuman segitu!</b>
             </p>
           }
+          loader={<LoadingCircle />}
         >
           <div className="flex flex-col gap-2 pt-4">
             {comments?.map((comment: any, index: number) => (

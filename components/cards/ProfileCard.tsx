@@ -11,6 +11,7 @@ import { formatRelativeTime } from "@/helper/formaterTime";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import LoadingCircle from "../shared/LoadingCircle";
 import ChatButton from "../shared/ChatButton";
+import ShowPicture from "../shared/ShowPicture";
 
 const ProfileCard = ({ data }: any) => {
   const currentUser = userStore((state: any) => state.user);
@@ -57,6 +58,7 @@ const ProfileCard = ({ data }: any) => {
                   user.active && "avatar-profile-online"
                 } overflow-hidden`}
               >
+                {/* <ShowPicture data={user?.avatar} /> */}
                 <Image
                   alt="profile"
                   width={10000}

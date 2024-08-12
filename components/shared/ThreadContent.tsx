@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import { threadStore } from "../../store";
 import { truncateText } from "../../helper/truncateText";
 import LoadingCircle from "./LoadingCircle";
+import ShowPicture from "./ShowPicture";
 
 const ThreadContent = ({ id }: any) => {
   const [thread, setThread] = useState({
@@ -37,15 +38,18 @@ const ThreadContent = ({ id }: any) => {
             thread.images.map((image: any, index: number) => (
               <div className="h-full" key={index}>
                 {image.image ? (
-                  <Image
-                    placeholder="blur"
-                    blurDataURL={`http://localhost:3000/${image.image}`}
-                    width={12000}
-                    height={12000}
-                    src={`http://localhost:3000/${image.image}`}
-                    alt="photo postingan"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+                  <>
+                    <ShowPicture data={image.image} />
+                    {/*<Image
+                      placeholder="blur"
+                      blurDataURL={`http://localhost:3000/${image.image}`}
+                      width={12000}
+                      height={12000}
+                      src={`http://localhost:3000/${image.image}`}
+                      alt="photo postingan"
+                      className="w-full h-full object-cover rounded-xl"
+                    />*/}
+                  </>
                 ) : (
                   <LoadingCircle />
                 )}
