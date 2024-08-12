@@ -18,7 +18,6 @@ const ThreadContent = ({ id }: any) => {
   const { threads } = threadStore((state: any) => state);
   useEffect(() => {
     const filteredThread = threads.find((thread: any) => thread.id === id);
-    console.log(filteredThread);
     setThread(filteredThread);
   }, [id]);
   return (

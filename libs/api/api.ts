@@ -255,12 +255,16 @@ export async function fetchGetChats({
 export async function fetchGetUnreadedMessages(): Promise<any> {
   return fetchData({ url: "messages/unreaded", method: "GET" });
 }
+
+export async function fetchGetCountMessages(id: string): Promise<any> {
+  return fetchData({ url: `messages/${id}/count`, method: "GET" });
+}
 export async function fetchGetMessages(
   id: string,
   skip?: number,
 ): Promise<any> {
   return fetchData({
-    url: `messages/chats/${id}?take=10&skip=${skip || 0}`,
+    url: `messages/chats/${id}?take=15&skip=${skip || 0}`,
     method: "GET",
   });
 }

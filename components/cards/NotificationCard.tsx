@@ -7,10 +7,6 @@ import { fetchUpdateNotification } from "@/libs/api/api";
 import { notificationSocket } from "@/libs/socket/socket";
 
 const NotificationCard = ({ data }: any) => {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const getActionText = () => {
     if (data?.comment_id) {
       return data?.action === "LIKE"

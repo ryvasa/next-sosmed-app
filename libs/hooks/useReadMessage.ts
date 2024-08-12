@@ -1,11 +1,11 @@
 // hooks/useChatSocket.ts
-import { useEffect } from 'react';
-import { messageSocket } from '../socket/socket';
+import { useEffect } from "react";
+import { messageSocket } from "../socket/socket";
 
 const useReadMessage = (
   room: string,
   // fetchData: any,
-  setMessages: React.Dispatch<React.SetStateAction<any[]>>
+  setMessages: React.Dispatch<React.SetStateAction<any[]>>,
 ) => {
   useEffect(() => {
     const handleReadMessage = (data: any) => {
@@ -13,15 +13,15 @@ const useReadMessage = (
         prevMessages.map((message) =>
           message.chat_id === room && message.readed === false
             ? { ...message, readed: true }
-            : message
-        )
+            : message,
+        ),
       );
     };
 
-    messageSocket.on('readMessage', handleReadMessage);
+    messageSocket.on("readMessage", handleReadMessage);
 
     return () => {
-      messageSocket.off('readMessage', handleReadMessage);
+      messageSocket.off("readMessage", handleReadMessage);
     };
   }, [room]);
 };

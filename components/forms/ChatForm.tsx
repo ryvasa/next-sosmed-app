@@ -25,13 +25,13 @@ const ChatForm = ({ submit }: any) => {
       <div className="fixed lg:pl-20 bottom-20 lg:bottom-10 z-10 left-0 w-full lg:w-[77%] px-4">
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg flex gap-4 bg-gray-100 dark:bg-dark-sm min-h-6 items-center justify-center"
+          className="rounded-lg flex gap-4 bg-gray-100  dark:bg-dark-sm min-h-6 items-center justify-center"
         >
           <textarea
             onChange={handleChange}
             value={message}
             placeholder="Type here..."
-            className="text-sm lg:text-lg bg-transparent textarea flex-1 border-none  resize-none pr-11"
+            className="text-sm lg:text-md bg-transparent textarea flex-1 border-none  resize-none pr-11"
           ></textarea>
           <button
             disabled={!message}

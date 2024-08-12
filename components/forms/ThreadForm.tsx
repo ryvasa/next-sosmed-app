@@ -12,6 +12,7 @@ import { useParams, useRouter } from "next/navigation";
 
 const ThreadForm = () => {
   const [images, setImages] = useState([]);
+  const [disabled, setDisabled] = useState(false);
   const [body, setBody] = useState("");
   const router = useRouter();
   const [currentImages, setCurrentImages] = useState<any>([]);
@@ -45,7 +46,6 @@ const ThreadForm = () => {
       } else {
         response = await fetchCreateThread(formData);
       }
-      console.log(formData);
       if (response.data) {
         // router.push("/");
       }
@@ -53,7 +53,13 @@ const ThreadForm = () => {
       console.error("Error creating thread:", error);
     }
   };
-
+  useEffect(() => {
+    if (body) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [body]);
   return (
     <form onSubmit={handleSubmit} className="py-4">
       <ThreadBodyForm body={body} setBody={setBody} />
@@ -65,8 +71,9 @@ const ThreadForm = () => {
       />
       <div className="py-8 flex justify-center items-center">
         <button
+          disabled={disabled}
           type="submit"
-          className="flex w-40 btn btn-primary text-white dark:text-dark-sm border-none normal-case"
+          className="disabled:bg-gray-100 disabled:cursor-not-allowed flex w-40 btn btn-primary text-white dark:text-dark-sm border-none normal-case"
         >
           <p>Upload</p>
           <CloudUpload />

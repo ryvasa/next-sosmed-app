@@ -4,9 +4,6 @@ import { useEffect } from "react";
 import { Close } from "../ui/icons";
 
 const ShowPicture = ({ data }: any) => {
-  useEffect(() => {
-    console.log(typeof data);
-  }, [data]);
   return (
     <>
       {data && (

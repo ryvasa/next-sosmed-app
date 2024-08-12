@@ -35,9 +35,17 @@ const ChatList = () => {
         </button>
       </div>
       <div className="flex flex-col pt-3 gap-1">
-        {data.map((item: any) => (
-          <div key={item.id}>{<ChatCard data={item} />}</div>
-        ))}
+        {data.length > 0 ? (
+          data.map((item: any) => (
+            <div key={item.id}>{<ChatCard data={item} />}</div>
+          ))
+        ) : (
+          <div className="flex w-full min-h-screen justify-center items-center">
+            <h2 className="text-primary text-lg font-semibold">
+              You don not have a chat yet
+            </h2>
+          </div>
+        )}
       </div>
     </div>
   );

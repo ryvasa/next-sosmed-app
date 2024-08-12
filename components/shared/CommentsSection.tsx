@@ -40,7 +40,7 @@ const CommentsSection = () => {
   useActiveStatus(getCommenst);
   useNotification(getCommenst);
   return (
-    <div className="py-2">
+    <div className="py-2 min-h-screen">
       <h1 className="pb-4 lg:text-lg">
         <b className="text-primary">{countComments}</b> comments
       </h1>
@@ -51,11 +51,11 @@ const CommentsSection = () => {
           next={getNewComment}
           hasMore={hasMore}
           endMessage={
-            <p className="text-center py-3">
-              <b>Komentarnya cuman segitu!</b>
+            <p className="text-center text-md font-semibold  text-primary py-3">
+              All comments have been shown!
             </p>
           }
-          loader={<LoadingCircle />}
+          loader={comments.length < countComments && <LoadingCircle />}
         >
           <div className="flex flex-col gap-2 pt-4">
             {comments?.map((comment: any, index: number) => (
