@@ -5,7 +5,7 @@ import Link from "next/link";
 import DropDown from "./DropDown";
 // import { useUserActivity } from "../../libs/hooks/useUserActivity";
 import { chatsStore, messagesStore, userStore } from "@/store";
-import useRoom from "@/libs/hooks/useRoom";
+import useChatRoom from "@/libs/hooks/useChatRoom";
 import {
   fetchCurrentUser,
   fetchGetChats,
@@ -20,6 +20,7 @@ import { useUserActive } from "@/libs/hooks/useUserActive";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import NotificationButton from "./NotificationButton";
 import DeleteChatButton from "./DeleteChatButton";
+import useNotificationRoom from "@/libs/hooks/useNotificationRoom";
 
 const Topbar = () => {
   const { receiver_id } = useParams();
@@ -46,6 +47,13 @@ const Topbar = () => {
   useEffect(() => {
     fetchReceiverUser();
   }, [receiver_id]);
+  useEffect(() => {
+    if (user?.id) {
+      fetchChats();
+      fetchUnreadedMessage();
+      setLoading(true);
+    }
+  }, [user]);
   async function fetchChats() {
     const res = await fetchGetChats({});
     updateChats(res.data);
@@ -54,16 +62,11 @@ const Topbar = () => {
     const response = await fetchGetUnreadedMessages();
     updateUnreadedMessages(response.data);
   };
-  useEffect(() => {
-    if (user?.id) {
-      fetchChats();
-      fetchUnreadedMessage();
-      setLoading(true);
-    }
-  }, [user]);
+
   // useUserActivity();
   useUserActive();
-  useRoom(chats);
+  useChatRoom(chats);
+  useNotificationRoom(user.id);
   useChatNotify(fetchUnreadedMessage);
   useActiveStatus(fetchReceiverUser);
   return (
@@ -77,7 +80,7 @@ const Topbar = () => {
             href={`/users/${user.id}`}
           >
             <div
-              className={`avatar-profile ${user.active && "avatar-profile-online"} outline-offset-2`}
+              className={`flex-1 avatar-profile ${user.active && receiver_id && "avatar-profile-online"} outline-offset-2`}
             >
               <Image
                 alt="profile"
@@ -91,8 +94,8 @@ const Topbar = () => {
               />
             </div>
             <div className="flex flex-col">
-              <p className="font-semibold text-lg">{user.username}</p>
-              {user.active && (
+              <p className="font-semibold text-sm">{`${user.username}`}</p>
+              {user.active && receiver_id && (
                 <p className="text-xs font-semibold lg:text-sm text-success">
                   Online
                 </p>

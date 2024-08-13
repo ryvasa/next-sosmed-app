@@ -51,8 +51,8 @@ const ProfileCard = ({ data }: any) => {
         </div>
       ) : (
         <>
-          <div className=" flex items-center lg:justify-start justify-between h-48 lg:gap-4 lg:h-40">
-            <div className="flex gap-5 items-center ">
+          <div className="flex items-center lg:justify-start justify-between h-48 lg:gap-4 lg:h-40">
+            <div className="flex-1 flex gap-5 items-center ">
               <div
                 className={`rounded-full ${
                   user.active && "avatar-profile-online"
@@ -63,17 +63,19 @@ const ProfileCard = ({ data }: any) => {
                   alt="profile"
                   width={10000}
                   height={10000}
-                  style={{ width: "112px", height: `112px` }}
+                  // style={{ width: "112px", height: `112px` }}
                   src={
                     user?.avatar
                       ? `http://localhost:3000/${user?.avatar}`
                       : image
                   }
-                  className="object-cover h-28 w-28 "
+                  className="object-cover h-20 w-20 lg:h-28 lg:w-28 "
                 />
               </div>
               <div className="flex flex-col ">
-                <p className="text-2xl font-semibold">{user.username}</p>
+                <p className="text-lg lg:text-2xl font-semibold">
+                  {user.username}
+                </p>
                 <p className="lg:text-md text-sm">
                   Join on {formatRelativeTime(user.created_at)}
                 </p>
@@ -91,6 +93,7 @@ const ProfileCard = ({ data }: any) => {
                 )}
               </div>
             </div>
+
             <div className="">
               {userMatch ? (
                 <Link href={`/users/${user.id}/edit`}>

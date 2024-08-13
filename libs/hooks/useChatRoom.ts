@@ -1,31 +1,31 @@
-import { useEffect } from 'react';
-import { messageSocket } from '../socket/socket';
+import { useEffect } from "react";
+import { messageSocket } from "../socket/socket";
 
-const useRoom = (data: any) => {
+const useChatRoom = (data: any) => {
   useEffect(() => {
     if (data) {
       if (Array.isArray(data)) {
         data.forEach((item: any) => {
-          messageSocket.emit('joinRoom', item.id);
-          messageSocket.emit('checkRoom', item.id);
+          messageSocket.emit("joinRoom", item.id);
+          messageSocket.emit("checkRoom", item.id);
         });
 
         return () => {
           data.forEach((item: any) => {
-            messageSocket.emit('leaveRoom', item.id);
+            messageSocket.emit("leaveRoom", item.id);
           });
         };
       } else {
-        messageSocket.emit('joinRoom', data);
+        messageSocket.emit("joinRoom", data);
 
         return () => {
-          messageSocket.emit('leaveRoom', data);
+          messageSocket.emit("leaveRoom", data);
         };
       }
     }
   }, [data]);
 };
-// const useRoom = (chat_id: string | null) => {
+// const useChatRoom = (chat_id: string | null) => {
 //   useEffect(() => {
 //     if (chat_id) {
 //       // Bergabung dengan room
@@ -39,4 +39,4 @@ const useRoom = (data: any) => {
 //   }, [chat_id]);
 // };
 
-export default useRoom;
+export default useChatRoom;

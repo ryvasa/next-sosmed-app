@@ -17,9 +17,18 @@ interface Props {
   data: any;
   threadId: string;
   commentId?: string;
+  authorId: string;
 }
 
-const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
+const LikeButton = ({
+  w,
+  h,
+  dataCount,
+  data,
+  threadId,
+  commentId,
+  authorId,
+}: Props) => {
   const [like, setLike] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [likeCount, setLikeCount] = useState(dataCount);
@@ -35,10 +44,10 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
         // Unlike operation
         if (commentId) {
           response = await fetchCancelLikeComment(threadId, commentId);
-          notificationSocket.emit("comment-notify");
+          notificationSocket.emit("comment-notify", authorId);
         } else {
           response = await fetchCancelLikeThread(threadId);
-          notificationSocket.emit("thread-notify");
+          notificationSocket.emit("thread-notify", authorId);
         }
         if (response) {
           setLikeCount((prevCount) => prevCount - 1);
@@ -48,10 +57,10 @@ const LikeButton = ({ w, h, dataCount, data, threadId, commentId }: Props) => {
         // Like operation
         if (commentId) {
           response = await fetchLikeComment(threadId, commentId);
-          notificationSocket.emit("comment-notify");
+          notificationSocket.emit("comment-notify", authorId);
         } else {
           response = await fetchLikeThread(threadId);
-          notificationSocket.emit("thread-notify");
+          notificationSocket.emit("thread-notify", authorId);
         }
         if (response) {
           setLikeCount((prevCount) => prevCount + 1);

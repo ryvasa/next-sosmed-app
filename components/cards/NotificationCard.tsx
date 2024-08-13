@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import ProfilePicture from "../shared/ProfilePicture";
-import { useEffect } from "react";
 import { formatRelativeTime } from "@/helper/formaterTime";
 import { fetchUpdateNotification } from "@/libs/api/api";
 import { notificationSocket } from "@/libs/socket/socket";
+import { userStore } from "@/store";
 
 const NotificationCard = ({ data }: any) => {
+  const { user } = userStore((state: any) => state);
   const getActionText = () => {
     if (data?.comment_id) {
       return data?.action === "LIKE"
@@ -23,7 +24,8 @@ const NotificationCard = ({ data }: any) => {
   };
   const handleClick = () => {
     fetchUpdate();
-    notificationSocket.emit("thread-notify");
+    notificationSocket.emit("thread-notify", user.id);
+    notificationSocket.emit("comment-notify", user.id);
   };
   return (
     <Link

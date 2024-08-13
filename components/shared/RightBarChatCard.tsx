@@ -30,11 +30,18 @@ const RightBarChatCard = ({ data }: any) => {
             className={`avatar-sidebar-chats ${filteredUsers?.user?.active && "avatar-profile-online"}`}
           >
             <Image
-              width={10000}
-              height={10000}
-              style={{ width: "112px", height: `112px` }}
+              width={filteredUsers?.user?.avatar && 10000}
+              height={filteredUsers?.user?.avatar && 10000}
+              style={
+                filteredUsers?.user?.avatar && {
+                  width: "112px",
+                  height: `112px`,
+                }
+              }
               src={
-                `http://localhost:3000/${filteredUsers?.user?.avatar}` || image
+                filteredUsers?.user?.avatar
+                  ? `http://localhost:3000/${filteredUsers?.user?.avatar}`
+                  : image
               }
               alt="photo frofile"
             />

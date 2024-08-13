@@ -7,9 +7,12 @@ import {
 } from "../../libs/api/api";
 import useThreadNotification from "@/libs/hooks/useThreadNotification";
 import { notificationSocket } from "@/libs/socket/socket";
+import { userStore } from "@/store";
+import useComentNotification from "@/libs/hooks/useComentNotification";
 
 const NotificationSection = () => {
   const [notifications, setNotifications] = useState<any>([]);
+  const { user } = userStore((state: any) => state);
   const fetchData = async () => {
     const response = await fetchGetNotifications();
     setNotifications(response.data);
@@ -21,9 +24,11 @@ const NotificationSection = () => {
   const handleClick = async () => {
     await fetchUpdateAllNotification();
     fetchData();
-    notificationSocket.emit("thread-notify");
+    notificationSocket.emit("thread-notify", user.id);
+    notificationSocket.emit("comment-notify", user.id);
   };
   useThreadNotification(fetchData);
+  useComentNotification(fetchData);
   return (
     <>
       <div className="flex w-full justify-between items-center pb-2">

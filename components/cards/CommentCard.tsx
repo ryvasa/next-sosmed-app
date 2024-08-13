@@ -37,6 +37,7 @@ const CommentCard = ({ data }: any) => {
           commentId={data?.id}
           threadId={id as string}
           dataCount={data?.count?.comment_likes}
+          authorId={data?.user?.id}
         />
         {/* <DislikeButton w={5} h={5} dataCount={data?._count?.comment_dislikes} /> */}
       </div>

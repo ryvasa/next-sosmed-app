@@ -5,7 +5,7 @@ import ChatBubbleRight from "@/components/shared/ChatBubbleRight";
 import DeleteChatButton from "@/components/shared/DeleteChatButton";
 import { formaterDateChat } from "@/helper/formaterTime";
 import useReadMessage from "@/libs/hooks/useReadMessage";
-import useRoom from "@/libs/hooks/useRoom";
+import useChatRoom from "@/libs/hooks/useChatRoom";
 import { messagesStore, userStore } from "@/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,15 +14,22 @@ import { useEffect, useRef, useState } from "react";
 import {
   fetchGetCountMessages,
   fetchGetMessages,
+  fetchGetOneUser,
   fetchGetUnreadedMessages,
 } from "../../libs/api/api";
 import useChatSocket from "../../libs/hooks/useChatSocket";
 import { messageSocket } from "../../libs/socket/socket";
 import image from "../../public/pf.jpg";
-import useScrollStatus from "@/libs/hooks/useScrollStatus";
+import useActiveStatus from "@/libs/hooks/useActiveStatus";
 
 const ChatContent = () => {
   const [countMessages, setCountMessages] = useState({ data: 0 });
+  const [receiverUser, setReceiverUser] = useState({
+    avatar: "",
+    id: "",
+    username: "",
+    active: "",
+  });
   const [visibleTrigger, setVisibleTrigger] = useState(false);
   const { chat_id } = useParams();
   const [messages, setMessages] = useState<any[]>([]);
@@ -32,13 +39,24 @@ const ChatContent = () => {
     const response = await fetchGetUnreadedMessages();
     updateUnreadedMessages(response.data);
   };
-  const isScrolling = useScrollStatus();
+  const { receiver_id } = useParams();
+
+  async function fetchReceiverUser() {
+    if (receiver_id) {
+      const response = await fetchGetOneUser(receiver_id as string);
+      setReceiverUser(response.data);
+    }
+  }
+
+  useEffect(() => {
+    fetchReceiverUser();
+  }, [receiver_id]);
   useEffect(() => {
     fetchUnreadedMessage();
     messageSocket.emit("readMessage", chat_id);
   }, []);
 
-  useRoom(chat_id as string);
+  useChatRoom(chat_id as string);
   useChatSocket(chat_id as string, user.id, setMessages);
 
   const getAnotherMessages = async () => {
@@ -64,6 +82,7 @@ const ChatContent = () => {
   useEffect(() => {
     getMessages();
   }, [chat_id]);
+  useActiveStatus(fetchReceiverUser);
 
   useReadMessage(chat_id as string, setMessages);
   const handleSubmit = (data: string) => {
@@ -112,23 +131,27 @@ const ChatContent = () => {
       <div className="fixed hidden lg:flex top-0 left-[4.74%] right-[22.3%] w-[72.75%] z-10 bg-white dark:bg-dark-md/70 shadow-md backdrop-blur-sm justify-between items-center p-4 ">
         <Link
           className="flex gap-4 justify-center items-center"
-          href={`/users/${user.id}`}
+          href={`/users/${receiverUser.id}`}
         >
           <div
-            className={`avatar-profile ${user.active && "avatar-profile-online"} outline-offset-2`}
+            className={`avatar-profile ${receiverUser.active && "avatar-profile-online"} outline-offset-2`}
           >
             <Image
               alt="profile"
-              width={user.avatar && 10000}
-              height={user.avatar && 10000}
-              style={user.avatar && { width: "112px", height: `112px` }}
-              src={user.avatar ? `http://localhost:3000/${user.avatar}` : image}
+              width={receiverUser.avatar && 10000}
+              height={receiverUser.avatar && 10000}
+              style={receiverUser.avatar && { width: "112px", height: `112px` }}
+              src={
+                receiverUser.avatar
+                  ? `http://localhost:3000/${receiverUser.avatar}`
+                  : image
+              }
               quality={1}
             />
           </div>
           <div className="flex flex-col">
-            <p className="font-semibold text-lg">{user.username}</p>
-            {user.active && (
+            <p className="font-semibold text-lg">{receiverUser.username}</p>
+            {receiverUser.active && (
               <p className="text-xs font-semibold lg:text-sm text-success">
                 Online
               </p>
@@ -139,7 +162,7 @@ const ChatContent = () => {
       </div>
       <div className="lg:flex-1 py-10 relative w-full flex flex-col">
         <div className="flex flex-col-reverse pb-10 min-h-screen">
-          <div className=" h-5 mt-14" ref={messagesEndRef} />
+          <div className="mt-12" ref={messagesEndRef} />
           {messages.map((message: any, index: number) => {
             const currentDate = formaterDateChat(message.created_at);
             const prevDate = formaterDateChat(messages[index + 1]?.created_at);
@@ -164,7 +187,7 @@ const ChatContent = () => {
               </div>
             );
           })}
-          <div className="myElement bg-red-700 h- hidden" />
+          <div className="myElement bg-red-700 h-5 hidden" />
         </div>
         <div className="bottom-0 absolute">
           <ChatForm submit={handleSubmit} />

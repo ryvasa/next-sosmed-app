@@ -4,7 +4,7 @@ import CommentCard from "../cards/CommentCard";
 import CommentForm from "../forms/CommentForm";
 import { useParams } from "next/navigation";
 import { fetchGetComments, fetchGetCountComments } from "../../libs/api/api";
-import useNotification from "../../libs/hooks/useNotification";
+// import useNotification from "../../libs/hooks/useNotification";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
@@ -38,7 +38,7 @@ const CommentsSection = () => {
   }, [id]);
 
   useActiveStatus(getCommenst);
-  useNotification(getCommenst);
+  // useNotification(getCommenst);
   return (
     <div className="py-2 min-h-screen">
       <h1 className="pb-4 lg:text-lg">

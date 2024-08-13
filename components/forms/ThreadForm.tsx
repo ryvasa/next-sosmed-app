@@ -47,7 +47,7 @@ const ThreadForm = () => {
         response = await fetchCreateThread(formData);
       }
       if (response.data) {
-        // router.push("/");
+        router.push("/");
       }
     } catch (error) {
       console.error("Error creating thread:", error);

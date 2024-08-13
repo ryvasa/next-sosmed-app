@@ -1,11 +1,12 @@
 "use client";
 import image from "../../public/pf.jpg";
 import { CloudUpload, Edit } from "@/components/ui/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { fetchUpdateUser } from "@/libs/api/api";
 import { Key, Mail, User } from "../ui/icons";
 import Image from "next/image";
+import { fetchGetOneUser } from "@/libs/api/api";
 
 const UpdateUserForm = () => {
   const labels = [
@@ -27,8 +28,20 @@ const UpdateUserForm = () => {
     email: "",
     password: "",
     newPassword: "",
+    avatar: "",
     username: "",
   });
+
+  const getUser = async () => {
+    const response = await fetchGetOneUser(id as string);
+    setData(response.data);
+  };
+  useEffect(() => {
+    console.log({ avatar, data: data });
+  }, [data]);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -38,11 +51,12 @@ const UpdateUserForm = () => {
     formData.append("username", data.username);
     formData.append("password", data.password);
     formData.append("newPassword", data.newPassword);
+    formData.append("currentAvatar", data.avatar);
     formData.append("avatar", avatar as any);
 
     try {
-      const response = await fetchUpdateUser(formData, id);
-      if (response.id) {
+      const response = await fetchUpdateUser(formData, id as string);
+      if (response.data.id) {
         router.push("/");
       }
     } catch (error) {
@@ -50,17 +64,6 @@ const UpdateUserForm = () => {
     }
   };
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
-  const handleClick = (e: any) => {
-    e.preventDefault();
-  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
     if (file) {
@@ -88,10 +91,21 @@ const UpdateUserForm = () => {
               className="hidden"
             />
             <Image
-              width={0}
-              height={0}
-              style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
-              src={`http://localhost:3000/${previewImage}` || image}
+              width={data?.avatar && 10000}
+              height={data?.avatar && 10000}
+              style={
+                data?.avatar && {
+                  width: "576px",
+                  height: `${(9 / 16) * 576}px`,
+                }
+              }
+              src={
+                previewImage
+                  ? previewImage // jika ada preview
+                  : data?.avatar
+                    ? `http://localhost:3000/${data.avatar}` // jika tidak ada preview tetapi ada avatar
+                    : image // jika tidak ada preview dan tidak ada avatar
+              }
               alt="profile pict"
             />
           </div>
@@ -105,7 +119,6 @@ const UpdateUserForm = () => {
         </div>
         <div className="flex-1">
           <div className="flex flex-col gap-4 ">
-            <button onClick={handleClick}>test</button>
             {labels.map((label, index) => (
               <label
                 key={index}
@@ -113,6 +126,11 @@ const UpdateUserForm = () => {
               >
                 <label.icon />
                 <input
+                  value={
+                    (label.name === "username" && data.username) ||
+                    (label.name === "email" && data.email) ||
+                    ""
+                  }
                   name={label.name}
                   onChange={(e) =>
                     setData({ ...data, [e.target.name]: e.target.value })

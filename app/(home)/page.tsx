@@ -3,8 +3,6 @@ import PostCard from "@/components/cards/PostCard";
 import { fetchGetThreads } from "@/libs/api/api";
 import { useEffect, useState } from "react";
 import { threadStore } from "../../store";
-// import useActiveStatus from "@/libs/hooks/useActiveStatus";
-// import useNotification from "@/libs/hooks/useNotification";
 
 export default function Home() {
   const { updateThreads } = threadStore((state: any) => state);
@@ -17,8 +15,6 @@ export default function Home() {
   useEffect(() => {
     getThreads();
   }, []);
-  // useActiveStatus(getThreads);
-  // useNotification(getThreads);
   return (
     <div className="pt-8 flex gap-5 flex-col lg:gap-6">
       {threads.map((thread: any) => (

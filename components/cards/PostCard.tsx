@@ -14,6 +14,7 @@ const PostCard = ({ data }: any) => {
           <UserInfo user={data?.user} createdAt={data?.created_at} />
           <ThreadOption id={data?.id} />
         </div>
+
         <PostContent detail={false} id={data?.id} />
       </div>
       <div className="border-t-[2px] dark:border-gray-700 border-gray-200 flex mt-2 pt-2 gap-4">
@@ -23,6 +24,7 @@ const PostCard = ({ data }: any) => {
           data={data?.thread_likes}
           dataCount={data?.count?.thread_likes}
           threadId={data?.id}
+          authorId={data?.user?.id}
         />
         {/* <div className="pt-1">
           <DislikeButton

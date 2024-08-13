@@ -8,6 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 import LogoutButton from "./LogoutButton";
 import RightBarChats from "./RightBarChats";
 import NotificationButton from "./NotificationButton";
+import { truncateText } from "@/helper/truncateText";
 
 const RightBar = () => {
   const [user, setUser] = useState({
@@ -33,7 +34,7 @@ const RightBar = () => {
   }, []);
 
   // Ensure avatar is a string
-  const avatarSrc = typeof user.avatar === "string" ? user.avatar : "";
+  // const avatarSrc = typeof user.avatar === "string" ? user.avatar : "";
 
   return (
     <div className="fixed w-[305px] h-screen bg-white dark:bg-dark-md top-0 right-0 flex-col hidden lg:flex justify-start items-center">
@@ -49,15 +50,19 @@ const RightBar = () => {
               } outline-offset-2`}
             >
               <Image
-                width={avatarSrc && 112}
-                height={avatarSrc && 112}
-                style={avatarSrc && { width: "112px", height: "112px" }}
+                width={user.avatar && 112}
+                height={user.avatar && 112}
+                style={user.avatar && { width: "112px", height: "112px" }}
                 alt="profile"
-                src={avatarSrc ? `http://localhost:3000/${avatarSrc}` : image}
+                src={
+                  user.avatar ? `http://localhost:3000/${user.avatar}` : image
+                }
               />
             </div>
             <div className="flex flex-col">
-              <p className="font-semibold text-lg">{user.username}</p>
+              <p className="font-semibold text-md">
+                {truncateText(user.username, 10)}
+              </p>
               {user.active && (
                 <p className="text-xs font-semibold lg:text-sm text-success">
                   Online

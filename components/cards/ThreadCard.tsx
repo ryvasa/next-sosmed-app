@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { fetchGetOneThread } from "@/libs/api/api";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
-import useNotification from "@/libs/hooks/useNotification";
+// import useNotification from "@/libs/hooks/useNotification";
 import ThreadContent from "../shared/ThreadContent";
 
 const ThreadCard = () => {
@@ -24,7 +24,7 @@ const ThreadCard = () => {
     getOneThread();
   }, [id]);
   useActiveStatus(getOneThread);
-  useNotification(getOneThread);
+  // useNotification(getOneThread);
   return (
     <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
       <div className="flex gap-4 flex-col">

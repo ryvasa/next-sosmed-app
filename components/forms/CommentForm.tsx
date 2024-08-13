@@ -1,21 +1,35 @@
-'use client';
-import { useState } from 'react';
-import { Send } from '../ui/icons';
-import { useParams } from 'next/navigation';
-import { fetchCreateComment } from '../../libs/api/api';
-import { notificationSocket } from '../../libs/socket/socket';
+"use client";
+import { useEffect, useState } from "react";
+import { Send } from "../ui/icons";
+import { useParams } from "next/navigation";
+import { fetchCreateComment, fetchGetOneThread } from "../../libs/api/api";
+import { notificationSocket } from "../../libs/socket/socket";
 
 const CommentForm = () => {
   const { id } = useParams();
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState("");
+  const [thread, setThread] = useState({
+    user: {
+      id: "",
+    },
+  });
+
+  const getThread = async () => {
+    const response = await fetchGetOneThread(id as string);
+    setThread(response.data);
+  };
+  useEffect(() => {
+    getThread();
+  }, [id]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await fetchCreateComment(id as string, {
       body: newComment,
     });
-    notificationSocket.emit('notify');
-    notificationSocket.emit('thread-notify');
-    setNewComment('');
+    notificationSocket.emit("comment-notify", thread?.user?.id);
+    notificationSocket.emit("thread-notify", thread?.user?.id);
+    setNewComment("");
   };
 
   return (

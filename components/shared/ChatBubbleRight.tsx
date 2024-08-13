@@ -11,14 +11,14 @@ const ChatBubbleRight = ({ data }: any) => {
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
               <Image
-                width={data?.user?.avatar && 10000}
-                height={data?.user?.avatar && 10000}
+                width={data?.sender?.avatar && 10000}
+                height={data?.sender?.avatar && 10000}
                 style={
-                  data?.user?.avatar && { width: "112px", height: `112px` }
+                  data?.sender?.avatar && { width: "112px", height: `112px` }
                 }
                 src={
-                  data?.user?.avatar
-                    ? `http://localhost:3000/${data?.user?.avatar}`
+                  data?.sender?.avatar
+                    ? `http://localhost:3000/${data?.sender?.avatar}`
                     : image
                 }
                 alt="profile"
