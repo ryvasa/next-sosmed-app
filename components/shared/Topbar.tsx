@@ -4,7 +4,7 @@ import image from "../../public/pf.jpg";
 import Link from "next/link";
 import DropDown from "./DropDown";
 // import { useUserActivity } from "../../libs/hooks/useUserActivity";
-import { chatsStore, messagesStore, userStore } from "@/store";
+import { chatsStore, messagesStore } from "@/store";
 import useChatRoom from "@/libs/hooks/useChatRoom";
 import {
   fetchCurrentUser,
@@ -25,6 +25,7 @@ import useNotificationRoom from "@/libs/hooks/useNotificationRoom";
 const Topbar = () => {
   const { receiver_id } = useParams();
   const [loading, setLoading] = useState(false);
+  const [receiverId, setReceiverId] = useState(receiver_id);
   const [user, setUser] = useState({
     id: "",
     avatar: image,
@@ -35,8 +36,8 @@ const Topbar = () => {
   const { updateUnreadedMessages } = messagesStore((state: any) => state);
 
   async function fetchReceiverUser() {
-    if (receiver_id) {
-      const response = await fetchGetOneUser(receiver_id as string);
+    if (receiverId) {
+      const response = await fetchGetOneUser(receiverId as string);
       setUser(response.data);
     } else {
       const response = await fetchCurrentUser();
@@ -45,8 +46,17 @@ const Topbar = () => {
   }
 
   useEffect(() => {
-    fetchReceiverUser();
+    if (!receiver_id) {
+      setReceiverId("");
+    } else {
+      setReceiverId(receiver_id);
+    }
   }, [receiver_id]);
+
+  useEffect(() => {
+    fetchReceiverUser();
+  }, [receiverId]);
+
   useEffect(() => {
     if (user?.id) {
       fetchChats();
@@ -54,10 +64,12 @@ const Topbar = () => {
       setLoading(true);
     }
   }, [user]);
+
   async function fetchChats() {
     const res = await fetchGetChats({});
     updateChats(res.data);
   }
+
   const fetchUnreadedMessage = async () => {
     const response = await fetchGetUnreadedMessages();
     updateUnreadedMessages(response.data);
@@ -80,7 +92,7 @@ const Topbar = () => {
             href={`/users/${user.id}`}
           >
             <div
-              className={`flex-1 avatar-profile ${user.active && receiver_id && "avatar-profile-online"} outline-offset-2`}
+              className={`flex-1 avatar-profile ${user.active && receiverId && "avatar-profile-online"} outline-offset-2`}
             >
               <Image
                 alt="profile"
@@ -95,7 +107,7 @@ const Topbar = () => {
             </div>
             <div className="flex flex-col">
               <p className="font-semibold text-sm">{`${user.username}`}</p>
-              {user.active && receiver_id && (
+              {user.active && receiverId && (
                 <p className="text-xs font-semibold lg:text-sm text-success">
                   Online
                 </p>
@@ -106,7 +118,7 @@ const Topbar = () => {
       </div>
 
       <div className="flex-none flex gap-2 ">
-        {receiver_id && <DeleteChatButton />}
+        {receiverId && <DeleteChatButton />}
         <NotificationButton />
         <DropDown />
       </div>

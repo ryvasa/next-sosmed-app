@@ -21,6 +21,7 @@ import useChatSocket from "../../libs/hooks/useChatSocket";
 import { messageSocket } from "../../libs/socket/socket";
 import image from "../../public/pf.jpg";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
+import useScrollStatus from "@/libs/hooks/useScrollStatus";
 
 const ChatContent = () => {
   const [countMessages, setCountMessages] = useState({ data: 0 });
@@ -40,7 +41,7 @@ const ChatContent = () => {
     updateUnreadedMessages(response.data);
   };
   const { receiver_id } = useParams();
-
+  const isScroll = useScrollStatus();
   async function fetchReceiverUser() {
     if (receiver_id) {
       const response = await fetchGetOneUser(receiver_id as string);
@@ -79,6 +80,7 @@ const ChatContent = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
   useEffect(() => {
     getMessages();
   }, [chat_id]);
@@ -92,7 +94,7 @@ const ChatContent = () => {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
-    if (messagesEndRef.current && messages.length !== countMessages.data) {
+    if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -162,7 +164,7 @@ const ChatContent = () => {
       </div>
       <div className="lg:flex-1 py-10 relative w-full flex flex-col">
         <div className="flex flex-col-reverse pb-10 min-h-screen">
-          <div className="mt-12" ref={messagesEndRef} />
+          <div className="" ref={messagesEndRef} />
           {messages.map((message: any, index: number) => {
             const currentDate = formaterDateChat(message.created_at);
             const prevDate = formaterDateChat(messages[index + 1]?.created_at);
