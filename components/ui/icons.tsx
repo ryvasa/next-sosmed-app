@@ -228,8 +228,8 @@ const Thread = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`${
-        !w && !h && !c ? `w-4 h-4 text-primary ` : `w-${w} h-${h} ${c}`
+      className={`text-primary ${
+        !w && !h && !c ? `w-4 h-4` : `w-${w} h-${h} ${c}`
       }`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
@@ -247,7 +247,7 @@ const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-dark-md ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={`text-primary ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"

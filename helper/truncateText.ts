@@ -1,6 +1,18 @@
-export const truncateText = (text: string | undefined, length: number) => {
-  if (!text) {
+import DOMPurify from "dompurify";
+
+export const truncateText = (
+  textWithTag: string | undefined,
+  length: number,
+) => {
+  if (!textWithTag) {
     return ""; // atau kembalikan teks default sesuai kebutuhan
   }
-  return text.length > length ? text.slice(0, length) + "..." : text;
+  const text = DOMPurify.sanitize(textWithTag);
+  // console.log({ textlebihbanyakdaripadalength: text.length > length, text });
+  if (text.length > length) {
+    console.log(text);
+    return text.slice(0, length) + "...";
+  } else {
+    return text;
+  }
 };
