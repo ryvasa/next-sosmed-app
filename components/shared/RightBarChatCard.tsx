@@ -27,17 +27,18 @@ const RightBarChatCard = ({ data }: any) => {
       <div className="lg:px-4 py-3 flex justify-between bg-white border-b-[2px] border-gray-200 dark:border-none dark:bg-dark-sm dark:rounded-lg">
         <div className="flex gap-3 items-center justify-center">
           <div
-            className={`avatar-sidebar-chats ${filteredUsers?.user?.active && "avatar-profile-online"}`}
+            className={`avatar-sidebar-chats ${
+              filteredUsers?.user?.active && "avatar-profile-online"
+            }`}
           >
             <Image
-              width={filteredUsers?.user?.avatar && 10000}
-              height={filteredUsers?.user?.avatar && 10000}
-              style={
-                filteredUsers?.user?.avatar && {
-                  width: "112px",
-                  height: `112px`,
-                }
-              }
+              width={10000}
+              height={10000}
+              // style={{
+              //   width: '112px',
+              //   height: `112px`,
+              // }}
+              className="h-12 w-12"
               src={
                 filteredUsers?.user?.avatar
                   ? `http://localhost:3000/${filteredUsers?.user?.avatar}`

@@ -1,4 +1,4 @@
-import SearchContainer from "@/components/shared/SearchContainer";
+import SearchContainer from '@/components/shared/SearchContainer';
 
 const Page = () => {
   return (

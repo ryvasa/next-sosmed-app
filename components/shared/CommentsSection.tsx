@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
 
 const CommentsSection = () => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [countComments, setCountComments] = useState(0);
   const { id } = useParams();
@@ -40,8 +40,8 @@ const CommentsSection = () => {
   useActiveStatus(getCommenst);
   // useNotification(getCommenst);
   return (
-    <div className="py-2 min-h-screen">
-      <h1 className="pb-4 lg:text-lg">
+    <div className={`py-2 ${comments.length > 0 ? "h-fit" : "h-[400px]"} `}>
+      <h1 className="pb-4 lg:text-md">
         <b className="text-primary">{countComments}</b> comments
       </h1>
       <CommentForm />

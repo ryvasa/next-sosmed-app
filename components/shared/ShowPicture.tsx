@@ -1,25 +1,31 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
 import { Close } from "../ui/icons";
 
 const ShowPicture = ({ data }: any) => {
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const closebutton: any = document.getElementById(`show_photo_${data}`);
+    if (closebutton) {
+      closebutton.showModal();
+    }
+  };
   return (
     <>
       {data && (
         <>
           <Image
-            onClick={() => document.getElementById("show_photo").showModal()}
+            onClick={handleClick}
             placeholder="blur"
             blurDataURL={`http://localhost:3000/${data}`}
             width={12000}
             height={12000}
             src={`http://localhost:3000/${data}`}
             alt="photo postingan"
-            className="w-full h-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-md"
           />
           <dialog
-            id="show_photo"
+            id={`show_photo_${data}`}
             className="modal backdrop-blur-sm flex justify-center items-center"
           >
             <div className=" rounded-sm relative  lg:h-[95%] h-11/12 w-11/12">

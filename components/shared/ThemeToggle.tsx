@@ -21,17 +21,17 @@ const ThemeToggle = ({ showText }: any) => {
     <>
       {currentTheme === "light" ? (
         <button
-          className={`flex justify-start items-center ${!showText && "shadow-sm hover:bg-primary/75 btn btn-circle btn-sm flex justify-center items-center bg-primary border-none"} `}
+          className={`flex justify-start items-center ${!showText && "btn btn-circle btn-sm flex justify-center items-center btn-ghost"} `}
           onClick={() => {
             toggleTheme();
           }}
         >
-          {showText ? <Light /> : <Light w={5} h={5} c={"white"} />}
+          {showText ? <Light /> : <Light w={5} h={5} />}
           {showText && <p>Light mode</p>}
         </button>
       ) : (
         <button
-          className={`flex justify-start items-center ${!showText && "shadow-sm hover:bg-primary/75 btn btn-circle btn-sm flex justify-center items-center bg-primary border-none"} `}
+          className={`flex justify-start items-center ${!showText && "btn btn-circle btn-sm flex justify-center items-center btn-ghost"} `}
           onClick={() => {
             toggleTheme();
           }}

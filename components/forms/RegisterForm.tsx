@@ -1,33 +1,33 @@
-"use client";
-import Link from "next/link";
-import { Key, Mail, User } from "../ui/icons";
-import { useState } from "react";
-import { fetchRegister } from "@/libs/api/api";
-import { userStore } from "@/store";
-import { useRouter } from "next/navigation";
+'use client';
+import Link from 'next/link';
+import { Key, Mail, User } from '../ui/icons';
+import { useState } from 'react';
+import { fetchRegister } from '@/libs/api/api';
+import { userStore } from '@/store';
+import { useRouter } from 'next/navigation';
 const labels = [
-  { name: "email", icon: Mail, type: "email", placeholder: "Email" },
-  { name: "username", icon: User, type: "text", placeholder: "Username" },
-  { name: "password", icon: Key, type: "password", placeholder: "Password" },
+  { name: 'email', icon: Mail, type: 'email', placeholder: 'Email' },
+  { name: 'username', icon: User, type: 'text', placeholder: 'Username' },
+  { name: 'password', icon: Key, type: 'password', placeholder: 'Password' },
   {
-    name: "confirmPassword",
+    name: 'confirmPassword',
     icon: Key,
-    type: "password",
-    placeholder: "Confirm Password",
+    type: 'password',
+    placeholder: 'Confirm Password',
   },
 ];
 const LoginForm = () => {
   const router = useRouter();
   const { updateUser } = userStore((state: any) => state);
   const [formData, setFormData] = useState<any>({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    username: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
+    username: '',
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
+    setFormData((prevState: any) => ({
       ...prevState,
       [name]: value,
     }));
@@ -38,7 +38,7 @@ const LoginForm = () => {
     const response = await fetchRegister(formData);
     if (response.data) {
       updateUser(response.data);
-      router.push("/");
+      router.push('/');
     }
   };
   return (
@@ -68,8 +68,8 @@ const LoginForm = () => {
       </div>
       <div className="text-sm gap-2 flex justify-center items-center">
         <p>Have an account?</p>
-        <Link className="text-primary font-semibold" href={"/login"}>
-          {" "}
+        <Link className="text-primary font-semibold" href={'/login'}>
+          {' '}
           Sign In
         </Link>
       </div>

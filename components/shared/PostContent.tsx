@@ -1,5 +1,4 @@
 "use client";
-import DOMPurify from "dompurify";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,7 +6,7 @@ import Loading from "./Loading";
 import { threadStore } from "../../store";
 import { truncateText } from "../../helper/truncateText";
 
-const PostContent = ({ detail, id }: any) => {
+const PostContent = ({ id }: any) => {
   const [thread, setThread] = useState({
     body: "",
     images: [{ image: "" }],
@@ -30,10 +29,10 @@ const PostContent = ({ detail, id }: any) => {
         <Loading />
       ) : (
         <Link href={`/threads/${thread?.id}`} className="flex flex-col gap-4">
-          <div className="text-sm lg:text-lg">
+          <div className="text-sm lg:text-md">
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(truncateText(thread?.body, 1000)),
+                __html: truncateText(thread?.body, 1000),
               }}
             />
           </div>
@@ -43,7 +42,9 @@ const PostContent = ({ detail, id }: any) => {
             {imagesToShow.length > 0 &&
               imagesToShow.map((image: any, index: number) => (
                 <div
-                  className={`${imagesToShow.length === 3 && index === 0 && " col-span-2"} relative h-full `}
+                  className={`${
+                    imagesToShow.length === 3 && index === 0 && " col-span-2"
+                  } relative h-full `}
                   key={index}
                 >
                   <Image
@@ -53,7 +54,7 @@ const PostContent = ({ detail, id }: any) => {
                     height={12000}
                     src={`http://localhost:3000/${image.image}`}
                     alt="photo postingan"
-                    className={`w-full h-full object-cover rounded-md`}
+                    className={`w-full max-h-80 h-full object-cover rounded-sm`}
                   />
                   {extraImagesCount > 0 && index === 3 && (
                     <div className="absolute top-0 left-0 backdrop-blur-sm bg-gray-50/50 h-full w-full flex justify-center items-center">

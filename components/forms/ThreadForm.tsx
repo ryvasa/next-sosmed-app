@@ -36,7 +36,7 @@ const ThreadForm = () => {
     formData.append("body", body);
     const imagePathsToKeep = currentImages.map((item: any) => item.image);
     formData.append("currentImages", imagePathsToKeep);
-    images.forEach((image, index) => {
+    images.forEach((image) => {
       formData.append("images", image);
     });
     try {
@@ -63,6 +63,9 @@ const ThreadForm = () => {
   return (
     <form onSubmit={handleSubmit} className="py-4">
       <ThreadBodyForm body={body} setBody={setBody} />
+      <p className="text-error text-xs font-semibold italic pt-5">
+        Only .jpeg .jpg and .png are allowed!
+      </p>
       <ImageUploadPreview
         currentImages={currentImages}
         setCurrentImages={setCurrentImages}

@@ -92,13 +92,16 @@ const Topbar = () => {
             href={`/users/${user.id}`}
           >
             <div
-              className={`flex-1 avatar-profile ${user.active && receiverId && "avatar-profile-online"} outline-offset-2`}
+              className={`flex-1 avatar-profile ${
+                user.active && receiverId && "avatar-profile-online"
+              } outline-offset-2`}
             >
               <Image
                 alt="profile"
-                width={user?.avatar && 10000}
-                height={user?.avatar && 10000}
-                style={user?.avatar && { width: "112px", height: `112px` }}
+                width={10000}
+                height={10000}
+                className="h-12 w-12"
+                // style={{ width: '112px', height: `112px` }}
                 src={
                   user?.avatar ? `http://localhost:3000/${user?.avatar}` : image
                 }

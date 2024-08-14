@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import "../globals.css";
-import Topbar from "../../components/shared/Topbar";
 import Loading from "./loading";
 
 export const metadata: Metadata = {

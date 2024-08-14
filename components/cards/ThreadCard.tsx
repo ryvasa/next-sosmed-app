@@ -10,6 +10,7 @@ import { fetchGetOneThread } from "@/libs/api/api";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 // import useNotification from "@/libs/hooks/useNotification";
 import ThreadContent from "../shared/ThreadContent";
+import ThreadOption from "../shared/ThreadOption";
 
 const ThreadCard = () => {
   const [thread, setThread] = useState<any>({});
@@ -28,7 +29,11 @@ const ThreadCard = () => {
   return (
     <div className="border-b-[2px] border-gray-200 dark:border-gray-600 pt-10 pb-5 ">
       <div className="flex gap-4 flex-col">
-        <UserInfo user={thread?.user} createdAt={thread.created_at} />
+        <div className="flex justify-between w-full">
+          <UserInfo user={thread?.user} createdAt={thread.created_at} />
+          <ThreadOption id={thread?.id} />
+        </div>
+
         <ThreadContent id={thread.id} />
       </div>
       <div className="flex pt-5 gap-4">
@@ -38,6 +43,7 @@ const ThreadCard = () => {
           data={thread?.thread_likes}
           threadId={thread?.id}
           dataCount={thread.count?.thread_likes}
+          authorId={thread?.user?.id}
         />
         {/* <div className="pt-1">
           <DislikeButton

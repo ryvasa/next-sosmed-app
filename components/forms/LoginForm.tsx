@@ -17,12 +17,12 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const { updateUser } = userStore((state: any) => state);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
+    setFormData((prevState: any) => ({
       ...prevState,
       [name]: value,
     }));
@@ -32,10 +32,10 @@ const LoginForm = () => {
     e.preventDefault();
 
     // Frontend validation
-    if (!formData.email || !formData.password) {
-      setError("Email and password are required");
-      return;
-    }
+    // if (!formData.email || !formData.password) {
+    //   setError('Email and password are required');
+    //   return;
+    // }
 
     try {
       const response = await fetchLogin(formData);
@@ -44,7 +44,8 @@ const LoginForm = () => {
         router.push("/");
       }
     } catch (err: any) {
-      setError(err.message);
+      // setError(err.message);
+      console.log(err);
     }
   };
   const labels = [

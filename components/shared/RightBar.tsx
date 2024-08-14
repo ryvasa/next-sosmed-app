@@ -50,9 +50,11 @@ const RightBar = () => {
               } outline-offset-2`}
             >
               <Image
-                width={user.avatar && 112}
-                height={user.avatar && 112}
-                style={user.avatar && { width: "112px", height: "112px" }}
+                width={112}
+                height={112}
+                // style={{ width: '112px', height: '112px' }}
+                className="h-12 w-12"
+                //
                 alt="profile"
                 src={
                   user.avatar ? `http://localhost:3000/${user.avatar}` : image

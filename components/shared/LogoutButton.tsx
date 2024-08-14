@@ -1,7 +1,7 @@
 "use client";
 import { fetchLogout } from "@/libs/api/api";
 import { useRouter } from "next/navigation";
-import { Logout, User } from "../ui/icons";
+import { Logout } from "../ui/icons";
 
 const LogoutButton = ({ showText }: any) => {
   const router = useRouter();

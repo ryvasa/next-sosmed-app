@@ -11,13 +11,17 @@ const DeleteThreadButton = ({ id }: any) => {
       router.push("/");
     }
   };
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const deletebutton: any = document.getElementById("thread_delete");
+    if (deletebutton) {
+      deletebutton.showModal();
+    }
+  };
   return (
     <>
-      <button
-        type="button"
-        onClick={() => document.getElementById("thread_delete").showModal()}
-      >
-        <Delete w={5} h={5} c="error" /> Delete
+      <button type="button" onClick={handleClick}>
+        <Delete w={5} h={5} c="text-error" /> Delete
       </button>
       <dialog
         id="thread_delete"
@@ -25,10 +29,12 @@ const DeleteThreadButton = ({ id }: any) => {
       >
         <div className="modal-box bg-white dark:bg-dark-md">
           <h3 className="font-bold text-xl text-error">Warning</h3>
-          <p className="py-4">Are you sure you want to delete this thread?</p>
+          <p className="py-4 text-gray-600 dark:text-dark-xs">
+            Are you sure you want to delete this thread?
+          </p>
           <div className="flex items-center gap-1">
             <Alert />
-            <p className="text-sm text-error font-semibold">
+            <p className="text-xs lg:text-sm text-error font-semibold italic">
               Threads that have been deleted cannot be recovered
             </p>
           </div>

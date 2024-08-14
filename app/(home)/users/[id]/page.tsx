@@ -22,11 +22,18 @@ const Page = () => {
       <div className="flex flex-col gap-2 lg:gap-5 mt-10 lg:mt-5">
         <ProfileCard data={count} />
         {threads ? (
-          threads.map((thread: any) => (
-            <div key={thread.id} className="">
-              <PostCard data={thread} />
+          <>
+            {threads.map((thread: any) => (
+              <div key={thread.id} className="">
+                <PostCard data={thread} />
+              </div>
+            ))}
+            <div className="flex p-5 items-center justify-center">
+              <p className="text-lg font-semibold text-primary">
+                All threads have been shown
+              </p>
             </div>
-          ))
+          </>
         ) : (
           <div className="w-full flex justify-center items-center py-20">
             <p className="text-xl text-primary font-bold">User has no thread</p>

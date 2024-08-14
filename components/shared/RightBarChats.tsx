@@ -1,22 +1,16 @@
-import useChatNotify from "@/libs/hooks/useChatNotify";
-import ChatCard from "../cards/ChatCard";
-import useActiveStatus from "@/libs/hooks/useActiveStatus";
-import { useEffect, useState } from "react";
-import { fetchGetChats } from "@/libs/api/api";
-import { chatsStore } from "@/store";
-import ProfilePicture from "./ProfilePicture";
-import Link from "next/link";
-import { formaterTimeChatList } from "@/helper/formaterTime";
-import Image from "next/image";
-import image from "../../public/pf.jpg";
-import RightBarChatCard from "./RightBarChatCard";
+import useChatNotify from '@/libs/hooks/useChatNotify';
+import useActiveStatus from '@/libs/hooks/useActiveStatus';
+import { useEffect, useState } from 'react';
+import { fetchGetChats } from '@/libs/api/api';
+import { chatsStore } from '@/store';
+import RightBarChatCard from './RightBarChatCard';
 
 const RightBarChats = () => {
   const { updateChats } = chatsStore((state: any) => state);
   const [data, setData] = useState([]);
 
   async function fetchData() {
-    const res = await fetchGetChats(3);
+    const res = await fetchGetChats({});
     updateChats(res.data);
     setData(res.data);
   }

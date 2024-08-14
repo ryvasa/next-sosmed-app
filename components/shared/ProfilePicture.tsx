@@ -4,10 +4,11 @@ const ProfilePicture = ({ active, avatar }: any) => {
   return (
     <div className={`avatar-profile ${active && "avatar-profile-online"}`}>
       <Image
-        width={avatar && 10000}
-        height={avatar && 10000}
-        style={avatar && { width: "112px", height: `112px` }}
+        width={10000}
+        height={10000}
+        // style={{ width: '112px', height: `112px` }}
         src={avatar ? `http://localhost:3000/${avatar}` : image}
+        className="h-12 w-12"
         alt="photo frofile"
       />
     </div>

@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Thread, User } from "../ui/icons";
-import { usePathname, useRouter } from "next/navigation";
 import UserCard from "../cards/UserCard";
 import SearchForm from "../forms/SearchForm";
 import { fetchSearch } from "@/libs/api/api";
@@ -10,7 +9,6 @@ import PostCard from "../cards/PostCard";
 const SearchContainer = () => {
   const [users, setUsers] = useState([]);
   const [threads, setThreads] = useState([]);
-  const router = useRouter();
   const [currentTab, setCurrentTab] = useState("users");
   const changeTab = (e: any) => {
     setCurrentTab(e?.target?.value);

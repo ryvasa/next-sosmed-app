@@ -211,7 +211,7 @@ const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Thread = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h} text-${c}`}`}
+      className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -228,7 +228,9 @@ const Thread = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`${!w && !h && !c ? `w-4 h-4 text-primary ` : `w-${w} h-${h} text-${c}`}`}
+      className={`text-primary ${
+        !w && !h && !c ? `w-4 h-4` : `w-${w} h-${h} ${c}`
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -245,7 +247,7 @@ const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-dark-md ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={`text-primary ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -261,9 +263,7 @@ const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -278,7 +278,9 @@ const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Logout = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${!w && !h ? `w-4 h-4  text-primary` : `w-${w} h-${h} text-${c}`}`}
+      className={` ${
+        !w && !h ? `w-4 h-4  text-primary` : `w-${w} h-${h} ${c}`
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -459,9 +461,7 @@ const Eye = ({ w, h }: { w?: number; h?: number }) => {
 const Mail = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -478,9 +478,7 @@ const Mail = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -497,9 +495,7 @@ const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Delete = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-6 h-6 text-error` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-6 h-6 text-error` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -516,9 +512,7 @@ const Delete = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Alert = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-5 h-5 text-error` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-5 h-5 text-error` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -534,9 +528,7 @@ const More = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
       className={` ${
-        !w && !h
-          ? `w-5 h-5 text-black dark:text-dark-xs`
-          : `w-${w} h-${h} text-${c}`
+        !w && !h ? `w-5 h-5 text-black dark:text-dark-xs` : `w-${w} h-${h} ${c}`
       }`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"

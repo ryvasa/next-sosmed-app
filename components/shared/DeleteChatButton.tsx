@@ -12,11 +12,19 @@ const DeleteChatButton = () => {
       router.push("/chats");
     }
   };
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const deletebutton: any = document.getElementById("delete_chat");
+    if (deletebutton) {
+      deletebutton.showModal();
+    }
+  };
   return (
     <>
       <div>
         <button
-          onClick={() => document.getElementById("delete_chat").showModal()}
+          onClick={handleClick}
           type="button"
           className="flex items-center justify-center btn btn-ghost btn-sm btn-circle"
         >
@@ -29,7 +37,7 @@ const DeleteChatButton = () => {
           <p className="py-4">Are you sure you want to delete this chat?</p>
           <div className="flex items-center gap-1">
             <Alert />
-            <p className="text-sm text-error font-semibold">
+            <p className="text-xs lg:text-sm text-error font-semibold italic">
               All messages will disappear
             </p>
           </div>

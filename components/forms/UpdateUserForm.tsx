@@ -91,14 +91,12 @@ const UpdateUserForm = () => {
               className="hidden"
             />
             <Image
-              width={data?.avatar && 10000}
-              height={data?.avatar && 10000}
-              style={
-                data?.avatar && {
-                  width: "576px",
-                  height: `${(9 / 16) * 576}px`,
-                }
-              }
+              width={10000}
+              height={10000}
+              style={{
+                width: "576px",
+                height: `${(9 / 16) * 576}px`,
+              }}
               src={
                 previewImage
                   ? previewImage // jika ada preview
@@ -109,6 +107,9 @@ const UpdateUserForm = () => {
               alt="profile pict"
             />
           </div>
+          <p className="text-error text-xs font-semibold italic">
+            Only .jpeg .jpg and .png are allowed!
+          </p>
           <label
             htmlFor="avatar"
             className="lg:hidden group-hover:flex lg:absolute z-20 justify-center items-center text-white dark:text-dark-xs btn btn-primary btn-sm normal-case"
