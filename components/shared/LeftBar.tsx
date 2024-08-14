@@ -1,4 +1,4 @@
-// "use client";
+'use client';
 // import { useEffect, useRef, useState } from "react";
 import { Add, Chat, Friend, Home, Search } from '../ui/icons';
 import ItemBar from './ItemBar';
@@ -55,7 +55,14 @@ const Leftbar = () => {
       <div className="sidebar">
         <ul className="flex justify-center gap-5 items-center h-full flex-col">
           {items.map((item) => (
-            <ItemBar key={item.text} {...item} />
+            <ItemBar
+              key={item.text}
+              icon={item.icon}
+              href={item.href}
+              text={item.text}
+              position={item.position}
+              tooltip={item.tooltip}
+            />
           ))}
         </ul>
       </div>

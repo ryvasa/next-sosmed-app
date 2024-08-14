@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import "../globals.css";
-import Topbar from "@/components/shared/Topbar";
-import Bottombar from "@/components/shared/Bottombar";
-import { Suspense } from "react";
-import Loading from "./loading";
-import Leftbar from "@/components/shared/LeftBar";
-import RightBar from "../../components/shared/RightBar";
+import type { Metadata } from 'next';
+import '../globals.css';
+import Topbar from '@/components/shared/Topbar';
+import Bottombar from '@/components/shared/Bottombar';
+import { Suspense } from 'react';
+import Loading from './loading';
+import Leftbar from '@/components/shared/LeftBar';
+import RightBar from '../../components/shared/RightBar';
 
 export const metadata: Metadata = {
-  title: "SosmedApp",
-  description: "This is description of SosmedApp",
+  title: 'SosmedApp',
+  description: 'This is description of SosmedApp',
 };
 
 export default function RootLayout({
@@ -20,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
-        <div className="lg:relative lg:-z-20">
-          <Topbar />
-        </div>
+        <div className="lg:relative lg:-z-20">{<Topbar />}</div>
         <div className="w-scree flex bg-gray-50 justify-center items-center dark:bg-dark-lg lg:gap-10  relative">
           <div className="lg:flex-1 lg:block hidden">
             <Leftbar />
