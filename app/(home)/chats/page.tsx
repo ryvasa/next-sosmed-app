@@ -1,16 +1,8 @@
-import SearchForm from '@/components/forms/SearchForm';
-import ChatCard from '@/components/cards/ChatCard';
-
+import ChatList from '../../../components/shared/ChatList';
 const Page = () => {
   return (
-    <div className="pt-10">
-      <SearchForm />
-      <div className="flex flex-col pt-3 gap-1">
-        <ChatCard />
-        <ChatCard />
-        <ChatCard />
-        <ChatCard />
-      </div>
+    <div className="min-h-screen mt-10 lg:mt-0 lg:pt-10 bg-white dark:bg-dark-md rounded-lg p-6">
+      <ChatList />
     </div>
   );
 };

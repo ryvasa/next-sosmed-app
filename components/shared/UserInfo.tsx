@@ -1,16 +1,23 @@
-import Link from 'next/link';
-import ProfilePicture from './ProfilePicture';
+import Link from "next/link";
+import ProfilePicture from "./ProfilePicture";
+import { formatRelativeTime } from "../../helper/formaterTime";
 
-const UserInfo = () => {
+const UserInfo = ({ user, createdAt }: any) => {
   return (
-    <Link href={'/users/123'} className="flex gap-4 items-center ">
-      <ProfilePicture />
+    <>
+      {user && (
+        <Link href={`/users/${user?.id}`} className="flex gap-4 items-center ">
+          <ProfilePicture active={user?.active} avatar={user?.avatar} />
 
-      <div className="user-info">
-        <p className="text-lg font-semibold">Username</p>
-        <p className="text-sm text-primary">10:18</p>
-      </div>
-    </Link>
+          <div className="user-info">
+            <p className="text-lg font-semibold">{user?.username}</p>
+            <p className="text-sm text-primary">
+              {formatRelativeTime(createdAt)}
+            </p>
+          </div>
+        </Link>
+      )}
+    </>
   );
 };
 

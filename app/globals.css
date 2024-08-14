@@ -1,67 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+::-webkit-scrollbar {
+    width: 5px;
+}
 
+::-webkit-scrollbar-thumb {
+    background-color: #6c8ce2;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #282c33;
+}
 body {
-  @apply text-dark-sm dark:text-dark-xs;
+    @apply text-dark-sm dark:text-dark-xs;
 }
 nav {
-  @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
+    @apply fixed z-[99] top-0 left-0 drop-shadow-xl bg-white/75 dark:bg-dark-sm/75 backdrop-blur-md;
+}
+.avatar-sidebar-chats {
+    @apply rounded-full overflow-hidden w-8 h-8 avatar;
 }
 .avatar-profile {
-  @apply rounded-full overflow-hidden w-9 h-9 avatar;
+    @apply rounded-full overflow-hidden w-9 h-9 avatar;
 }
 .avatar-profile-online {
-  @apply outline outline-primary outline-offset-2;
+    @apply outline outline-success outline-offset-2;
 }
 .dropdown-list {
-  @apply relative dropdown-content z-[1] menu p-2 rounded-box w-40 drop-shadow-xl bg-white/95 dark:bg-dark-sm;
+    @apply relative dropdown-content z-[1] menu p-2 rounded-box w-40 drop-shadow-xl bg-white/95 dark:bg-dark-sm;
 }
 .bottombar-container {
-  @apply bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md w-full px-5 py-3 rounded-t-2xl bottom-0;
+    @apply bg-white/75 dark:bg-dark-sm/75 absolute z-[10] backdrop-blur-md w-full px-5 py-3 rounded-t-2xl bottom-0;
 }
 .bottombar-gradient {
-  @apply fixed bottom-0 bg-gradient-to-t from-white/30 to-white/0 dark:from-dark-xl dark:to-dark-xl/0 h-20 w-full;
+    @apply fixed bottom-0 bg-gradient-to-t from-white/30 to-white/0 dark:from-dark-xl dark:to-dark-xl/0 h-20 w-full;
 }
 
 .bottombar {
-  @apply fixed bottom-0 w-full flex items-center justify-center lg:hidden;
+    @apply fixed bottom-0 w-full flex items-center justify-center lg:hidden;
 }
 .bottombar-item {
-  @apply bg-transparent text-dark-lg dark:text-gray-400 border-none;
+    @apply bg-transparent text-dark-lg dark:text-gray-400 border-none;
 }
 .bottombar-item-active {
-  @apply text-white dark:text-dark-xl btn-primary;
+    @apply text-white dark:text-dark-sm btn-primary;
 }
 
 .sidebar {
-  @apply hidden lg:flex p-4 fixed left-0 top-0 h-full bg-primary dark:bg-dark-lg;
+    @apply hidden lg:flex p-4 fixed left-0 top-0 h-full bg-primary dark:bg-dark-md;
 }
 
 .sidebar-item {
-  @apply bg-transparent text-white dark:text-gray-400 border-none;
+    @apply bg-transparent text-white dark:text-gray-400 border-none;
 }
 .sidebar-item-active {
-  @apply text-primary bg-white dark:bg-primary dark:text-dark-xl btn-primary;
+    @apply text-primary bg-white dark:bg-primary dark:text-dark-xl btn-primary;
 }
 
 .user-profile-action {
-  @apply btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm;
+    @apply btn btn-sm btn-primary flex-1 text-white dark:text-dark-sm;
 }
 
 .user-profile-cancle {
-  @apply btn btn-sm btn-error flex-1 text-white dark:text-dark-sm;
+    @apply btn btn-sm btn-error flex-1 text-white dark:text-dark-sm;
 }
 
 .tooltip {
-  --tooltip-color: #6c8ce2;
-  --tooltip-text-color: #fff;
+    --tooltip-color: #6c8ce2;
+    --tooltip-text-color: #fff;
 }
 
 .tooltip-sidebar {
-  --tooltip-color: #475569;
-  --tooltip-text-color: #fff;
+    --tooltip-color: #475569;
+    --tooltip-text-color: #fff;
 }
 .quill {
 }

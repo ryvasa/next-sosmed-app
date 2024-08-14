@@ -1,36 +1,75 @@
+'use client';
+import DOMPurify from 'dompurify';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Loading from './Loading';
+import { threadStore } from '../../store';
+import { truncateText } from '../../helper/truncateText';
 
-const PostContent = ({ detail, data }: any) => {
+const PostContent = ({ id }: any) => {
+  const [thread, setThread] = useState({
+    body: '',
+    images: [{ image: '' }],
+    id: '',
+  });
+  const { threads } = threadStore((state: any) => state);
+
+  useEffect(() => {
+    const filteredThread = threads.find((thread: any) => thread.id === id);
+    setThread(filteredThread);
+  }, [id]);
+
+  // Potong array images untuk hanya mengambil 4 gambar pertama
+  const imagesToShow = thread.images.slice(0, 4);
+  const extraImagesCount = thread.images.length - 4;
+
   return (
-    <Link href={'/posts/123'} className="flex flex-col gap-4">
-      <p className="text-sm lg:text-lg">
-        {detail
-          ? data.desc
-          : data.desc.split(' ').slice(0, 30).join(' ') + '...'}
-      </p>
-      {detail ? (
-        data.images.map((image: string, index: number) => (
-          <div className="h-96" key={index}>
-            <Image
-              placeholder="blur"
-              src={image}
-              alt="photo postingan"
-              className="w-full h-full object-cover rounded-xl"
+    <>
+      {!thread?.body ? (
+        <Loading />
+      ) : (
+        <Link href={`/threads/${thread?.id}`} className="flex flex-col gap-4">
+          <div className="text-sm lg:text-lg">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(truncateText(thread?.body, 1000)),
+              }}
             />
           </div>
-        ))
-      ) : (
-        <div className="h-96">
-          <Image
-            placeholder="blur"
-            src={data.images[0]}
-            alt="photo postingan"
-            className="w-full h-full object-cover rounded-xl"
-          />
-        </div>
+          <div
+            className={`${imagesToShow.length > 1 && 'grid-cols-2'} grid gap-1`}
+          >
+            {imagesToShow.length > 0 &&
+              imagesToShow.map((image: any, index: number) => (
+                <div
+                  className={`${
+                    imagesToShow.length === 3 && index === 0 && ' col-span-2'
+                  } relative h-full `}
+                  key={index}
+                >
+                  <Image
+                    placeholder="blur"
+                    blurDataURL={`http://localhost:3000/${image.image}`}
+                    width={12000}
+                    height={12000}
+                    src={`http://localhost:3000/${image.image}`}
+                    alt="photo postingan"
+                    className={`w-full h-full object-cover rounded-md`}
+                  />
+                  {extraImagesCount > 0 && index === 3 && (
+                    <div className="absolute top-0 left-0 backdrop-blur-sm bg-gray-50/50 h-full w-full flex justify-center items-center">
+                      <p className="text-dark-xs text-2xl lg:text-4xl">
+                        +{extraImagesCount}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+          </div>
+        </Link>
       )}
-    </Link>
+    </>
   );
 };
 

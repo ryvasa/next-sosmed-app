@@ -103,7 +103,22 @@ const Add = ({ w, h }: { w?: number; h?: number }) => {
     </svg>
   );
 };
-
+const Readed = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-4 h-4 md:w-5 md:h-5` : `w-${w} h-${h} `}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z"
+      />
+    </svg>
+  );
+};
 const Chat = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
@@ -141,9 +156,7 @@ const Search = ({ w, h }: { w?: number; h?: number }) => {
 const Notification = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={`text-dark-sm ${
-        !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
-      } dark:text-gray-400`}
+      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`} `}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -180,7 +193,7 @@ const Hamburger = ({ w, h }: { w?: number; h?: number }) => {
 const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`dark:text-dark-xs ${c ? `text-white` : `text-primary`} ${
+      className={` ${c ? `text-white` : `text-primary`} ${
         !w && !h ? `w-6 h-6` : `w-${w} h-${h}`
       }`}
       xmlns="http://www.w3.org/2000/svg"
@@ -195,11 +208,29 @@ const Edit = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
     </svg>
   );
 };
-
-const Light = ({ w, h }: { w?: number; h?: number }) => {
+const Thread = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={` ${!w && !h ? `w-5 h-5` : `w-${w} h-${h} ${c}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M14 12c0 .74-.4 1.38-1 1.72V22h-2v-8.28c-.6-.35-1-.98-1-1.72c0-1.1.9-2 2-2s2 .9 2 2m-2-6c-3.31 0-6 2.69-6 6c0 1.74.75 3.31 1.94 4.4l1.42-1.42A3.957 3.957 0 0 1 8 12c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.19-.53 2.25-1.36 2.98l1.42 1.42A5.957 5.957 0 0 0 18 12c0-3.31-2.69-6-6-6m0-4C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.11 7.24l1.42-1.42A7.987 7.987 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 2.29-.98 4.36-2.53 5.82l1.42 1.42C20.8 17.41 22 14.85 22 12c0-5.52-4.48-10-10-10"
+      />
+    </svg>
+  );
+};
+
+const Light = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={`${
+        !w && !h && !c ? `w-4 h-4 text-primary ` : `w-${w} h-${h} ${c}`
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -213,10 +244,10 @@ const Light = ({ w, h }: { w?: number; h?: number }) => {
   );
 };
 
-const Dark = ({ w, h }: { w?: number; h?: number }) => {
+const Dark = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-4 h-4` : `w-${w} h-${h}`}`}
+      className={`text-dark-md ${!w && !h && c! ? `w-4 h-4` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -232,9 +263,7 @@ const Dark = ({ w, h }: { w?: number; h?: number }) => {
 const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -242,6 +271,29 @@ const User = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
         fill="currentColor"
         d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
       ></path>
+    </svg>
+  );
+};
+
+const Logout = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-4 h-4  text-primary` : `w-${w} h-${h} ${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2"
+      />
+      <path
+        fill="currentColor"
+        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z"
+      />
     </svg>
   );
 };
@@ -297,7 +349,7 @@ const Comment = ({ w, h }: { w?: number; h?: number }) => {
 const Send = ({ w, h }: { w?: number; h?: number }) => {
   return (
     <svg
-      className={`text-primary ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
+      className={`${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -409,9 +461,7 @@ const Eye = ({ w, h }: { w?: number; h?: number }) => {
 const Mail = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -428,9 +478,7 @@ const Mail = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
 const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={` ${
-        !w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} text-${c}`
-      }`}
+      className={` ${!w && !h ? `w-4 h-4 text-primary` : `w-${w} h-${h} ${c}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -444,7 +492,61 @@ const Key = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   );
 };
 
+const Delete = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${!w && !h ? `w-6 h-6 text-error` : `w-${w} h-${h} ${c}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"
+      />
+    </svg>
+  );
+};
+
+const Alert = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${!w && !h ? `w-5 h-5 text-error` : `w-${w} h-${h} ${c}`}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M12 5.99L19.53 19H4.47zM12 2L1 21h22z" />
+      <path fill="currentColor" d="M13 16h-2v2h2zm0-6h-2v5h2z" />
+    </svg>
+  );
+};
+
+const More = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
+  return (
+    <svg
+      className={` ${
+        !w && !h ? `w-5 h-5 text-black dark:text-dark-xs` : `w-${w} h-${h} ${c}`
+      }`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2s-2 .9-2 2s.9 2 2 2m0 2c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2m0 6c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2"
+      />
+    </svg>
+  );
+};
 export {
+  More,
+  Alert,
+  Delete,
+  Readed,
   Key,
   Mail,
   Eye,
@@ -470,4 +572,6 @@ export {
   Dark,
   Light,
   User,
+  Logout,
+  Thread,
 };
