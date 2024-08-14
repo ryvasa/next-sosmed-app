@@ -1,52 +1,52 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
-import { Add, Chat, Friend, Home, Search } from "../ui/icons";
-import ItemBar from "./ItemBar";
+// "use client";
+// import { useEffect, useRef, useState } from "react";
+import { Add, Chat, Friend, Home, Search } from '../ui/icons';
+import ItemBar from './ItemBar';
 
 const Leftbar = () => {
-  const parentRef = useRef(null);
-  const [parentWidth, setParentWidth] = useState(0);
+  // const parentRef = useRef(null);
+  // const [parentWidth, setParentWidth] = useState(0);
 
-  useEffect(() => {
-    if (parentRef.current) {
-      setParentWidth(parentRef.current.offsetWidth);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (parentRef.current) {
+  //     setParentWidth(parentRef.current.offsetWidth);
+  //   }
+  // }, []);
   const items = [
     {
-      tooltip: "tooltip-right",
+      tooltip: 'tooltip-right',
       icon: Home,
-      text: "Home",
-      href: "/",
-      position: "side",
+      text: 'Home',
+      href: '/',
+      position: 'side',
     },
     {
-      tooltip: "tooltip-right",
+      tooltip: 'tooltip-right',
       icon: Friend,
-      text: "Users",
-      href: "/users",
-      position: "side",
+      text: 'Users',
+      href: '/users',
+      position: 'side',
     },
     {
-      tooltip: "tooltip-right",
+      tooltip: 'tooltip-right',
       icon: Add,
-      text: "New Thread",
-      href: "/create-thread",
-      position: "side",
+      text: 'New Thread',
+      href: '/create-thread',
+      position: 'side',
     },
     {
-      tooltip: "tooltip-right",
+      tooltip: 'tooltip-right',
       icon: Chat,
-      text: "Chats",
-      href: "/chats",
-      position: "side",
+      text: 'Chats',
+      href: '/chats',
+      position: 'side',
     },
     {
-      tooltip: "tooltip-right",
+      tooltip: 'tooltip-right',
       icon: Search,
-      text: "Search",
-      href: "/search",
-      position: "side",
+      text: 'Search',
+      href: '/search',
+      position: 'side',
     },
   ];
 

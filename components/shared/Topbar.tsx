@@ -1,35 +1,35 @@
-"use client";
-import Image from "next/image";
-import image from "../../public/pf.jpg";
-import Link from "next/link";
-import DropDown from "./DropDown";
+'use client';
+import Image from 'next/image';
+import image from '../../public/pf.jpg';
+import Link from 'next/link';
+import DropDown from './DropDown';
 // import { useUserActivity } from "../../libs/hooks/useUserActivity";
-import { chatsStore, messagesStore } from "@/store";
-import useChatRoom from "@/libs/hooks/useChatRoom";
+import { chatsStore, messagesStore } from '@/store';
+import useChatRoom from '@/libs/hooks/useChatRoom';
 import {
   fetchCurrentUser,
   fetchGetChats,
   fetchGetOneUser,
   fetchGetUnreadedMessages,
-} from "@/libs/api/api";
-import { useEffect, useState } from "react";
-import useChatNotify from "@/libs/hooks/useChatNotify";
-import LoadingCircle from "./LoadingCircle";
-import { useParams } from "next/navigation";
-import { useUserActive } from "@/libs/hooks/useUserActive";
-import useActiveStatus from "@/libs/hooks/useActiveStatus";
-import NotificationButton from "./NotificationButton";
-import DeleteChatButton from "./DeleteChatButton";
-import useNotificationRoom from "@/libs/hooks/useNotificationRoom";
+} from '@/libs/api/api';
+import { useEffect, useState } from 'react';
+import useChatNotify from '@/libs/hooks/useChatNotify';
+import LoadingCircle from './LoadingCircle';
+import { useParams } from 'next/navigation';
+import { useUserActive } from '@/libs/hooks/useUserActive';
+import useActiveStatus from '@/libs/hooks/useActiveStatus';
+import NotificationButton from './NotificationButton';
+import DeleteChatButton from './DeleteChatButton';
+import useNotificationRoom from '@/libs/hooks/useNotificationRoom';
 
 const Topbar = () => {
   const { receiver_id } = useParams();
   const [loading, setLoading] = useState(false);
   const [receiverId, setReceiverId] = useState(receiver_id);
   const [user, setUser] = useState({
-    id: "",
+    id: '',
     avatar: image,
-    username: "",
+    username: '',
     active: false,
   });
   const { chats, updateChats } = chatsStore((state: any) => state);
@@ -47,7 +47,7 @@ const Topbar = () => {
 
   useEffect(() => {
     if (!receiver_id) {
-      setReceiverId("");
+      setReceiverId('');
     } else {
       setReceiverId(receiver_id);
     }
@@ -92,13 +92,15 @@ const Topbar = () => {
             href={`/users/${user.id}`}
           >
             <div
-              className={`flex-1 avatar-profile ${user.active && receiverId && "avatar-profile-online"} outline-offset-2`}
+              className={`flex-1 avatar-profile ${
+                user.active && receiverId && 'avatar-profile-online'
+              } outline-offset-2`}
             >
               <Image
                 alt="profile"
-                width={user?.avatar && 10000}
-                height={user?.avatar && 10000}
-                style={user?.avatar && { width: "112px", height: `112px` }}
+                width={10000}
+                height={10000}
+                style={{ width: '112px', height: `112px` }}
                 src={
                   user?.avatar ? `http://localhost:3000/${user?.avatar}` : image
                 }

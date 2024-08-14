@@ -38,6 +38,7 @@ const ThreadCard = () => {
           data={thread?.thread_likes}
           threadId={thread?.id}
           dataCount={thread.count?.thread_likes}
+          authorId={thread?.user?.id}
         />
         {/* <div className="pt-1">
           <DislikeButton

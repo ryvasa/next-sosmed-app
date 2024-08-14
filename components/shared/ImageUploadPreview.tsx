@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { AddImage, Close } from "../ui/icons";
 const ImageUploadPreview = ({
-  images,
   setImages,
   currentImages,
   setCurrentImages,
@@ -83,11 +82,14 @@ const ImageUploadPreview = ({
         <input
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             if (e?.target?.files?.[0]) {
-              setImages((prevComments) => [...prevComments, ...e.target.files]);
+              setImages((prevComments: any) => [
+                ...prevComments,
+                ...(e.target.files as any),
+              ]);
               const file = e.target.files[0];
               const reader = new FileReader();
               reader.onload = () => {
-                setPreviewImage((prevComments) => [
+                setPreviewImage((prevComments: any) => [
                   ...prevComments,
                   reader.result as string,
                 ]);

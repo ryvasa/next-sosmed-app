@@ -1,11 +1,8 @@
 "use client";
 import DOMPurify from "dompurify";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { threadStore } from "../../store";
-import { truncateText } from "../../helper/truncateText";
 import LoadingCircle from "./LoadingCircle";
 import ShowPicture from "./ShowPicture";
 

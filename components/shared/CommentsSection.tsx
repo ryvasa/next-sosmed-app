@@ -1,16 +1,16 @@
-"use client";
-import { useEffect, useState } from "react";
-import CommentCard from "../cards/CommentCard";
-import CommentForm from "../forms/CommentForm";
-import { useParams } from "next/navigation";
-import { fetchGetComments, fetchGetCountComments } from "../../libs/api/api";
+'use client';
+import { useEffect, useState } from 'react';
+import CommentCard from '../cards/CommentCard';
+import CommentForm from '../forms/CommentForm';
+import { useParams } from 'next/navigation';
+import { fetchGetComments, fetchGetCountComments } from '../../libs/api/api';
 // import useNotification from "../../libs/hooks/useNotification";
-import useActiveStatus from "@/libs/hooks/useActiveStatus";
-import InfiniteScroll from "react-infinite-scroll-component";
-import LoadingCircle from "./LoadingCircle";
+import useActiveStatus from '@/libs/hooks/useActiveStatus';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import LoadingCircle from './LoadingCircle';
 
 const CommentsSection = () => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [countComments, setCountComments] = useState(0);
   const { id } = useParams();

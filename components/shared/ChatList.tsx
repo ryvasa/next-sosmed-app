@@ -4,16 +4,13 @@ import SearchForm from "../forms/SearchForm";
 import { useEffect, useState } from "react";
 import useChatNotify from "@/libs/hooks/useChatNotify";
 import { fetchGetChats } from "../../libs/api/api";
-import { chatsStore } from "../../store";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 
 const ChatList = () => {
-  const { chats, updateChats } = chatsStore((state: any) => state);
   const [data, setData] = useState([]);
 
   async function fetchData(username?: string) {
     const res = await fetchGetChats({ username });
-    updateChats(res.data);
     setData(res.data);
   }
   useEffect(() => {

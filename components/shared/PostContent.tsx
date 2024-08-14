@@ -1,17 +1,17 @@
-"use client";
-import DOMPurify from "dompurify";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import { threadStore } from "../../store";
-import { truncateText } from "../../helper/truncateText";
+'use client';
+import DOMPurify from 'dompurify';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Loading from './Loading';
+import { threadStore } from '../../store';
+import { truncateText } from '../../helper/truncateText';
 
-const PostContent = ({ detail, id }: any) => {
+const PostContent = ({ id }: any) => {
   const [thread, setThread] = useState({
-    body: "",
-    images: [{ image: "" }],
-    id: "",
+    body: '',
+    images: [{ image: '' }],
+    id: '',
   });
   const { threads } = threadStore((state: any) => state);
 
@@ -38,12 +38,14 @@ const PostContent = ({ detail, id }: any) => {
             />
           </div>
           <div
-            className={`${imagesToShow.length > 1 && "grid-cols-2"} grid gap-1`}
+            className={`${imagesToShow.length > 1 && 'grid-cols-2'} grid gap-1`}
           >
             {imagesToShow.length > 0 &&
               imagesToShow.map((image: any, index: number) => (
                 <div
-                  className={`${imagesToShow.length === 3 && index === 0 && " col-span-2"} relative h-full `}
+                  className={`${
+                    imagesToShow.length === 3 && index === 0 && ' col-span-2'
+                  } relative h-full `}
                   key={index}
                 >
                   <Image

@@ -1,15 +1,21 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
 import { Close } from "../ui/icons";
 
 const ShowPicture = ({ data }: any) => {
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const deletebutton: any = document.getElementById("show_photo");
+    if (deletebutton) {
+      deletebutton.showModal();
+    }
+  };
   return (
     <>
       {data && (
         <>
           <Image
-            onClick={() => document.getElementById("show_photo").showModal()}
+            onClick={handleClick}
             placeholder="blur"
             blurDataURL={`http://localhost:3000/${data}`}
             width={12000}

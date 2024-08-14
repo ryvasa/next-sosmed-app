@@ -36,7 +36,7 @@ const ThreadForm = () => {
     formData.append("body", body);
     const imagePathsToKeep = currentImages.map((item: any) => item.image);
     formData.append("currentImages", imagePathsToKeep);
-    images.forEach((image, index) => {
+    images.forEach((image) => {
       formData.append("images", image);
     });
     try {

@@ -26,7 +26,7 @@ const ThemeToggle = ({ showText }: any) => {
             toggleTheme();
           }}
         >
-          {showText ? <Light /> : <Light w={5} h={5} c={"white"} />}
+          {showText ? <Light /> : <Light w={5} h={5} c={"text-white"} />}
           {showText && <p>Light mode</p>}
         </button>
       ) : (

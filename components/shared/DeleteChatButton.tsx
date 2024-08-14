@@ -1,7 +1,7 @@
-"use client";
-import { fetchDeleteChat } from "@/libs/api/api";
-import { Alert, Delete } from "../ui/icons";
-import { useParams, useRouter } from "next/navigation";
+'use client';
+import { fetchDeleteChat } from '@/libs/api/api';
+import { Alert, Delete } from '../ui/icons';
+import { useParams, useRouter } from 'next/navigation';
 
 const DeleteChatButton = () => {
   const { chat_id } = useParams();
@@ -9,14 +9,22 @@ const DeleteChatButton = () => {
   const fetchDelete = async () => {
     const response = await fetchDeleteChat(chat_id as string);
     if (response.data.message) {
-      router.push("/chats");
+      router.push('/chats');
+    }
+  };
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const deletebutton: any = document.getElementById('delete_chat');
+    if (deletebutton) {
+      deletebutton.showModal();
     }
   };
   return (
     <>
       <div>
         <button
-          onClick={() => document.getElementById("delete_chat").showModal()}
+          onClick={handleClick}
           type="button"
           className="flex items-center justify-center btn btn-ghost btn-sm btn-circle"
         >

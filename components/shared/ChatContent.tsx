@@ -1,35 +1,34 @@
-"use client";
-import ChatForm from "@/components/forms/ChatForm";
-import ChatBubbleLeft from "@/components/shared/ChatBubbleLeft";
-import ChatBubbleRight from "@/components/shared/ChatBubbleRight";
-import DeleteChatButton from "@/components/shared/DeleteChatButton";
-import { formaterDateChat } from "@/helper/formaterTime";
-import useReadMessage from "@/libs/hooks/useReadMessage";
-import useChatRoom from "@/libs/hooks/useChatRoom";
-import { messagesStore, userStore } from "@/store";
-import Image from "next/image";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+'use client';
+import ChatForm from '@/components/forms/ChatForm';
+import ChatBubbleLeft from '@/components/shared/ChatBubbleLeft';
+import ChatBubbleRight from '@/components/shared/ChatBubbleRight';
+import DeleteChatButton from '@/components/shared/DeleteChatButton';
+import { formaterDateChat } from '@/helper/formaterTime';
+import useReadMessage from '@/libs/hooks/useReadMessage';
+import useChatRoom from '@/libs/hooks/useChatRoom';
+import { messagesStore, userStore } from '@/store';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import {
   fetchGetCountMessages,
   fetchGetMessages,
   fetchGetOneUser,
   fetchGetUnreadedMessages,
-} from "../../libs/api/api";
-import useChatSocket from "../../libs/hooks/useChatSocket";
-import { messageSocket } from "../../libs/socket/socket";
-import image from "../../public/pf.jpg";
-import useActiveStatus from "@/libs/hooks/useActiveStatus";
-import useScrollStatus from "@/libs/hooks/useScrollStatus";
+} from '../../libs/api/api';
+import useChatSocket from '../../libs/hooks/useChatSocket';
+import { messageSocket } from '../../libs/socket/socket';
+import image from '../../public/pf.jpg';
+import useActiveStatus from '@/libs/hooks/useActiveStatus';
 
 const ChatContent = () => {
   const [countMessages, setCountMessages] = useState({ data: 0 });
   const [receiverUser, setReceiverUser] = useState({
-    avatar: "",
-    id: "",
-    username: "",
-    active: "",
+    avatar: '',
+    id: '',
+    username: '',
+    active: '',
   });
   const [visibleTrigger, setVisibleTrigger] = useState(false);
   const { chat_id } = useParams();
@@ -41,7 +40,6 @@ const ChatContent = () => {
     updateUnreadedMessages(response.data);
   };
   const { receiver_id } = useParams();
-  const isScroll = useScrollStatus();
   async function fetchReceiverUser() {
     if (receiver_id) {
       const response = await fetchGetOneUser(receiver_id as string);
@@ -54,7 +52,7 @@ const ChatContent = () => {
   }, [receiver_id]);
   useEffect(() => {
     fetchUnreadedMessage();
-    messageSocket.emit("readMessage", chat_id);
+    messageSocket.emit('readMessage', chat_id);
   }, []);
 
   useChatRoom(chat_id as string);
@@ -64,9 +62,9 @@ const ChatContent = () => {
     if (visibleTrigger && messages.length !== countMessages.data) {
       const response = await fetchGetMessages(
         chat_id as string,
-        messages.length,
+        messages.length
       );
-      setMessages((prevComments) => [...prevComments, ...response.data]);
+      setMessages((prevComments: any) => [...prevComments, ...response.data]);
     }
   };
   const getMessages = async () => {
@@ -88,14 +86,14 @@ const ChatContent = () => {
 
   useReadMessage(chat_id as string, setMessages);
   const handleSubmit = (data: string) => {
-    messageSocket.emit("message", data);
+    messageSocket.emit('message', data);
   };
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -112,14 +110,16 @@ const ChatContent = () => {
   }
   window.onscroll = async function () {
     const visibleBottomMessage = await isVisible(
-      document.querySelector(".bottomMessage"),
+      document.querySelector('.bottomMessage') as HTMLElement
     );
     if (visibleBottomMessage) {
       setTimeout(() => {
-        document.querySelector(".myElement")?.classList.remove("hidden");
+        document.querySelector('.myElement')?.classList.remove('hidden');
       }, 200);
     }
-    const visible = await isVisible(document.querySelector(".myElement"));
+    const visible = await isVisible(
+      document.querySelector('.myElement') as HTMLElement
+    );
     if (messages.length > 0) {
       setVisibleTrigger(visible as any);
     }
@@ -136,13 +136,15 @@ const ChatContent = () => {
           href={`/users/${receiverUser.id}`}
         >
           <div
-            className={`avatar-profile ${receiverUser.active && "avatar-profile-online"} outline-offset-2`}
+            className={`avatar-profile ${
+              receiverUser.active && 'avatar-profile-online'
+            } outline-offset-2`}
           >
             <Image
               alt="profile"
-              width={receiverUser.avatar && 10000}
-              height={receiverUser.avatar && 10000}
-              style={receiverUser.avatar && { width: "112px", height: `112px` }}
+              width={10000}
+              height={10000}
+              style={{ width: '112px', height: `112px` }}
               src={
                 receiverUser.avatar
                   ? `http://localhost:3000/${receiverUser.avatar}`
@@ -172,7 +174,9 @@ const ChatContent = () => {
             return (
               <div
                 key={index}
-                className={`${index === messages.length - 3 && "myElement hidden"} ${index === messages.length - 8 && "bottomMessage"}`}
+                className={`${
+                  index === messages.length - 3 && 'myElement hidden'
+                } ${index === messages.length - 8 && 'bottomMessage'}`}
               >
                 {currentDate !== prevDate && (
                   <div className="text-center border-gray-200 dark:border-gray-700 p-2">

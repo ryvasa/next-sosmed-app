@@ -1,20 +1,20 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import image from "../../public/pf.jpg";
-import { useEffect, useState } from "react";
-import { fetchCurrentUser } from "@/libs/api/api";
-import ThemeToggle from "./ThemeToggle";
-import LogoutButton from "./LogoutButton";
-import RightBarChats from "./RightBarChats";
-import NotificationButton from "./NotificationButton";
-import { truncateText } from "@/helper/truncateText";
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import image from '../../public/pf.jpg';
+import { useEffect, useState } from 'react';
+import { fetchCurrentUser } from '@/libs/api/api';
+import ThemeToggle from './ThemeToggle';
+import LogoutButton from './LogoutButton';
+import RightBarChats from './RightBarChats';
+import NotificationButton from './NotificationButton';
+import { truncateText } from '@/helper/truncateText';
 
 const RightBar = () => {
   const [user, setUser] = useState({
-    id: "",
-    avatar: "",
-    username: "",
+    id: '',
+    avatar: '',
+    username: '',
     active: false,
   });
 
@@ -25,7 +25,7 @@ const RightBar = () => {
         setUser(response.data);
       }
     } catch (error) {
-      console.error("Error fetching current user:", error);
+      console.error('Error fetching current user:', error);
     }
   };
 
@@ -46,13 +46,13 @@ const RightBar = () => {
           >
             <div
               className={`avatar-profile ${
-                user.active && "avatar-profile-online"
+                user.active && 'avatar-profile-online'
               } outline-offset-2`}
             >
               <Image
-                width={user.avatar && 112}
-                height={user.avatar && 112}
-                style={user.avatar && { width: "112px", height: "112px" }}
+                width={112}
+                height={112}
+                style={{ width: '112px', height: '112px' }}
                 alt="profile"
                 src={
                   user.avatar ? `http://localhost:3000/${user.avatar}` : image

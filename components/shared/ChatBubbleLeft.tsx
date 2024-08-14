@@ -1,8 +1,8 @@
-"use client";
-import image from "../../public/pf.jpg";
-import Image from "next/image";
-import { formaterTimeChat } from "../../helper/formaterTime";
-import { useEffect } from "react";
+'use client';
+import image from '../../public/pf.jpg';
+import Image from 'next/image';
+import { formaterTimeChat } from '../../helper/formaterTime';
+import { useEffect } from 'react';
 
 const ChatBubbleLeft = ({ data }: any) => {
   useEffect(() => {}, [data]);
@@ -13,11 +13,9 @@ const ChatBubbleLeft = ({ data }: any) => {
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
               <Image
-                width={data?.sender?.avatar && 10000}
-                height={data?.sender?.avatar && 10000}
-                style={
-                  data?.sender?.avatar && { width: "112px", height: `112px` }
-                }
+                width={10000}
+                height={10000}
+                style={{ width: '112px', height: `112px` }}
                 src={
                   data?.sender?.avatar
                     ? `http://localhost:3000/${data?.sender?.avatar}`

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import image from "../../public/pf.jpg";
-import { Check, Close, Edit, Friend } from "../ui/icons";
+import { Edit, Friend } from "../ui/icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchGetOneUser } from "@/libs/api/api";
@@ -11,7 +11,6 @@ import { formatRelativeTime } from "@/helper/formaterTime";
 import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import LoadingCircle from "../shared/LoadingCircle";
 import ChatButton from "../shared/ChatButton";
-import ShowPicture from "../shared/ShowPicture";
 
 const ProfileCard = ({ data }: any) => {
   const currentUser = userStore((state: any) => state.user);

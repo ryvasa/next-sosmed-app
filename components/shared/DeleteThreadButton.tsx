@@ -1,22 +1,26 @@
-"use client";
-import { fetchDeleteThread } from "@/libs/api/api";
-import { Alert, Delete } from "../ui/icons";
-import { useRouter } from "next/navigation";
+'use client';
+import { fetchDeleteThread } from '@/libs/api/api';
+import { Alert, Delete } from '../ui/icons';
+import { useRouter } from 'next/navigation';
 
 const DeleteThreadButton = ({ id }: any) => {
   const router = useRouter();
   const fetchDelete = async () => {
     const response = await fetchDeleteThread(id as string);
     if (response.data) {
-      router.push("/");
+      router.push('/');
+    }
+  };
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    const deletebutton: any = document.getElementById('thread_delete');
+    if (deletebutton) {
+      deletebutton.showModal();
     }
   };
   return (
     <>
-      <button
-        type="button"
-        onClick={() => document.getElementById("thread_delete").showModal()}
-      >
+      <button type="button" onClick={handleClick}>
         <Delete w={5} h={5} c="error" /> Delete
       </button>
       <dialog
