@@ -21,7 +21,7 @@ const CommentCard = ({ data }: any) => {
       className="rounded-lg lg:px-10 bg-gray-100 dark:bg-dark-sm p-4"
     >
       <UserInfo user={data?.user} createdAt={data?.created_at} />
-      <div className="py-2 text-sm lg:text-lg ">
+      <div className="py-2 text-sm lg:text-md ">
         {detail ? data.body : truncateText(data.body, 400)}{" "}
         {data.body.length > 400 && (
           <button onClick={detailToggle} className="text-primary">

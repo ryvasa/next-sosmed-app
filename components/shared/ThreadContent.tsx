@@ -23,7 +23,7 @@ const ThreadContent = ({ id }: any) => {
         <Loading />
       ) : (
         <div className="flex flex-col gap-4">
-          <div className="text-sm lg:text-lg">
+          <div className="text-sm lg:text-md">
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(thread?.body),
@@ -32,7 +32,7 @@ const ThreadContent = ({ id }: any) => {
           </div>
           {thread?.images?.length > 0 &&
             thread.images.map((image: any, index: number) => (
-              <div className="h-full" key={index}>
+              <div className="h-full " key={index}>
                 {image.image ? (
                   <>
                     <ShowPicture data={image.image} />

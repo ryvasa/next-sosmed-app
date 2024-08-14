@@ -39,15 +39,15 @@ const NotificationCard = ({ data }: any) => {
       </div>
       <div className="flex w-full flex-auto justify-between items-center">
         <div className="flex flex-col gap-1">
-          <div className="flex gap-1">
-            <p className={`text-primary font-semibold text-sm`}>
+          <p className=" text-sm">
+            <span className={`text-primary font-semibold`}>
               {data?.sender?.username}
-            </p>
-            <p className="text-sm">{getActionText()}</p>
-          </div>
-          <p className="text-sm font-semibold text-primary">
-            {formatRelativeTime(data?.created_at)}
+            </span>{" "}
+            <span>{getActionText()}</span>
           </p>
+          <span className="text-sm font-semibold text-primary">
+            {formatRelativeTime(data?.created_at)}
+          </span>
         </div>
         {!data?.readed && (
           <span className="badge badge-error badge-xs lg:badge-md text-white dark:text-dark-sm"></span>

@@ -43,7 +43,7 @@ const CommentForm = () => {
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
         placeholder="Comment here..."
-        className="lg:text-lg text-sm bg-transparent textarea flex-1 border-none  resize-none pr-11"
+        className="lg:text-md text-sm bg-transparent textarea flex-1 border-none  resize-none pr-11"
       ></textarea>
       <button
         disabled={!newComment}

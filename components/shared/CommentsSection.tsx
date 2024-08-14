@@ -1,13 +1,13 @@
-'use client';
-import { useEffect, useState } from 'react';
-import CommentCard from '../cards/CommentCard';
-import CommentForm from '../forms/CommentForm';
-import { useParams } from 'next/navigation';
-import { fetchGetComments, fetchGetCountComments } from '../../libs/api/api';
+"use client";
+import { useEffect, useState } from "react";
+import CommentCard from "../cards/CommentCard";
+import CommentForm from "../forms/CommentForm";
+import { useParams } from "next/navigation";
+import { fetchGetComments, fetchGetCountComments } from "../../libs/api/api";
 // import useNotification from "../../libs/hooks/useNotification";
-import useActiveStatus from '@/libs/hooks/useActiveStatus';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import LoadingCircle from './LoadingCircle';
+import useActiveStatus from "@/libs/hooks/useActiveStatus";
+import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingCircle from "./LoadingCircle";
 
 const CommentsSection = () => {
   const [comments, setComments] = useState<any[]>([]);
@@ -40,8 +40,8 @@ const CommentsSection = () => {
   useActiveStatus(getCommenst);
   // useNotification(getCommenst);
   return (
-    <div className="py-2 min-h-screen">
-      <h1 className="pb-4 lg:text-lg">
+    <div className={`py-2 ${comments.length > 0 ? "h-fit" : "h-[400px]"} `}>
+      <h1 className="pb-4 lg:text-md">
         <b className="text-primary">{countComments}</b> comments
       </h1>
       <CommentForm />

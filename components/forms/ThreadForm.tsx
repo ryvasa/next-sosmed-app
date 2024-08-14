@@ -63,6 +63,9 @@ const ThreadForm = () => {
   return (
     <form onSubmit={handleSubmit} className="py-4">
       <ThreadBodyForm body={body} setBody={setBody} />
+      <p className="text-error text-xs font-semibold italic pt-5">
+        Only .jpeg .jpg and .png are allowed!
+      </p>
       <ImageUploadPreview
         currentImages={currentImages}
         setCurrentImages={setCurrentImages}
