@@ -1,15 +1,15 @@
 // hooks/useChatSocket.ts
-import { useEffect } from 'react';
-import { notificationSocket } from '../socket/socket';
+import { useEffect } from "react";
+import { notificationSocket } from "../socket/socket";
 
 const useNotification = (fetchData: any) => {
   useEffect(() => {
-    notificationSocket.on('notify', (data: any) => {
+    notificationSocket.on("notify", (data: any) => {
       fetchData();
     });
 
     return () => {
-      notificationSocket.off('notify', (data: any) => {
+      notificationSocket.off("notify", (data: any) => {
         console.log(data);
       });
     };

@@ -37,9 +37,6 @@ const UpdateUserForm = () => {
     setData(response.data);
   };
   useEffect(() => {
-    console.log({ avatar, data: data });
-  }, [data]);
-  useEffect(() => {
     getUser();
   }, []);
 
