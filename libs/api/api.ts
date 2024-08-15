@@ -1,5 +1,3 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
 const errorFetch = async (response: any) => {
   if (!response.ok) {
     const errorData = await response.json();
@@ -17,14 +15,17 @@ interface fetchParam {
 
 const fetchData = async (data: fetchParam) => {
   try {
-    const response = await fetch(`${BASE_URL}/${data.url}`, {
-      method: data.method,
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${data.url}`,
+      {
+        method: data.method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data.body),
+        credentials: "include",
       },
-      body: JSON.stringify(data.body),
-      credentials: "include",
-    });
+    );
     errorFetch(response);
     const user = await response.json();
     return user;
@@ -74,11 +75,14 @@ export async function fetchUpdateUser(
   id: string,
 ): Promise<any> {
   try {
-    const response = await fetch(`${BASE_URL}/users/${id}`, {
-      method: "PATCH",
-      body: formData,
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+      {
+        method: "PATCH",
+        body: formData,
+        credentials: "include",
+      },
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -100,7 +104,7 @@ export async function fetchUpdateUser(
 // }
 export async function fetchCreateThread(formData: FormData): Promise<any> {
   try {
-    const response = await fetch(`${BASE_URL}/threads`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/threads`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -126,11 +130,14 @@ export async function fetchUpdateThread(
   formData: FormData,
 ): Promise<any> {
   try {
-    const response = await fetch(`${BASE_URL}/threads/${id}`, {
-      method: "PATCH",
-      body: formData,
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/threads/${id}`,
+      {
+        method: "PATCH",
+        body: formData,
+        credentials: "include",
+      },
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
