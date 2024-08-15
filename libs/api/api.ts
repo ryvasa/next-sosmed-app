@@ -21,6 +21,7 @@ const fetchData = async (data: fetchParam) => {
         method: data.method,
         headers: {
           "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "any",
         },
         body: JSON.stringify(data.body),
         credentials: "include",
