@@ -10,7 +10,6 @@ export const truncateText = (
   const text = DOMPurify.sanitize(textWithTag);
   // console.log({ textlebihbanyakdaripadalength: text.length > length, text });
   if (text.length > length) {
-    console.log(text);
     return text.slice(0, length) + "...";
   } else {
     return text;
