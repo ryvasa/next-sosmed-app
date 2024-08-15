@@ -17,10 +17,10 @@ const ShowPicture = ({ data }: any) => {
           <Image
             onClick={handleClick}
             placeholder="blur"
-            blurDataURL={`http://localhost:3000/${data}`}
+            blurDataURL={`${process.env.NEXT_PUBLIC_API_URL}/${data}`}
             width={12000}
             height={12000}
-            src={`http://localhost:3000/${data}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${data}`}
             alt="photo postingan"
             className="w-full h-full object-cover rounded-md"
           />
@@ -31,10 +31,10 @@ const ShowPicture = ({ data }: any) => {
             <div className=" rounded-sm relative  lg:h-[95%] h-11/12 w-11/12">
               <Image
                 placeholder="blur"
-                blurDataURL={`http://localhost:3000/${data}`}
+                blurDataURL={`${process.env.NEXT_PUBLIC_API_URL}/${data}`}
                 width={12000}
                 height={12000}
-                src={`http://localhost:3000/${data}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/${data}`}
                 alt="photo postingan"
                 className="w-full h-full object-contain rounded-xl"
               />

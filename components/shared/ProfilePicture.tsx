@@ -7,7 +7,7 @@ const ProfilePicture = ({ active, avatar }: any) => {
         width={10000}
         height={10000}
         // style={{ width: '112px', height: `112px` }}
-        src={avatar ? `http://localhost:3000/${avatar}` : image}
+        src={avatar ? `${process.env.NEXT_PUBLIC_API_URL}/${avatar}` : image}
         className="h-12 w-12"
         alt="photo frofile"
       />

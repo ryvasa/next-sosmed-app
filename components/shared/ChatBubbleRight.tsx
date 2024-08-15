@@ -16,7 +16,7 @@ const ChatBubbleRight = ({ data }: any) => {
                 className="h-12 w-12"
                 src={
                   data?.sender?.avatar
-                    ? `http://localhost:3000/${data?.sender?.avatar}`
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${data?.sender?.avatar}`
                     : image
                 }
                 alt="profile"

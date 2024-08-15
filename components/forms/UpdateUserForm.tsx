@@ -98,7 +98,7 @@ const UpdateUserForm = () => {
                 previewImage
                   ? previewImage // jika ada preview
                   : data?.avatar
-                    ? `http://localhost:3000/${data.avatar}` // jika tidak ada preview tetapi ada avatar
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${data.avatar}` // jika tidak ada preview tetapi ada avatar
                     : image // jika tidak ada preview dan tidak ada avatar
               }
               alt="profile pict"

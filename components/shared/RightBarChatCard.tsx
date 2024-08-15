@@ -41,7 +41,7 @@ const RightBarChatCard = ({ data }: any) => {
               className="h-12 w-12"
               src={
                 filteredUsers?.user?.avatar
-                  ? `http://localhost:3000/${filteredUsers?.user?.avatar}`
+                  ? `${process.env.NEXT_PUBLIC_API_URL}/${filteredUsers?.user?.avatar}`
                   : image
               }
               alt="photo frofile"

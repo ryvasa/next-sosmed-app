@@ -65,7 +65,7 @@ const ProfileCard = ({ data }: any) => {
                   // style={{ width: "112px", height: `112px` }}
                   src={
                     user?.avatar
-                      ? `http://localhost:3000/${user?.avatar}`
+                      ? `${process.env.NEXT_PUBLIC_API_URL}/${user?.avatar}`
                       : image
                   }
                   className="object-cover h-20 w-20 lg:h-28 lg:w-28 "

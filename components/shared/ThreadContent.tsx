@@ -38,10 +38,10 @@ const ThreadContent = ({ id }: any) => {
                     <ShowPicture data={image.image} />
                     {/*<Image
                       placeholder="blur"
-                      blurDataURL={`http://localhost:3000/${image.image}`}
+                      blurDataURL={`${process.env.NEXT_PUBLIC_API_URL}/${image.image}`}
                       width={12000}
                       height={12000}
-                      src={`http://localhost:3000/${image.image}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}/${image.image}`}
                       alt="photo postingan"
                       className="w-full h-full object-cover rounded-xl"
                     />*/}

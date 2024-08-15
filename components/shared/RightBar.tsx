@@ -57,7 +57,9 @@ const RightBar = () => {
                 //
                 alt="profile"
                 src={
-                  user.avatar ? `http://localhost:3000/${user.avatar}` : image
+                  user.avatar
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${user.avatar}`
+                    : image
                 }
               />
             </div>

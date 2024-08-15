@@ -103,7 +103,9 @@ const Topbar = () => {
                 className="h-12 w-12"
                 // style={{ width: '112px', height: `112px` }}
                 src={
-                  user?.avatar ? `http://localhost:3000/${user?.avatar}` : image
+                  user?.avatar
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${user?.avatar}`
+                    : image
                 }
                 quality={1}
               />

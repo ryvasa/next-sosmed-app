@@ -39,7 +39,11 @@ const ImageUploadPreview = ({
               width={1000}
               height={1000}
               style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
-              src={item.image ? `http://localhost:3000/${item.image}` : item}
+              src={
+                item.image
+                  ? `${process.env.NEXT_PUBLIC_API_URL}/${item.image}`
+                  : item
+              }
               alt="preview"
               className="mt-4 object-cover lg:h-full lg:w-full rounded-lg"
             />
@@ -65,7 +69,9 @@ const ImageUploadPreview = ({
                 height={1000}
                 style={{ width: "576px", height: `${(9 / 16) * 576}px` }}
                 src={
-                  image.image ? `http://localhost:3000/${image.image}` : image
+                  image.image
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${image.image}`
+                    : image
                 }
                 alt="preview"
                 className="mt-4 object-cover lg:h-full lg:w-full rounded-lg"

@@ -17,7 +17,7 @@ const ChatBubbleLeft = ({ data }: any) => {
                 height={10000}
                 src={
                   data?.sender?.avatar
-                    ? `http://localhost:3000/${data?.sender?.avatar}`
+                    ? `${process.env.NEXT_PUBLIC_API_URL}/${data?.sender?.avatar}`
                     : image
                 }
                 className="h-12 w-12"
