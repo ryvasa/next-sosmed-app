@@ -35,13 +35,16 @@ const ThreadForm = () => {
     const formData = new FormData();
     formData.append("body", body);
     const imagePathsToKeep = currentImages.map((item: any) => item.image);
-    formData.append("currentImages", imagePathsToKeep);
-    images.forEach((image) => {
-      formData.append("images", image);
-    });
+    if (images) {
+      images.forEach((image) => {
+        formData.append("images", image);
+      });
+    }
     try {
       let response;
       if (id) {
+        formData.append("currentImages", imagePathsToKeep);
+
         response = await fetchUpdateThread(id as string, formData);
       } else {
         response = await fetchCreateThread(formData);

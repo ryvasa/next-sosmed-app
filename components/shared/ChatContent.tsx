@@ -108,22 +108,27 @@ const ChatContent = () => {
       });
     }
   }
-  window.onscroll = async function () {
-    const visibleBottomMessage = await isVisible(
-      document.querySelector(".bottomMessage") as HTMLElement,
-    );
-    if (visibleBottomMessage) {
-      setTimeout(() => {
-        document.querySelector(".myElement")?.classList.remove("hidden");
-      }, 200);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.onscroll = async function () {
+        const visibleBottomMessage = await isVisible(
+          document.querySelector(".bottomMessage") as HTMLElement,
+        );
+        if (visibleBottomMessage) {
+          setTimeout(() => {
+            document.querySelector(".myElement")?.classList.remove("hidden");
+          }, 200);
+        }
+        const visible = await isVisible(
+          document.querySelector(".myElement") as HTMLElement,
+        );
+        if (messages.length > 0) {
+          setVisibleTrigger(visible as any);
+        }
+      };
     }
-    const visible = await isVisible(
-      document.querySelector(".myElement") as HTMLElement,
-    );
-    if (messages.length > 0) {
-      setVisibleTrigger(visible as any);
-    }
-  };
+  }, [messages]);
+
   useEffect(() => {
     getAnotherMessages();
   }, [visibleTrigger]);
