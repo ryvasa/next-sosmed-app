@@ -15,10 +15,10 @@ const Check = ({ w, h }: { w?: number; h?: number }) => {
   );
 };
 
-const Close = ({ w, h }: { w?: number; h?: number }) => {
+const Close = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
   return (
     <svg
-      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      className={`${c} ${!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}`}
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -542,7 +542,112 @@ const More = ({ w, h, c }: { w?: number; h?: number; c?: string }) => {
     </svg>
   );
 };
+const MicOff = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M19 11h-1.7c0 .74-.16 1.43-.43 2.05l1.23 1.23c.56-.98.9-2.09.9-3.28m-4.02.17c0-.06.02-.11.02-.17V5c0-1.66-1.34-3-3-3S9 3.34 9 5v.18zM4.27 3L3 4.27l6.01 6.01V11c0 1.66 1.33 3 2.99 3c.22 0 .44-.03.65-.08l1.66 1.66c-.71.33-1.5.52-2.31.52c-2.76 0-5.3-2.1-5.3-5.1H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c.91-.13 1.77-.45 2.54-.9L19.73 21L21 19.73z"
+      />
+    </svg>
+  );
+};
+const MicOn = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3m5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72z"
+      />
+    </svg>
+  );
+};
+const CameraOff = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 256 256"
+    >
+      <path
+        fill="currentColor"
+        d="M256 80.23v95.45a8.33 8.33 0 0 1-3.86 7.17a8 8 0 0 1-8.58-.19l-33.78-22.52a4 4 0 0 1-1.78-3.33V99.19a4 4 0 0 1 1.78-3.32l33.78-22.53a8 8 0 0 1 9.73.66a8.23 8.23 0 0 1 2.71 6.23M53.92 34.62a8 8 0 1 0-11.84 10.76L51.73 56H32a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h150.64l19.44 21.38a8 8 0 1 0 11.84-10.76ZM185 155.07a4 4 0 0 0 7-2.7V72a16 16 0 0 0-16-16h-72a4 4 0 0 0-3 6.69Z"
+      />
+    </svg>
+  );
+};
+const CameraOn = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 256 256"
+    >
+      <path
+        fill="currentColor"
+        d="M192 72v112a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16V72a16 16 0 0 1 16-16h144a16 16 0 0 1 16 16m58 .25a8.23 8.23 0 0 0-6.63 1.22l-33.59 22.39a4 4 0 0 0-1.78 3.33v57.62a4 4 0 0 0 1.78 3.33l33.78 22.52a8 8 0 0 0 8.58.19a8.33 8.33 0 0 0 3.86-7.17V80a8 8 0 0 0-6-7.75"
+      />
+    </svg>
+  );
+};
+const CallOff = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="m17.34 14.54l-1.43-1.43c.56-.73 1.05-1.5 1.47-2.32l-2.2-2.2c-.28-.28-.36-.67-.25-1.02c.37-1.12.57-2.32.57-3.57c0-.55.45-1 1-1H20c.55 0 1 .45 1 1c0 3.98-1.37 7.64-3.66 10.54m-2.82 2.81A16.9 16.9 0 0 1 4 21c-.55 0-1-.45-1-1v-3.49c0-.55.45-1 1-1c1.24 0 2.45-.2 3.57-.57c.35-.12.75-.03 1.02.24l2.2 2.2c.81-.42 1.58-.9 2.3-1.46L1.39 4.22l1.42-1.41L21.19 21.2l-1.41 1.41z"
+      />
+    </svg>
+  );
+};
+
+const Screen = ({ w, h }: { w?: number; h?: number }) => {
+  return (
+    <svg
+      className={!w && !h ? `w-6 h-6` : `w-${w} h-${h}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M22 3H2v16h6v2h8v-2h6zm-2 14H4V5h16z" />
+      <path
+        fill="currentColor"
+        d="M6.5 7.5H9V6H5v4h1.5zM19 12h-1.5v2.5H15V16h4z"
+      />
+    </svg>
+  );
+};
+
 export {
+  Screen,
+  CallOff,
+  CameraOn,
+  CameraOff,
+  MicOn,
+  MicOff,
   More,
   Alert,
   Delete,

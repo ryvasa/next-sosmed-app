@@ -1,8 +1,9 @@
-"use client";
-import Link from "next/link";
-import ProfilePicture from "../shared/ProfilePicture";
-import { formatRelativeTime } from "@/helper/formaterTime";
-import ChatButton from "../shared/ChatButton";
+'use client';
+import Link from 'next/link';
+import ProfilePicture from '../shared/ProfilePicture';
+import { formatRelativeTime } from '@/helper/formaterTime';
+import ChatButton from '../shared/ChatButton';
+import { CameraOn } from '../ui/icons';
 
 const UserCard = ({ user }: any) => {
   return (
@@ -25,7 +26,15 @@ const UserCard = ({ user }: any) => {
           </div>
         </div>
       </Link>
-      <ChatButton userId={user.id} />
+      <div className="flex gap-4">
+        <ChatButton userId={user.id} />
+        <Link
+          href={`/video-call/${user.id}`}
+          className="text-primary flex justify-center items-center"
+        >
+          <CameraOn />
+        </Link>
+      </div>
     </div>
   );
 };
