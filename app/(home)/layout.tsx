@@ -1,16 +1,16 @@
-import type { Metadata } from 'next';
-import '../globals.css';
-import Topbar from '@/components/shared/Topbar';
-import Bottombar from '@/components/shared/Bottombar';
-import { Suspense } from 'react';
-import Loading from './loading';
-import Leftbar from '@/components/shared/LeftBar';
-import RightBar from '../../components/shared/RightBar';
-import CallAllert from '../../components/shared/CallAllert';
+import type { Metadata } from "next";
+import "../globals.css";
+import Topbar from "@/components/shared/Topbar";
+import Bottombar from "@/components/shared/Bottombar";
+import { Suspense } from "react";
+import Loading from "./loading";
+import Leftbar from "@/components/shared/LeftBar";
+import RightBar from "../../components/shared/RightBar";
+import CallAllert from "../../components/shared/CallAllert";
 
 export const metadata: Metadata = {
-  title: 'SosmedApp',
-  description: 'This is description of SosmedApp',
+  title: "SosmedApp",
+  description: "This is description of SosmedApp",
 };
 
 export default function RootLayout({
@@ -37,8 +37,9 @@ export default function RootLayout({
             <RightBar />
           </div>
         </div>
+        {/* <div className="bottombar-gradient">
+        </div> */}
         <CallAllert />
-        {/* <div className="bottombar-gradient"></div> */}
         <Bottombar />
       </body>
     </html>

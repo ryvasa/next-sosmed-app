@@ -21,6 +21,7 @@ import useActiveStatus from "@/libs/hooks/useActiveStatus";
 import NotificationButton from "./NotificationButton";
 import DeleteChatButton from "./DeleteChatButton";
 import useNotificationRoom from "@/libs/hooks/useNotificationRoom";
+import useCall from "@/libs/hooks/useCall";
 
 const Topbar = () => {
   const { receiver_id } = useParams();
@@ -81,6 +82,7 @@ const Topbar = () => {
   useNotificationRoom(user.id);
   useChatNotify(fetchUnreadedMessage);
   useActiveStatus(fetchReceiverUser);
+  // useCall();
   return (
     <nav className="navbar">
       <div className="flex-1 px-10 ">

@@ -68,3 +68,27 @@ export const messagesStore = create((set, get) => ({
       unreadedMessages: chatCount,
     })),
 }));
+
+// export const callStore = create(
+//   persist(
+//     (set, get) => ({
+//       call: {},
+//       updateCall: (newCall: any) =>
+//         set((state: any) => ({
+//           call: newCall,
+//         })),
+//     }),
+//     {
+//       name: "call-storage",
+//     },
+//   ),
+// );
+
+export const callStore = create((set, get) => ({
+  call: {},
+  calling: false,
+  updateCall: (newCall: any) =>
+    set((state: any) => ({
+      call: newCall,
+    })),
+}));
