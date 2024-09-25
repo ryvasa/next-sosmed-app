@@ -1,25 +1,20 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Peer from 'simple-peer';
-import { io } from 'socket.io-client';
 import { CallOff, CameraOn, MicOn, Screen } from '../ui/icons';
 import { useParams, useRouter } from 'next/navigation';
-
-const socket = io('http://localhost:3000/calls', {
-  withCredentials: true,
-});
+import { userStore } from '../../store';
+import { callSocket } from '../../libs/socket/socket';
 
 const Call = () => {
-  const [me, setMe] = useState('');
   const [stream, setStream] = useState(null);
   const [receivingCall, setReceivingCall] = useState(false);
   const [caller, setCaller] = useState('');
   const [callerSignal, setCallerSignal] = useState(null);
   const [callAccepted, setCallAccepted] = useState(false);
-  const [idToCall, setIdToCall] = useState('');
   const [callEnded, setCallEnded] = useState(false);
-  const [name, setName] = useState('');
   const { id } = useParams();
+  const { user } = userStore((state: any) => state);
 
   const userVideo = useRef<any>(null);
   const connectionRef = useRef<any>(null);
@@ -34,11 +29,10 @@ const Call = () => {
     });
 
     peer.on('signal', (data: any) => {
-      socket.emit('callUser', {
+      callSocket.emit('callUser', {
         userToCall: id,
         signalData: data,
-        from: me,
-        name: name,
+        from: user.id,
       });
     });
 
@@ -48,7 +42,7 @@ const Call = () => {
       }
     });
 
-    socket.on('callAccepted', (signal) => {
+    callSocket.on('callAccepted', (signal) => {
       setCallAccepted(true);
       peer.signal(signal);
     });
@@ -56,8 +50,7 @@ const Call = () => {
     connectionRef.current = peer;
   };
   useEffect(() => {
-    socket.emit('call');
-
+    callSocket.emit('call');
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream: any) => {
@@ -70,16 +63,17 @@ const Call = () => {
         console.error('Error accessing media devices:', error);
       });
 
-    socket.on('me', (id) => {
-      console.log(id);
-      setMe(id);
-    });
-
-    socket.on('callUser', (data) => {
+    callSocket.on('callUser', (data) => {
       setReceivingCall(true);
       setCaller(data.from);
-      setName(data.name);
       setCallerSignal(data.signal);
+    });
+
+    callSocket.on('callEnded', () => {
+      setCallEnded(true);
+      if (connectionRef.current) {
+        connectionRef.current.destroy();
+      }
     });
   }, []);
 
@@ -92,7 +86,8 @@ const Call = () => {
     });
 
     peer.on('signal', (data: any) => {
-      socket.emit('answerCall', { signal: data, to: caller });
+      console.log(data);
+      callSocket.emit('answerCall', { signal: data, to: caller });
     });
 
     peer.on('stream', (stream: any) => {
@@ -106,13 +101,18 @@ const Call = () => {
   };
 
   const leaveCall = () => {
+    callSocket.emit('endCall', { to: caller || id });
     setCallEnded(true);
     if (connectionRef.current) {
       connectionRef.current.destroy();
     }
-
-    router.push('/users');
   };
+
+  useEffect(() => {
+    if (callEnded) {
+      router.push('/users');
+    }
+  }, [callEnded]);
 
   return (
     <div className="bg-dark-xl h-screen w-screen">
@@ -130,7 +130,6 @@ const Call = () => {
           )}
         </div>
         <span className="text-white font-bold text-lg mb-4">{caller}</span>
-        <p className="text-white">{me}</p>
       </div>
       <div className="flex flex-col items-center justify-center w-full h-screen">
         {callAccepted && !callEnded ? (
@@ -169,13 +168,6 @@ const Call = () => {
         </button>
       </div>
       <div className="absolute top-0">
-        <textarea
-          className="text-black"
-          value={idToCall}
-          onChange={(e) => {
-            setIdToCall(e.target.value);
-          }}
-        />
         <div>
           {callAccepted && !callEnded ? (
             <button

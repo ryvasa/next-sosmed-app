@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import Loading from './loading';
 import Leftbar from '@/components/shared/LeftBar';
 import RightBar from '../../components/shared/RightBar';
+import CallAllert from '../../components/shared/CallAllert';
 
 export const metadata: Metadata = {
   title: 'SosmedApp',
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth scroll-pt-96">
       <body>
         <div className="lg:relative lg:-z-20">{<Topbar />}</div>
-        <div className="w-scree flex bg-gray-50 justify-center items-center dark:bg-dark-lg lg:gap-10  relative">
+        <div className="flex bg-gray-50 justify-center items-center dark:bg-dark-lg lg:gap-10  relative">
           <div className="lg:flex-1 lg:block hidden">
             <Leftbar />
           </div>
@@ -36,6 +37,7 @@ export default function RootLayout({
             <RightBar />
           </div>
         </div>
+        <CallAllert />
         {/* <div className="bottombar-gradient"></div> */}
         <Bottombar />
       </body>
